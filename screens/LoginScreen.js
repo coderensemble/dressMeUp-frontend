@@ -1,5 +1,5 @@
 import { KeyboardAvoidingView } from "react-native";
-import Login from "../components/functional components/Login"
+import Login from "../Components/functional components/Signin"
 
 export default function HomeScreen() {
   return (

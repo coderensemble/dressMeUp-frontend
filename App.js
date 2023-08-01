@@ -84,13 +84,13 @@ export default function App() {
     //   <PersistGate persistor={persistor}>
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="LoginScreen" component={LoginScreen} />
+            {/* <Stack.Screen name="LoginScreen" component={LoginScreen} />
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
-            <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} />
+            <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} /> */}
 
-            <Stack.Screen name="CreateClotheA" component={CreateClotheA} />
+            {/* <Stack.Screen name="CreateClotheA" component={CreateClotheA} /> */}
              <Stack.Screen name="CreateClotheB" component={CreateClotheB} />
-            <Stack.Screen name="CreateClotheC" component={CreateClotheC} />
+            {/* <Stack.Screen name="CreateClotheC" component={CreateClotheC} />
             <Stack.Screen name="CreateClotheD" component={CreateClotheD} />
             <Stack.Screen name="CreateClotheE" component={CreateClotheE} />
             <Stack.Screen name="CreateClotheF" component={CreateClotheF} />
@@ -108,7 +108,7 @@ export default function App() {
 
             <Stack.Screen name="ViewOutfitA" component={ViewOutfitA} />
             <Stack.Screen name="ViewOutfitB" component={ViewOutfitB} />
-            <Stack.Screen name="ViewOutfitC" component={ViewOutfitC} />
+            <Stack.Screen name="ViewOutfitC" component={ViewOutfitC} /> */}
 
           </Stack.Navigator>
         </NavigationContainer>
