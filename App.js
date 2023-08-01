@@ -9,6 +9,7 @@ const fetchFonts = async () => {
     'Lora-MediumItalic': require('./assets/fonts/Lora/static/Lora-MediumItalic.ttf'),
     'Lora-Bold': require('./assets/fonts/Lora/static/Lora-Bold.ttf'),
     'Lora-SemiBoldItalic': require('./assets/fonts/Lora/static/Lora-SemiBoldItalic.ttf'),
+    'Lora-SemiBold': require('./assets/fonts/Lora/static/Lora-SemiBold.ttf'),
 
     // Vous pouvez charger d'autres polices ici si nécessaire
   });
@@ -23,9 +24,9 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 // Pensez à importer vos reducers une fois qu'ils sont été exportés dans leurs fichiers respectifs
 
 //import des différents screens
-import Login from "./screens/LoginScreen";
-import Home from "./screens/HomeScreen";
-import UserProfile from "./screens/UserProfileScreen";
+import LoginScreen from "./screens/LoginScreen";
+import HomeScreen from "./screens/HomeScreen";
+import UserProfileScreen from "./screens/UserProfileScreen";
 
 import CreateClotheA from "./screens/CreateClothes/CreateClotheA";
 import CreateClotheB from "./screens/CreateClothes/CreateClotheB";
@@ -84,9 +85,9 @@ export default function App() {
     //   <PersistGate persistor={persistor}>
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
-            {/* <Stack.Screen name="LoginScreen" component={LoginScreen} />
-            <Stack.Screen name="HomeScreen" component={HomeScreen} />
-            <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} /> */}
+            {/* {/* <Stack.Screen name="LoginScreen" component={LoginScreen} /> */}
+            {/* <Stack.Screen name="HomeScreen" component={HomeScreen} /> */}
+            {/* <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} /> */}
 
             {/* <Stack.Screen name="CreateClotheA" component={CreateClotheA} /> */}
              <Stack.Screen name="CreateClotheB" component={CreateClotheB} />
