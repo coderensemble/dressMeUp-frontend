@@ -1,9 +1,13 @@
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+import { Dimensions } from "react-native";
 import { LeftArrowCircle } from "./Pictos";
 
-export default function Header() {
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
+
+function TopContainer() {
   return (
-    <View>
+    <View style={styles.headerMainContainer}>
       <View style={styles.headerContainer}>
         <View style={styles.pictoHeader}>
           <TouchableOpacity>
@@ -18,7 +22,26 @@ export default function Header() {
   );
 }
 
+function TopContainerPicto() {
+  return (
+    <View style={styles.headerMainContainer}>
+      <View style={styles.headerContainerPicto}>
+        <View style={styles.pictoHeader}>
+          <TouchableOpacity>
+            <LeftArrowCircle/>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </View>
+  );
+}
+
+export {TopContainer, TopContainerPicto}
+
 const styles = StyleSheet.create({
+  headerMainContainer: {
+    width: "90%",
+  },
   pictoHeader:{
     alignSelf: "center",
   },
@@ -26,6 +49,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignContent: "center",
     justifyContent: "space-between",
+  },
+  headerContainerPicto: {
+    flexDirection: "row",
+    alignContent: "center",
+    justifyContent: "flex-start",
   },
   topText: {
     fontFamily: "Lora-SemiBoldItalic",

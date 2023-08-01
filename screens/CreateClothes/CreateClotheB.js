@@ -3,14 +3,14 @@
 import React from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import ArrowBack from '../../Components/css/ArrowBack'
+import { TopContainerPicto } from '../../Components/css/TopContainer'
 
 
 function CreateClotheB() {
   return (
     <SafeAreaView style={styles.mainContainer}>
     <View>
-          <ArrowBack />
+          <TopContainerPicto />
         </View>
     </SafeAreaView>
   )
