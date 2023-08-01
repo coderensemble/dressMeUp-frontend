@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   },
   buttonPlus: {
     alignItems: "flex-end",
-    marginBottom: -25,
+    marginBottom: - windowHeight * 0.029,
     paddingRight: 10,
   },
   picto: {
