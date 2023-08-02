@@ -88,7 +88,7 @@ export default function App() {
             {/* <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} /> */}
 
             {/* <Stack.Screen name="CreateClotheA" component={CreateClotheA} /> */}
-            {/*{/* <Stack.Screen name="CreateClotheB" component={CreateClotheB} /> */}*/}
+            {/*{/* <Stack.Screen name="CreateClotheB" component={CreateClotheB} /> */}
             {/* <Stack.Screen name="CreateClotheC" component={CreateClotheC} /> */}
             {/* <Stack.Screen name="CreateClotheD" component={CreateClotheD} /> */}
             {/*<Stack.Screen name="CreateClotheE" component={CreateClotheE} />
