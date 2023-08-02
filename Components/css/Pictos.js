@@ -131,7 +131,7 @@ function ChevronRight() {
     </View>
   );
 }
-
+//ne semble pas fonctionné
 function Edit() {
   return (
     <View>
@@ -154,7 +154,7 @@ function Edit() {
     </View>
   );
 }
-
+//ne semble pas fonctionné
 function Settings() {
   return (
     <View>
