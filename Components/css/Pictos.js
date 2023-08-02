@@ -547,8 +547,8 @@ function Autumn() {
   return (
     <View>
       <Svg
-        width={512}
-        height={512}
+        width={35}
+        height={35}
         viewBox="0 0 512 512"
         fill="none"
         stroke="currentColor"
@@ -557,7 +557,7 @@ function Autumn() {
       >
         <G
           transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-          fill="#000000"
+          fill="#6B9080"
           stroke="none"
         >
           <Path
@@ -604,8 +604,8 @@ function Summer() {
   return (
     <View>
       <Svg
-        width={512}
-        height={512}
+        width={35}
+        height={35}
         viewBox="0 0 512 512"
         fill="none"
         stroke="currentColor"
@@ -614,7 +614,7 @@ function Summer() {
       >
         <G
           transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-          fill="#000000"
+          fill="#6B9080"
           stroke="none"
         >
           <Path
@@ -728,8 +728,8 @@ function Winter() {
   return (
     <View>
       <Svg
-        width={512}
-        height={512}
+        width={35}
+        height={35}
         viewBox="0 0 512 512"
         fill="none"
         stroke="currentColor"
@@ -738,7 +738,7 @@ function Winter() {
       >
         <G
           transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-          fill="#000000"
+          fill="#6B9080"
           stroke="none"
         >
           <Path
@@ -838,8 +838,8 @@ function Spring() {
   return (
     <View>
       <Svg
-        width={512}
-        height={512}
+        width={35}
+        height={35}
         viewBox="0 0 512 512"
         fill="none"
         stroke="currentColor"

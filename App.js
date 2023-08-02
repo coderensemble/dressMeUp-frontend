@@ -5,10 +5,11 @@ import * as Font from "expo-font";
 
 const fetchFonts = async () => {
   await Font.loadAsync({
-    "Lora-Regular": require("./assets/fonts/Lora/static/Lora-Regular.ttf"),
-    "Lora-MediumItalic": require("./assets/fonts/Lora/static/Lora-MediumItalic.ttf"),
-    "Lora-Bold": require("./assets/fonts/Lora/static/Lora-Bold.ttf"),
-    "Lora-SemiBoldItalic": require("./assets/fonts/Lora/static/Lora-SemiBoldItalic.ttf"),
+    'Lora-Regular': require('./assets/fonts/Lora/static/Lora-Regular.ttf'),
+    'Lora-MediumItalic': require('./assets/fonts/Lora/static/Lora-MediumItalic.ttf'),
+    'Lora-Bold': require('./assets/fonts/Lora/static/Lora-Bold.ttf'),
+    'Lora-SemiBoldItalic': require('./assets/fonts/Lora/static/Lora-SemiBoldItalic.ttf'),
+    'Lora-SemiBold': require('./assets/fonts/Lora/static/Lora-SemiBold.ttf'),
 
     // Vous pouvez charger d'autres polices ici si nécessaire
   });
@@ -83,9 +84,10 @@ export default function App() {
       <PersistGate persistor={persistor}>
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
-            {/*<Stack.Screen name="LoginScreen" component={LoginScreen} />*/}
-            {/*<Stack.Screen name="HomeScreen" component={HomeScreen} />*/}
-            {/*<Stack.Screen name="UserProfileScreen" component={UserProfileScreen} />*/}
+            {/* {/* <Stack.Screen name="LoginScreen" component={LoginScreen} /> */}
+            {/* <Stack.Screen name="HomeScreen" component={HomeScreen} /> */}
+            {/* <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} /> */}
+
             {/* <Stack.Screen name="CreateClotheA" component={CreateClotheA} /> */}
             {/*<Stack.Screen name="CreateClotheB" component={CreateClotheB} />*/}
             {/* <Stack.Screen name="CreateClotheC" component={CreateClotheC} />
