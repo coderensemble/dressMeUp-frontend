@@ -84,10 +84,10 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
             {/*<Stack.Screen name="LoginScreen" component={LoginScreen} />*/}
-            <Stack.Screen name="HomeScreen" component={HomeScreen} />
-            <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} />
+            {/*<Stack.Screen name="HomeScreen" component={HomeScreen} />*/}
+            {/*<Stack.Screen name="UserProfileScreen" component={UserProfileScreen} />*/}
             {/* <Stack.Screen name="CreateClotheA" component={CreateClotheA} /> */}
-            <Stack.Screen name="CreateClotheB" component={CreateClotheB} />
+            {/*<Stack.Screen name="CreateClotheB" component={CreateClotheB} />*/}
             {/* <Stack.Screen name="CreateClotheC" component={CreateClotheC} />
             <Stack.Screen name="CreateClotheD" component={CreateClotheD} />
             <Stack.Screen name="CreateClotheE" component={CreateClotheE} />
