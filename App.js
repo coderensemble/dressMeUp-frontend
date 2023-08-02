@@ -51,13 +51,13 @@ import ViewOutfitB from "./screens/ViewOutfits/ViewOutfitB";
 import ViewOutfitC from "./screens/ViewOutfits/ViewOutfitC";
 // Fin de l'import des différents screens
 
-// const reducers = combineReducers({ user });
-// const persistConfig = { key: "DressMeUp", storage: AsyncStorage };
+const reducers = combineReducers({ user });
+const persistConfig = { key: "DressMeUp", storage: AsyncStorage };
 
-// const store = configureStore({
-//   reducer: persistReducer(persistConfig, reducers),
-//   middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
-// });
+const store = configureStore({
+  reducer: persistReducer(persistConfig, reducers),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
+});
 
 const persistor = persistStore(store);
 
@@ -84,9 +84,9 @@ export default function App() {
       <PersistGate persistor={persistor}>
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
-            {/* {/* <Stack.Screen name="LoginScreen" component={LoginScreen} /> */}
-            {/* <Stack.Screen name="HomeScreen" component={HomeScreen} /> */}
-            {/* <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} /> */}
+            <Stack.Screen name="LoginScreen" component={LoginScreen} />
+            <Stack.Screen name="HomeScreen" component={HomeScreen} />
+            <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} />
 
             {/* <Stack.Screen name="CreateClotheA" component={CreateClotheA} /> */}
             {/*{/* {/* <Stack.Screen name="CreateClotheB" component={CreateClotheB} /> */} 

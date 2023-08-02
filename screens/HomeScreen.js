@@ -1,4 +1,4 @@
-import HomeUser from "../Components/functional components/HomeUser";
+import HomeUser from "../Components/functionalcomponents/HomeUser";
 import { SafeAreaView, StyleSheet } from "react-native";
 
 export default function HomeScreen() {
