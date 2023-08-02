@@ -5,11 +5,11 @@ import * as Font from "expo-font";
 
 const fetchFonts = async () => {
   await Font.loadAsync({
-    'Lora-Regular': require('./assets/fonts/Lora/static/Lora-Regular.ttf'),
-    'Lora-MediumItalic': require('./assets/fonts/Lora/static/Lora-MediumItalic.ttf'),
-    'Lora-Bold': require('./assets/fonts/Lora/static/Lora-Bold.ttf'),
-    'Lora-SemiBoldItalic': require('./assets/fonts/Lora/static/Lora-SemiBoldItalic.ttf'),
-    'Lora-SemiBold': require('./assets/fonts/Lora/static/Lora-SemiBold.ttf'),
+    "Lora-Regular": require("./assets/fonts/Lora/static/Lora-Regular.ttf"),
+    "Lora-MediumItalic": require("./assets/fonts/Lora/static/Lora-MediumItalic.ttf"),
+    "Lora-Bold": require("./assets/fonts/Lora/static/Lora-Bold.ttf"),
+    "Lora-SemiBoldItalic": require("./assets/fonts/Lora/static/Lora-SemiBoldItalic.ttf"),
+    "Lora-SemiBold": require("./assets/fonts/Lora/static/Lora-SemiBold.ttf"),
 
     // Vous pouvez charger d'autres polices ici si nécessaire
   });
@@ -48,15 +48,17 @@ import ViewClotheC from "./screens/ViewClothes/ViewClotheC";
 import ViewOutfitA from "./screens/ViewOutfits/ViewOutfitA";
 import ViewOutfitB from "./screens/ViewOutfits/ViewOutfitB";
 import ViewOutfitC from "./screens/ViewOutfits/ViewOutfitC";
+
 // Fin de l'import des différents screens
 
-// const reducers = combineReducers({ user });
-// const persistConfig = { key: "DressMeUp", storage: AsyncStorage };
+const reducers = combineReducers({ user });
+const persistConfig = { key: "DressMeUp", storage: AsyncStorage };
 
-// const store = configureStore({
-//   reducer: persistReducer(persistConfig, reducers),
-//   middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
-// });
+const store = configureStore({
+  reducer: persistReducer(persistConfig, reducers),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
+});
 
 const persistor = persistStore(store);
 
@@ -83,11 +85,11 @@ export default function App() {
       <PersistGate persistor={persistor}>
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
-            {/* {/* <Stack.Screen name="LoginScreen" component={LoginScreen} /> */}
+            <Stack.Screen name="LoginScreen" component={LoginScreen} />
             {/* <Stack.Screen name="HomeScreen" component={HomeScreen} /> */}
             {/* <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} /> */}
 
-            {/* <Stack.Screen name="CreateClotheA" component={CreateClotheA} /> */}
+            {/*<Stack.Screen name="CreateClotheA" component={CreateClotheA} />
             {/*{/* <Stack.Screen name="CreateClotheB" component={CreateClotheB} /> */}
             {/* <Stack.Screen name="CreateClotheC" component={CreateClotheC} /> */}
             {/* <Stack.Screen name="CreateClotheD" component={CreateClotheD} /> */}
@@ -104,11 +106,9 @@ export default function App() {
             {/* <Stack.Screen name="ViewClotheB" component={ViewClotheB} /> */}
             {/* <Stack.Screen name="ViewClotheC" component={ViewClotheC} /> */}
 
-
             {/* <Stack.Screen name="ViewOutfitA" component={ViewOutfitA} /> */}
             {/* <Stack.Screen name="ViewOutfitB" component={ViewOutfitB} /> */}
             {/* <Stack.Screen name="ViewOutfitC" component={ViewOutfitC} /> */}
-
           </Stack.Navigator>
         </NavigationContainer>
       </PersistGate>
