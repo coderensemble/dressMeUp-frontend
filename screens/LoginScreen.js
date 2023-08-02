@@ -1,10 +1,19 @@
-import { KeyboardAvoidingView } from "react-native";
-import Login from "../Components/functional components/Signin"
+import Signin from "../Components/functional components/Signin";
+import { SafeAreaView, StyleSheet } from "react-native";
 
-export default function HomeScreen() {
+export default function LoginScreen() {
   return (
-    <KeyboardAvoidingView>
-      <Login />
-    </KeyboardAvoidingView>
+    <SafeAreaView  style={styles.mainContainer}>
+      <Signin />
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+mainContainer: {
+  flex: 1,
+  backgroundColor: "#F6FFF8",
+  alignItems: "center",
+  justifyContent: "center",
+},
+});

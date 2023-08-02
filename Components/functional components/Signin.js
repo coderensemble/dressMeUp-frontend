@@ -1,11 +1,20 @@
-import React, { useState } from "react";
-import { StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, Text } from "react-native";
-import { Dimensions } from "react-native";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../reducers/user";
+import { StyleSheet, TextInput, TouchableOpacity, Text, View, Dimensions, KeyboardAvoidingView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+// import { SafeAreaView } from "react-native-safe-area-context";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 export default function Signin() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.value);
+
+  //Redirect to /home if logged in
+  const navigation = useNavigation();
+
   const [showSignup, setShowSignup] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -35,8 +44,14 @@ export default function Signin() {
         .then((response) => response.json())
         .then((data) => {
           if (data.result) {
-            setUsername("");
-            setPassword("");
+            dispatch(
+              login({
+                token: data.token,
+                username: data.username,
+                password: data.password,
+              })
+            );
+            navigation.navigate("HomeScreen");
           }
         });
     }
@@ -47,9 +62,10 @@ export default function Signin() {
   };
 
   return (
-    <KeyboardAvoidingView style={styles.mainContainer}>
-      <Text>{showSignup ? "Inscription" : "Connexion"}</Text>
-      <Text>Pour créer le dressing de ses rêves!</Text>
+    <View>
+      <Text style={styles.title}>{showSignup ? "Inscription" : "Connexion"}</Text>
+      <Text style={styles.textContent}>Pour créer le dressing de ses rêves!</Text>
+      <KeyboardAvoidingView>
       <TextInput
         placeholder="Identifiant"
         autoCapitalize="none" // https://reactnative.dev/docs/textinput#autocapitalize
@@ -77,33 +93,26 @@ export default function Signin() {
         autoCapitalize="none" // https://reactnative.dev/docs/textinput#autocapitalize
         keyboardType="default" // https://reactnative.dev/docs/textinput#keyboardtype
         textContentType="password" // https://reactnative.dev/docs/textinput#textcontenttype-ios
-        autoComplete="current-password" // https://reactnative.dev/docs/textinput#autocomplete-android
         onChangeText={(value) => setPassword(value)}
         value={password}
         style={styles.input}
       />
+      </KeyboardAvoidingView>
 
       <TouchableOpacity style={styles.buttonGreen} onPress={() => handleSubmit()} activeOpacity={0.8}>
         <Text style={styles.textButton}>{showSignup ? "S'inscrire" : "Se connecter"}</Text>
       </TouchableOpacity>
 
-      <Text>{showSignup ? "Déjà un compte?" : "Pas encore de compte?"}</Text>
+      <Text style={styles.textContent}>{showSignup ? "Déjà un compte?" : "Pas encore de compte?"}</Text>
 
       <TouchableOpacity onPress={() => handleToggleSignup()} activeOpacity={0.8}>
-        <Text>{showSignup ? "Connexion" : "Inscription"}</Text>
+        <Text style={styles.textContent}>{showSignup ? "Connexion" : "Inscription"}</Text>
       </TouchableOpacity>
-    </KeyboardAvoidingView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    backgroundColor: "#F6FFF8",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
   input: {
     width: windowWidth * 0.9,
     padding: 10,
@@ -112,13 +121,32 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: "#6B9080",
     backgroundColor: "#fff",
+    margin: 15,
   },
 
   buttonGreen: {
     width: windowWidth * 0.9,
     alignItems: "center",
-    backgroundColor: "#A4C3B2",
+    backgroundColor: "#6B9080",
     padding: 12,
+    margin: 15,
     borderRadius: 10,
+  },
+
+  textButton: {
+    fontFamily: "Lora-Bold",
+  },
+
+  textContent: {
+    fontFamily: "Lora-Regular",
+    color: "black",
+    textAlign: "center",
+    padding: 12,
+  },
+
+  title: {
+    fontFamily: "Lora-Bold",
+    color: "black",
+    textAlign: "center",
   },
 });
