@@ -5,7 +5,7 @@ import { LeftArrowCircle } from "./Pictos";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-function TopContainer() {
+function TopContainerCreateClothe() {
   return (
     <View style={styles.headerMainContainer}>
       <View style={styles.headerContainer}>
@@ -36,7 +36,7 @@ function TopContainerPicto() {
   );
 }
 
-export {TopContainer, TopContainerPicto}
+export {TopContainerCreateClothe, TopContainerPicto}
 
 const styles = StyleSheet.create({
   headerMainContainer: {
@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
   topText: {
     fontFamily: "Lora-SemiBoldItalic",
     fontSize: 30,
-    color: "#6B9080",
+    color: "black",
+    opacity: 0.7
   },
 });
