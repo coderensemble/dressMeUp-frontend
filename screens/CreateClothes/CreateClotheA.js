@@ -2,14 +2,14 @@
 
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import {TopContainer} from '../../Components/css/TopContainer';
+import {TopContainerCreateClothe} from '../../Components/css/TopContainer';
 import { CardAddClothes } from '../../Components/css/CardAddClothes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 function CreateClotheA() {
     return (
         <SafeAreaView style={styles.mainContainer}>
-                <TopContainer />
+                <TopContainerCreateClothe />
                 <CardAddClothes />
         </SafeAreaView>
     )

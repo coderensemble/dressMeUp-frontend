@@ -1,11 +1,12 @@
-import { KeyboardAvoidingView, StyleSheet } from "react-native";
-import Signin from "../Components/functional components/Signin"
+import { SafeAreaView, StyleSheet } from "react-native";
+import { KeyboardAvoidingView } from "react-native";
+import Signin from "../Components/functionalcomponents/Signin"
 
 export default function LoginScreen() {
   return (
-    <KeyboardAvoidingView>
+    <SafeAreaView>
       <Signin />
-    </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 

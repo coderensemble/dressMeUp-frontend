@@ -4,7 +4,7 @@ import { Dimensions } from "react-native";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-export default function input() {
+export default function Input() {
   return (
       <TextInput
         placeholder="Remplacez par ce que vous voulez"

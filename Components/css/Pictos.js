@@ -35,22 +35,25 @@ function LeftArrowCircle() {
   return (
     <View>
       <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
-        <Circle cx={12} cy={12} r={10} stroke="#6B9080" strokeWidth={2} />
+        <Circle cx={12} cy={12} r={10} stroke="black" strokeWidth={2} opacity={0.7}
+ />
         <Polyline
           points="12 8 8 12 12 16"
-          stroke="#6B9080"
+          stroke="black"
           strokeWidth={2}
           strokeLinecap="round"
           strokeLinejoin="round"
+          opacity={0.7}
         />
         <Line
           x1={16}
           y1={12}
           x2={8}
           y2={12}
-          stroke="#6B9080"
+          stroke="black"
           strokeWidth={2}
           strokeLinecap="round"
+          opacity={0.7}
         />
       </Svg>
     </View>
@@ -86,15 +89,15 @@ function RightArrowCircle() {
 function Camera() {
   return (
     <View>
-      <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
+      <Svg width={100} height={100} viewBox="0 0 24 24" fill="none">
         <Path
           d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
-          stroke="currentColor"
+          stroke="white"
           strokeWidth={2}
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <Circle cx={12} cy={13} r={4} stroke="currentColor" strokeWidth={2} />
+        <Circle cx={12} cy={13} r={4} stroke="white" strokeWidth={2} />
       </Svg>
     </View>
   );
