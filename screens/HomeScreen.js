@@ -1,13 +1,19 @@
-import {KeyboardAvoidingView, Text, View} from 'react-native'
-
+import HomeUser from "../Components/functional components/HomeUser";
+import { SafeAreaView, StyleSheet } from "react-native";
 
 export default function HomeScreen() {
-return(
-    <KeyboardAvoidingView>
-        <Text>Hello Nico&Michel</Text>
-        <View><Text>Mes vêtements</Text></View>
-        <View><Text>Mes tenues</Text></View>
-        <View><Text>Mes tenues favorites</Text></View>
-    </KeyboardAvoidingView>
-)
+  return (
+    <SafeAreaView style={styles.mainContainer}>
+      <HomeUser />
+    </SafeAreaView>
+  );
 }
+
+const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    backgroundColor: "#F6FFF8",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
