@@ -12,17 +12,18 @@ import { EventParty, EventSport, EventCasual, EventWork } from "./Pictos";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const top = ["T-shirt", "Chemise", "Pull", "Veste", "Manteau", "Robe"];
-const bottom = ["Pantalon", "Short", "Jupe", "Pantacourt", "Jean", "Chino"];
-const shoes = ["Basket","Mocassins","Escarpins","Bottes","Bottines","Chaussure de ville","Ballerines","Sandales"];
-const accessories = ["Bonnet","Chapeau","Casquette","Ceinture","Collant","Ceinture","Bijoux"];
+const topMatiere = ["Coton", "Cuir", "Laine", "Lin", "Dentelle", "Soie", "Velours", "Autres"];
+const bottomMatiere = ["Coton", "Cuir", "Denim", "Lin", "Dentelle", "Soie", "Velours", "Autres"];
+const shoesMatiere = ["Caoutchouc","Plastique", "Cuir","Textile","Cork"];
 
-function FilterSubTypeTop() {
+// coton, cuir, laine, lin, polyester, denim, toile, dentelle, soie, cachemire
+
+function FilterMaterialTop() {
   return (
     <View style={styles.filtersContainer}>
-      <Text style={styles.filterTitle}>De quel type de haut s’agit-il ? *</Text>
+      <Text style={styles.filterTitle}>En quelle matière est votre habit ?</Text>
       <View style={styles.filterContainer}>
-        {top.map((top, index) => (
+        {topMatiere.map((top, index) => (
           <View key={index} style={styles.filterButtonClicked}>
             <Text style={styles.filterTextClicked}>{top}</Text>
           </View>
@@ -32,12 +33,12 @@ function FilterSubTypeTop() {
   );
 }
 
-function FilterSubTypeBottom() {
+function FilterMaterialBottom() {
   return (
     <View style={styles.filtersContainer}>
       <Text style={styles.filterTitle}>De quel type de bas s’agit-il ? *</Text>
       <View style={styles.filterContainer}>
-        {bottom.map((bottom, index) => (
+        {bottomMatiere.map((bottom, index) => (
           <View key={index} style={styles.filterButton}>
             <Text style={styles.filterText}>{bottom}</Text>
           </View>
@@ -47,12 +48,12 @@ function FilterSubTypeBottom() {
   );
 }
 
-function FilterSubTypeShoes() {
+function FilterMaterialShoes() {
   return (
     <View style={styles.filtersContainer}>
       <Text style={styles.filterTitle}>De quel type de chaussures s’agit-il ? *</Text>
       <View style={styles.filterContainer}>
-        {shoes.map((haut, index) => (
+        {shoesMatiere.map((haut, index) => (
           <View key={index} style={styles.filterButton}>
             <Text style={styles.filterText}>{haut}</Text>
           </View>
@@ -62,22 +63,7 @@ function FilterSubTypeShoes() {
   );
 }
 
-function FilterSubTypeAccessories() {
-  return (
-    <View style={styles.filtersContainer}>
-      <Text style={styles.filterTitle}>De quel type d'accessoire s’agit-il ? *</Text>
-      <View style={styles.filterContainer}>
-        {accessories.map((accessories, index) => (
-          <View key={index} style={styles.filterButton}>
-            <Text style={styles.filterText}>{accessories}</Text>
-          </View>
-        ))}
-      </View>
-    </View>
-  );
-}
-
-export { FilterSubTypeTop, FilterSubTypeBottom, FilterSubTypeShoes, FilterSubTypeAccessories };
+export { FilterMaterialTop, FilterMaterialBottom, FilterMaterialShoes };
 
 const styles = StyleSheet.create({
   filtersContainer: {
