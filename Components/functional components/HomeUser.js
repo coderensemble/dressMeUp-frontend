@@ -11,7 +11,7 @@ import { ClothesHaut } from "../css/Pictos";
 export default function HomeUser() {
   return (
     <View style={styles.cardAddClothesContainer}>
-      <Text styles={styles.welcome}>Hello Mich&Nico</Text>
+      <Text style={styles.welcome}>Hello Mich&Nico</Text>
       <TouchableOpacity activeOpacity={0.5}>
         <RightArrowCircle />
       </TouchableOpacity>
@@ -30,14 +30,14 @@ export default function HomeUser() {
       <Text style={styles.title}>Mes tenues</Text>
       <View style={styles.cardAddClothes}>
         <Text style={styles.textContent}>Ajoutez au moins deux vêtements pour créer votr première tenue</Text>
-        <View style={styles.img}>
+        <View style={styles.img2}>
           <ClothesHaut />
         </View>
       </View>
       <Text style={styles.title}>Mes tenues favorites</Text>
       <View style={styles.cardAddClothes}>
         <Text style={styles.textContent}>Vous n'avez pas encore de tenue favorite</Text>
-        <View style={styles.img}>
+        <View style={styles.img2}>
           <ClothesHaut />
         </View>
       </View>
@@ -66,9 +66,12 @@ const styles = StyleSheet.create({
     color: "black",
     textAlign: "left",
   },
-  welcome:{
+
+  welcome: {
     fontFamily: "Lora-Bold",
+    fontSize: 30,
   },
+
   textContent: {
     fontFamily: "Lora-Regular",
     color: "black",
@@ -93,5 +96,14 @@ const styles = StyleSheet.create({
     flexShrink: 0,
     flexBasis: "20%",
     paddingVertical:"10%"
-  }
+  },
+
+  img2:{
+    flex: 0.5,
+    flexGrow: 1,
+    flexBasis: "20%",
+    paddingVertical:"10%"
+    
+  },
 });
+
