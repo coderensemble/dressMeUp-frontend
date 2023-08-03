@@ -11,7 +11,12 @@ const windowHeight = Dimensions.get("window").height;
 
 
 
-function CreateClotheF() {
+function CreateClotheF({navigation}) {
+
+  const handleGoBack = () => {
+    navigation.goBack();
+};
+
   return (
     <View style={styles.mainContainer}>
 
@@ -23,7 +28,7 @@ function CreateClotheF() {
       >
         <View style={styles.insidePicture}>
 
-          <TopContainerPicto />
+          <TopContainerPicto handleGoBack={handleGoBack} />
           <Image style={styles.image} source={require('../../assets/images/1661139363d0af2b9ebc4be1a701c62b3af5e237ef.webp')} />
         </View>
       </ImageBackground>

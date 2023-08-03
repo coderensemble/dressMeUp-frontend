@@ -14,7 +14,11 @@ const windowHeight = Dimensions.get("window").height;
 import { PlusCircle } from "./Pictos";
 import { Accessories, ClothesBas, ClothesHaut, Shoes } from "./Pictos";
 
-function CardAddClothes() {
+
+
+
+function CardAddClothes({handleTopSubmit, handleBottomSubmit, handleShoesSubmit, handleAccessoriesSubmit}) {
+
   return (
     <View style={styles.cardAddClothesContainer}>
       <View style={styles.cardAddClothes}>
@@ -24,7 +28,7 @@ function CardAddClothes() {
         <View>
           <ClothesHaut />
         </View>
-        <TouchableOpacity activeOpacity={0.5}>
+        <TouchableOpacity activeOpacity={0.5} onPress={handleTopSubmit}>
           <View style={styles.buttonPlus}>
             <PlusCircle />
           </View>
@@ -37,7 +41,7 @@ function CardAddClothes() {
         <View>
           <ClothesBas />
         </View>
-        <TouchableOpacity activeOpacity={0.5}>
+        <TouchableOpacity activeOpacity={0.5} onPress={handleBottomSubmit}>
           <View style={styles.buttonPlus}>
             <PlusCircle />
           </View>
@@ -50,7 +54,7 @@ function CardAddClothes() {
         <View style={styles.picto}>
           <Shoes />
         </View>
-        <TouchableOpacity activeOpacity={0.5}>
+        <TouchableOpacity activeOpacity={0.5} onPress={handleShoesSubmit}>
           <View style={styles.buttonPlus}>
             <PlusCircle />
           </View>
@@ -63,7 +67,7 @@ function CardAddClothes() {
         <View style={styles.picto}>
           <Accessories />
         </View>
-        <TouchableOpacity activeOpacity={0.5}>
+        <TouchableOpacity activeOpacity={0.5} onPress={handleAccessoriesSubmit}>
           <View style={styles.buttonPlus}>
             <PlusCircle />
           </View>

@@ -26,7 +26,7 @@ function FilterColors() {
 
   return (
     <View>
-      <Text style={styles.filterTitle}>Quelle est sa couleur ? *</Text>
+      <Text style={styles.filterTitle}>Quelle est la couleur ? *</Text>
       <View style={styles.colorsContainer}>
         {colors.map((color, index) => (
           <View
@@ -60,7 +60,7 @@ function FilterColorsClicked() {
 
   return (
     <View>
-      <Text style={styles.filterTitle}>Quelle est sa couleur ? *</Text>
+      <Text style={styles.filterTitle}>Quelle est la couleur ? *</Text>
       <View style={styles.colorsContainer}>
       {colors.map((color, index) => (
         <View
