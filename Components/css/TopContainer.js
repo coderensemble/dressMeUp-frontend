@@ -41,7 +41,7 @@ function AccountTopContainer(){
   )
 }
 
-function TopContainerPicto() {
+function TopContainerPicto({handleGoBack}) {
   return (
     <View style={styles.headerMainContainer}>
       <View style={styles.headerContainerPicto}>
