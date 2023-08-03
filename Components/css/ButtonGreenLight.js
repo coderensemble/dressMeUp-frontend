@@ -30,7 +30,17 @@ function ButtonValidate() {
   );
 }
 
-export {ButtonGreenLight, ButtonNextStep, ButtonValidate}
+function ButtonAddClothes() {
+  return (
+    <View style={styles.buttonContainer}>
+    <TouchableOpacity style={styles.buttonGreen} activeOpacity={0.8}>
+      <Text style={styles.textButton}>Ajouter un élément</Text>
+    </TouchableOpacity>  
+    </View>
+  );
+}
+
+export {ButtonGreenLight, ButtonNextStep, ButtonValidate, ButtonAddClothes}
 
 const styles = StyleSheet.create({
   buttonContainer: {

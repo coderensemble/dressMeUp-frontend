@@ -66,8 +66,6 @@ export const clotheSlice = createSlice({
     },
     saveTemporaryClothe: (state) => {
       state.clothes.push(state.temporaryClothe);
-    },
-    resetTemporaryClothe: (state) => {
       state.temporaryClothe = {
         name: "",
         maintype: "",

@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialOutfit = {
-  tops: [],
+const temporaryOutfit = {
+  top1: null,
+  top2 : null,
   bottom: null,
   shoes: null,
   accessory1: null,
   accessory2: null,
   accessory3: null,
-  isFavorite: false,
   image: "",
 };
 
@@ -20,23 +20,24 @@ export const outfitSlice = createSlice({
   initialState,
   reducers: {
     addTop: (state, action) => {
-      state.currentOutfit.tops.push(action.payload);
+      state.temporaryOutfit.tops.push(action.payload);
     },
     addPants: (state, action) => {
-      state.currentOutfit.bottom = action.payload;
+      state.temporaryOutfit.bottom = action.payload;
     },
     addShoes: (state, action) => {
-      state.currentOutfit.shoes = action.payload;
+      state.temporaryOutfit.shoes = action.payload;
     },
     setIsFavorite: (state, action) => {
-      state.currentOutfit.isFavorite = action.payload;
+      state.temporaryOutfit.isFavorite = action.payload;
     },
     setImage: (state, action) => {
-      state.currentOutfit.image = action.payload;
+      state.temporaryOutfit.image = action.payload;
     },
     saveOutfit: (state) => {
-      state.outfits.push(state.currentOutfit);
-      state.currentOutfit = {
+      // CAM REF ICI
+      state.outfits.push(state.temporaryOutfit);
+      state.temporaryOutfit = {
         tops: [],
         pants: null,
         shoes: null,
@@ -45,7 +46,6 @@ export const outfitSlice = createSlice({
           accessory2: null,
           accessory3: null,
         },
-        isFavorite: false,
         image: "",
       };
     },

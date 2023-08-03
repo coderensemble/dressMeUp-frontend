@@ -14,8 +14,8 @@ const windowHeight = Dimensions.get("window").height;
 
 const top = ["T-shirt", "Chemise", "Pull", "Veste", "Manteau", "Robe"];
 const bottom = ["Pantalon", "Short", "Jupe", "Pantacourt", "Jean", "Chino"];
-const shoes = ["Basket","Mocassins","Escarpins","Bottes","Bottines","Chaussure de ville","Ballerines","Sandales"];
-const accessories = ["Bonnet","Chapeau","Casquette","Ceinture","Collant","Ceinture","Bijoux"];
+const shoes = ["Basket","Mocassins","Escarpins","Bottes","Bottines","Ballerines","Sandales"];
+const accessories = ["Bonnet","Chapeau","Casquette","Ceinture","Collant","Ceinture","Bijoux","Lunettes"];
 
 function FilterSubTypeTop() {
   return (
