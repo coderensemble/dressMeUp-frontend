@@ -24,7 +24,24 @@ function TopContainerCreateClothe({handleGoBack}) {
   );
 }
 
-function TopContainerPicto({handleGoBack}) {
+function AccountTopContainer(){
+  return(
+    <View style={styles.headerMainContainer}>
+      <View style={styles.headerContainer}>
+        <View style={styles.pictoHeader}>
+          <TouchableOpacity>
+            <LeftArrowCircle/>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <Text style={styles.topText}>Mon compte</Text>
+        </View>
+      </View>
+    </View>
+  )
+}
+
+function TopContainerPicto() {
   return (
     <View style={styles.headerMainContainer}>
       <View style={styles.headerContainerPicto}>
@@ -124,7 +141,7 @@ function TopContainerOverviewOutfit() {
   );
 }
 
-export {TopContainerCreateClothe, TopContainerPicto, TopContainerListingTop, TopContainerListingAccessories, TopContainerListingShoes, TopContainerListingBottom, TopContainerOverviewOutfit}
+export {TopContainerCreateClothe, TopContainerPicto, TopContainerListingTop, TopContainerListingAccessories, TopContainerListingShoes, TopContainerListingBottom, TopContainerOverviewOutfit, AccountTopContainer}
 
 const styles = StyleSheet.create({
   headerMainContainer: {
