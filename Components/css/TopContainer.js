@@ -22,6 +22,23 @@ function TopContainerCreateClothe() {
   );
 }
 
+function AccountTopContainer(){
+  return(
+    <View style={styles.headerMainContainer}>
+      <View style={styles.headerContainer}>
+        <View style={styles.pictoHeader}>
+          <TouchableOpacity>
+            <LeftArrowCircle/>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <Text style={styles.topText}>Mon compte</Text>
+        </View>
+      </View>
+    </View>
+  )
+}
+
 function TopContainerPicto() {
   return (
     <View style={styles.headerMainContainer}>
@@ -36,7 +53,7 @@ function TopContainerPicto() {
   );
 }
 
-export {TopContainerCreateClothe, TopContainerPicto}
+export {TopContainerCreateClothe, TopContainerPicto, AccountTopContainer}
 
 const styles = StyleSheet.create({
   headerMainContainer: {
