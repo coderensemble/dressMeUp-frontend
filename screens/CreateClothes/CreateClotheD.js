@@ -13,10 +13,19 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 
-function CreateClotheD() {
+function CreateClotheD({navigation}) {
+
+  const handleTopSubmit = () => {
+    navigation.navigate('CreateClotheE');
+};
+
+  const handleGoBack = () => {
+    navigation.goBack();
+};
+
   return (
     <SafeAreaView style={styles.mainContainer}>
-      <TopContainerPicto />
+      <TopContainerPicto handleGoBack={handleGoBack}/>
 
       <View>
         <View style={styles.subContainer}>
@@ -31,7 +40,7 @@ function CreateClotheD() {
           <FilterTypeClothes />
           <FilterSeason />
           <Meteo/>
-          <ButtonNextStep />
+          <ButtonNextStep handleTopSubmit={handleTopSubmit} />
         </View>
       </View>
     </SafeAreaView>

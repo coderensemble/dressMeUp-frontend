@@ -6,15 +6,28 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { TopContainerPicto } from '../../Components/css/TopContainer'
 import { CardEvent } from '../../Components/css/CardEvent'
 import ButtonGreenLight, { ButtonNextStep } from '../../Components/css/ButtonGreenLight'
+import { useDispatch, useSelector } from 'react-redux';
 
 const windowWidth = Dimensions.get("window").width;
 
 
-function CreateClotheB() {
+function CreateClotheB({navigation}) {
+  const clothemaintype = useSelector((state) => state.clothes.temporaryClothe.maintype);
+
+console.log(clothemaintype)
+
+  const handleTopSubmit = () => {
+    navigation.navigate('CreateClotheC');
+};
+
+  const handleGoBack = () => {
+    navigation.goBack();
+};
+
   return (
     <SafeAreaView style={styles.mainContainer}>
       <View>
-        <TopContainerPicto />
+        <TopContainerPicto handleGoBack={handleGoBack} />
         <View style={styles.subContainer}>
           <Text style={styles.textTitle}>Pour quel(s) type(s) d’event(s) ?</Text>
           <Text style={styles.textSubtitle}>Choisissez un ou plusieurs type(s) parmi la liste ci-dessous </Text>
@@ -22,7 +35,7 @@ function CreateClotheB() {
         </View>
       </View>
 
-      <ButtonNextStep />
+      <ButtonNextStep handleTopSubmit={handleTopSubmit} />
     </SafeAreaView>
   )
 }

@@ -22,6 +22,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import user from "./reducers/user";
+import clothes from "./reducers/clothes";
 // Pensez à importer vos reducers une fois qu'ils sont été exportés dans leurs fichiers respectifs
 
 //import des différents screens
@@ -52,7 +53,7 @@ import ViewOutfitC from "./screens/ViewOutfits/ViewOutfitC";
 
 // Fin de l'import des différents screens
 
-const reducers = combineReducers({ user });
+const reducers = combineReducers({ user, clothes });
 const persistConfig = { key: "DressMeUp", storage: AsyncStorage };
 
 const store = configureStore({
@@ -89,6 +90,9 @@ export default function App() {
             {/* <Stack.Screen name="LoginScreen" component={LoginScreen} />
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
             <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} /> */}
+            {/*   {/* <Stack.Screen name="LoginScreen" component={LoginScreen} /> */} 
+            {/*  {/* <Stack.Screen name="HomeScreen" component={HomeScreen} /> */} 
+            {/* <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} /> */}
 
             {/* <Stack.Screen name="CreateClotheA" component={CreateClotheA} /> */}
             {/* <Stack.Screen name="CreateClotheB" component={CreateClotheB} /> */}
@@ -96,6 +100,12 @@ export default function App() {
             {/* <Stack.Screen name="CreateClotheD" component={CreateClotheD} /> */}
             {/* <Stack.Screen name="CreateClotheE" component={CreateClotheE} /> */}
             <Stack.Screen name="CreateClotheF" component={CreateClotheF} />
+            <Stack.Screen name="CreateClotheA" component={CreateClotheA} />
+            <Stack.Screen name="CreateClotheB" component={CreateClotheB} /> 
+            <Stack.Screen name="CreateClotheC" component={CreateClotheC} /> 
+            <Stack.Screen name="CreateClotheD" component={CreateClotheD} /> 
+            <Stack.Screen name="CreateClotheE" component={CreateClotheE} />
+            <Stack.Screen name="CreateClotheF" component={CreateClotheF} /> 
 
             {/* <Stack.Screen name="CreateOutfitA" component={CreateOutfitA} /> */}
             {/* <Stack.Screen name="CreateOutfitB" component={CreateOutfitB} /> */}
@@ -110,6 +120,8 @@ export default function App() {
             {/* <Stack.Screen name="ViewOutfitA" component={ViewOutfitA} /> */}
             {/* <Stack.Screen name="ViewOutfitB" component={ViewOutfitB} /> */}
             {/* <Stack.Screen name="ViewOutfitC" component={ViewOutfitC} />  */}
+            {/* <Stack.Screen name="ViewOutfitC" component={ViewOutfitC} /> */}
+
           </Stack.Navigator>
         </NavigationContainer>
       </PersistGate>

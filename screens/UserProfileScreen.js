@@ -1,13 +1,20 @@
 import React from 'react'
-import { View } from 'react-native'
-import { logout } from '../reducers/user';
+import { StyleSheet, SafeAreaView } from 'react-native'
+import Setting from '../Components/functionalcomponents/Setting'
 
-function UserProfileScreen() {
+export default function UserProfileScreen() {
   return (
-    <View>
-      
-    </View>
+    <SafeAreaView  style={styles.mainContainer}>
+      <Setting />
+    </SafeAreaView>
   )
 }
 
-export default UserProfileScreen
+const styles = StyleSheet.create({
+mainContainer: {
+  flex: 1,
+  backgroundColor: "#F6FFF8",
+  alignItems: "center",
+  justifyContent: "center",
+},
+})

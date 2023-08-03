@@ -15,13 +15,22 @@ import { Camera } from '../../Components/css/Pictos';
 const windowWidth = Dimensions.get("window").width;
 
 
-function CreateClotheE() {
+function CreateClotheE({navigation}) {
+
+  const handleTopSubmit = () => {
+    navigation.navigate('CreateClotheF');
+};
+
+  const handleGoBack = () => {
+    navigation.goBack();
+};
+
   return (
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
 
       <SafeAreaView style={styles.mainContainer}>
         <View>
-          <TopContainerPicto />
+          <TopContainerPicto handleGoBack={handleGoBack} />
           <View style={styles.subContainer}>
             <Text style={styles.textTitle}>Finalisez votre habit</Text>
             <View style={styles.filtersContainer}>
@@ -40,7 +49,7 @@ function CreateClotheE() {
             </View>
           </View>
         </View>
-        <ButtonNextStep />
+        <ButtonNextStep handleTopSubmit={handleTopSubmit} />
       </SafeAreaView>
     </KeyboardAvoidingView>
 
