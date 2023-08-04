@@ -1,5 +1,12 @@
-import { View } from "react-native";
-import Svg, { G, Polygon, Polyline, Line, Circle, Path } from "react-native-svg";
+import { TouchableOpacity, View } from "react-native";
+import Svg, {
+  G,
+  Polygon,
+  Polyline,
+  Line,
+  Circle,
+  Path,
+} from "react-native-svg";
 
 function PlusCircle() {
   return (
@@ -27,7 +34,8 @@ function LeftArrowCircle() {
   return (
     <View>
       <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
-        <Circle cx={12} cy={12} r={10} stroke="black" strokeWidth={2} opacity={0.7} />
+        <Circle cx={12} cy={12} r={10} stroke="black" strokeWidth={2} opacity={0.7}
+ />
         <Polyline
           points="12 8 8 12 12 16"
           stroke="black"
@@ -46,15 +54,23 @@ function RightArrowCircle() {
   return (
     <View>
       <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
-        <Circle cx={12} cy={12} r={10} stroke="#6B9080" strokeWidth={2} />
+        <Circle cx={12} cy={12} r={10} stroke="black" strokeWidth={2} />
         <Polyline
           points="12 16 16 12 12 8"
-          stroke="#6B9080"
+          stroke="black"
           strokeWidth={2}
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <Line x1={8} y1={12} x2={16} y2={12} stroke="#6B9080" strokeWidth={2} strokeLinecap="round" />
+        <Line
+          x1={8}
+          y1={12}
+          x2={16}
+          y2={12}
+          stroke="black"
+          strokeWidth={2}
+          strokeLinecap="round"
+        />
       </Svg>
     </View>
   );
@@ -113,7 +129,13 @@ function Edit() {
   return (
     <View>
       <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
-        <Path d="M12 20h9" stroke="black" strokeWidth={2} />
+        <Path
+          d="M12 20h9"
+          stroke="black"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
         <Path
           d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
           stroke="black"
@@ -125,7 +147,7 @@ function Edit() {
     </View>
   );
 }
-//ne semble pas fonctionné
+
 function Settings() {
   return (
     <View>
@@ -149,7 +171,7 @@ function Star() {
       <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
         <Polygon
           points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-          stroke="currentColor"
+          stroke="black"
           strokeWidth={2}
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -165,20 +187,36 @@ function Trash() {
       <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
         <Polyline
           points="3 6 5 6 21 6"
-          stroke="currentColor"
+          stroke="black"
           strokeWidth={2}
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <Path
           d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
-          stroke="currentColor"
+          stroke="black"
           strokeWidth={2}
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <Line x1="10" y1="11" x2="10" y2="17" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
-        <Line x1="14" y1="11" x2="14" y2="17" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
+        <Line
+          x1="10"
+          y1="11"
+          x2="10"
+          y2="17"
+          stroke="black"
+          strokeWidth={2}
+          strokeLinecap="round"
+        />
+        <Line
+          x1="14"
+          y1="11"
+          x2="14"
+          y2="17"
+          stroke="black"
+          strokeWidth={2}
+          strokeLinecap="round"
+        />
       </Svg>
     </View>
   );
@@ -187,21 +225,49 @@ function Trash() {
 function Undo() {
   return (
     <View>
-      <Svg width={80} height={80} viewBox="0 0 24 24" fill="none">
+      <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
         <Polyline
           points="1 4 1 10 7 10"
-          stroke="currentColor"
+          stroke="black"
           strokeWidth={2}
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <Path
           d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"
-          stroke="currentColor"
+          stroke="black"
           strokeWidth={2}
           strokeLinecap="round"
           strokeLinejoin="round"
         />
+      </Svg>
+    </View>
+  );
+}
+
+function Filters() {
+  return (
+    <View>
+      <Svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="black"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <Line x1="4" y1="21" x2="4" y2="14"></Line>
+        <Line x1="4" y1="10" x2="4" y2="3"></Line>
+        <Line x1="12" y1="21" x2="12" y2="12"></Line>
+        <Line x1="12" y1="8" x2="12" y2="3"></Line>
+        <Line x1="20" y1="21" x2="20" y2="16"></Line>
+        <Line x1="20" y1="12" x2="20" y2="3"></Line>
+        <Line x1="1" y1="14" x2="7" y2="14"></Line>
+        <Line x1="9" y1="8" x2="15" y2="8"></Line>
+        <Line x1="17" y1="16" x2="23" y2="16"></Line>
       </Svg>
     </View>
   );
@@ -217,10 +283,11 @@ function EventCasual() {
         fill="none"
         stroke="#6B9080"
         strokeWidth={0.1}
-        preserveAspectRatio="xMidYMid meet">
-        <G transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#6B9080" stroke="none">
-          <Path
-            d="M667 3979 c-94 -22 -191 -92 -246 -178 -54 -84 -61 -123 -61 -367 l0
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <G transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+fill="#6B9080" stroke="none">
+<Path d="M667 3979 c-94 -22 -191 -92 -246 -178 -54 -84 -61 -123 -61 -367 l0
 -221 -82 -5 c-129 -8 -201 -50 -251 -143 -21 -39 -22 -50 -25 -492 -2 -381 0
 -462 13 -519 51 -221 243 -387 474 -410 60 -6 72 -9 68 -23 -3 -9 -24 -68 -46
 -131 -44 -123 -48 -154 -27 -212 20 -55 56 -95 113 -124 48 -24 59 -26 167
@@ -252,9 +319,8 @@ m1601 -255 c124 -60 189 -171 189 -322 l0 -85 -790 0 -790 0 0 220 0 221 668
 -95 -6 -73 0 -80 2 -99 26 -12 15 -21 32 -21 38 0 6 24 75 52 154 l53 142 193
 0 c155 0 191 -3 185 -13z m3345 -129 c28 -79 52 -148 52 -154 0 -6 -9 -23 -21
 -38 -19 -24 -26 -26 -99 -26 -43 0 -86 3 -95 6 -13 5 -234 286 -268 341 -6 10
-30 13 185 13 l193 0 53 -142z"
-          />
-        </G>
+30 13 185 13 l193 0 53 -142z"/>
+</G>
       </Svg>
     </View>
   );
@@ -1176,5 +1242,4 @@ export {
   ClothesHaut,
   Accessories,
   Shoes,
-  Logo,
 };

@@ -1,17 +1,19 @@
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 import { Dimensions } from "react-native";
-import { LeftArrowCircle } from "./Pictos";
+import { LeftArrowCircle, Undo } from "./Pictos";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-function TopContainerCreateClothe() {
+
+function TopContainerCreateClothe({handleGoBack}) {
+
   return (
     <View style={styles.headerMainContainer}>
       <View style={styles.headerContainer}>
         <View style={styles.pictoHeader}>
-          <TouchableOpacity>
-            <LeftArrowCircle/>
+          <TouchableOpacity handleGoBack={handleGoBack} >
+            <LeftArrowCircle />
           </TouchableOpacity>
         </View>
         <View>
@@ -22,15 +24,15 @@ function TopContainerCreateClothe() {
   );
 }
 
-function AccountTopContainer(){
+function AccountTopContainer({handleGoBack}){
   return(
     <View style={styles.headerMainContainer}>
       <View style={styles.headerContainer}>
-        <View style={styles.pictoHeader}>
-          <TouchableOpacity>
+        {/* <View style={styles.pictoAccountHeader}> */}
+          <TouchableOpacity onPress={handleGoBack}>
             <LeftArrowCircle/>
           </TouchableOpacity>
-        </View>
+        {/* </View> */}
         <View>
           <Text style={styles.topText}>Mon compte</Text>
         </View>
@@ -39,12 +41,12 @@ function AccountTopContainer(){
   )
 }
 
-function TopContainerPicto() {
+function TopContainerPicto({handleGoBack}) {
   return (
     <View style={styles.headerMainContainer}>
       <View style={styles.headerContainerPicto}>
         <View style={styles.pictoHeader}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleGoBack}>
             <LeftArrowCircle/>
           </TouchableOpacity>
         </View>
@@ -53,7 +55,93 @@ function TopContainerPicto() {
   );
 }
 
-export {TopContainerCreateClothe, TopContainerPicto, AccountTopContainer}
+function TopContainerListingTop() {
+  return (
+    <View style={styles.headerMainContainer}>
+      <View style={styles.headerContainer}>
+        <View style={styles.pictoHeader}>
+          <TouchableOpacity>
+            <LeftArrowCircle/>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <Text style={styles.topText}>Mes hauts</Text>
+        </View>
+      </View>
+    </View>
+  );
+}
+
+function TopContainerListingBottom() {
+  return (
+    <View style={styles.headerMainContainer}>
+      <View style={styles.headerContainer}>
+        <View style={styles.pictoHeader}>
+          <TouchableOpacity>
+            <LeftArrowCircle/>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <Text style={styles.topText}>Mes bas</Text>
+        </View>
+      </View>
+    </View>
+  );
+}
+
+function TopContainerListingShoes() {
+  return (
+    <View style={styles.headerMainContainer}>
+      <View style={styles.headerContainer}>
+        <View style={styles.pictoHeader}>
+          <TouchableOpacity>
+            <LeftArrowCircle/>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <Text style={styles.topText}>Mes chaussures</Text>
+        </View>
+      </View>
+    </View>
+  );
+}
+
+function TopContainerListingAccessories() {
+  return (
+    <View style={styles.headerMainContainer}>
+      <View style={styles.headerContainer}>
+        <View style={styles.pictoHeader}>
+          <TouchableOpacity>
+            <LeftArrowCircle/>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <Text style={styles.topText}>Mes accessoires</Text>
+        </View>
+      </View>
+    </View>
+  );
+}
+
+function TopContainerOverviewOutfit() {
+  return (
+    <View>
+      <View style={styles.headerOverviewContainer}>
+        <View>
+          <TouchableOpacity style={styles.doublePictoHeader}>
+            <LeftArrowCircle/>
+            <Undo />
+          </TouchableOpacity>
+        </View>
+        <View>
+          <Text style={styles.topText}>Mes accessoires</Text>
+        </View>
+      </View>
+    </View>
+  );
+}
+
+export {TopContainerCreateClothe, TopContainerPicto, TopContainerListingTop, TopContainerListingAccessories, TopContainerListingShoes, TopContainerListingBottom, TopContainerOverviewOutfit, AccountTopContainer}
 
 const styles = StyleSheet.create({
   headerMainContainer: {
@@ -62,10 +150,19 @@ const styles = StyleSheet.create({
   pictoHeader:{
     alignSelf: "center",
   },
+  doublePictoHeader : {
+    flexDirection : "row"
+  },
   headerContainer: {
     flexDirection: "row",
     alignContent: "center",
     justifyContent: "space-between",
+  },
+  headerOverviewContainer : {
+    flexDirection: "row",
+    alignItems : "center",
+    justifyContent : "space-between",
+    width : '90%',
   },
   headerContainerPicto: {
     flexDirection: "row",
