@@ -49,7 +49,27 @@ function ButtonImport({handlePictureImport}) {
   );
 }
 
-export {ButtonGreenLight, ButtonNextStep, ButtonSkip, ButtonValidate, ButtonImport}
+function ButtonAddClothes({handleAddClotheToOutfit}) {
+  return (
+    <View style={styles.doubleButtonContainer}>
+    <TouchableOpacity style={styles.buttonGreen} activeOpacity={0.8} onPress={handleAddClotheToOutfit}>
+      <Text style={styles.textButton}>Ajouter un élément</Text>
+    </TouchableOpacity>  
+    </View>
+  );
+}
+
+function ButtonValidateOutfit({handleValidateOutfit}) {
+  return (
+    <View style={styles.buttonContainer}>
+    <TouchableOpacity style={styles.buttonGreen} activeOpacity={0.8} onPress={handleValidateOutfit}>
+      <Text style={styles.textButton}>Valider la tenue</Text>
+    </TouchableOpacity>  
+    </View>
+  );
+}
+
+export {ButtonGreenLight, ButtonNextStep, ButtonSkip, ButtonValidate, ButtonImport, ButtonAddClothes, ButtonValidateOutfit}
 
 const styles = StyleSheet.create({
   buttonContainer: {

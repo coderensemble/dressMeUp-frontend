@@ -1,17 +1,17 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, Text, View } from "react-native";
 import { Dimensions } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { login, logout } from "../../reducers/user";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-export default function Signin() {
+export default function SignIn() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
-
-  //Redirect to /home if logged in
   const navigation = useNavigation();
-
   const [showSignup, setShowSignup] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -31,24 +31,31 @@ export default function Signin() {
             setEmail("");
             setPassword("");
           }
+          setShowSignup(!showSignup);
         });
     } else {
       fetch("http://10.0.1.111:3000/users/signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: username, password: password }),
+        body: JSON.stringify({ username: username, email: email, password: password }),
       })
         .then((response) => response.json())
         .then((data) => {
           if (data.result) {
+            console.log(data);
             dispatch(
               login({
                 token: data.token,
                 username: data.username,
-                password: data.password,
+                email: data.email,
               })
             );
             navigation.navigate("HomeScreen");
+            //retarder la reinitialisation des états
+            setTimeout(() => {
+              setUsername(""), { connectTimeoutMS: 3000 };
+              setPassword(""), { connectTimeoutMS: 3000 };
+            }, 1000);
           }
         });
     }
@@ -77,10 +84,10 @@ export default function Signin() {
           {showSignup && (
             <TextInput
               placeholder="Email"
-              autoCapitalize="none" // https://reactnative.dev/docs/textinput#autocapitalize
-              keyboardType="email-address" // https://reactnative.dev/docs/textinput#keyboardtype
-              textContentType="emailAddress" // https://reactnative.dev/docs/textinput#textcontenttype-ios
-              autoComplete="email" // https://reactnative.dev/docs/textinput#autocomplete-android
+              autoCapitalize="none"
+              keyboardType="email-address"
+              textContentType="emailAddress"
+              autoComplete="email"
               onChangeText={(value) => setEmail(value)}
               value={email}
               style={styles.input}
@@ -88,9 +95,9 @@ export default function Signin() {
           )}
           <TextInput
             placeholder="Mot de passe"
-            autoCapitalize="none" // https://reactnative.dev/docs/textinput#autocapitalize
-            keyboardType="default" // https://reactnative.dev/docs/textinput#keyboardtype
-            textContentType="password" // https://reactnative.dev/docs/textinput#textcontenttype-ios
+            autoCapitalize="none"
+            keyboardType="default"
+            textContentType="password"
             // autoComplete="current-password" // https://reactnative.dev/docs/textinput#autocomplete-android
             onChangeText={(value) => setPassword(value)}
             value={password}
@@ -167,9 +174,9 @@ const styles = StyleSheet.create({
   },
   viewContainer: {
     position: "absolute",
-    bottom: "20%", // Alignement en bas de l'écran
-    left: 0, // Vous pouvez ajuster cette valeur si nécessaire
-    right: 0, // Vous pouvez ajuster cette valeur si nécessaire
+    bottom: "20%",
+    left: 0,
+    right: 0,
     alignItems: "center",
     padding: "10%",
   },

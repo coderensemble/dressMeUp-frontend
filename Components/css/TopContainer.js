@@ -5,14 +5,12 @@ import { LeftArrowCircle, Undo } from "./Pictos";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-
-function TopContainerCreateClothe({handleGoBack}) {
-
+function TopContainerCreateClothe({ handleGoBack }) {
   return (
     <View style={styles.headerMainContainer}>
       <View style={styles.headerContainer}>
         <View style={styles.pictoHeader}>
-          <TouchableOpacity handleGoBack={handleGoBack} >
+          <TouchableOpacity onPress={handleGoBack}>
             <LeftArrowCircle />
           </TouchableOpacity>
         </View>
@@ -24,44 +22,13 @@ function TopContainerCreateClothe({handleGoBack}) {
   );
 }
 
-function AccountTopContainer(){
-  return(
-    <View style={styles.headerMainContainer}>
-      <View style={styles.headerContainer}>
-        <View style={styles.pictoHeader}>
-          <TouchableOpacity>
-            <LeftArrowCircle/>
-          </TouchableOpacity>
-        </View>
-        <View>
-          <Text style={styles.topText}>Mon compte</Text>
-        </View>
-      </View>
-    </View>
-  )
-}
-
-function TopContainerPicto({handleGoBack}) {
+function TopContainerListingTop({ handleGoBack }) {
   return (
     <View style={styles.headerMainContainer}>
-      <View style={styles.headerContainerPicto}>
+      <View style={styles.headerContainer}>
         <View style={styles.pictoHeader}>
           <TouchableOpacity onPress={handleGoBack}>
-            <LeftArrowCircle/>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </View>
-  );
-}
-
-function TopContainerListingTop() {
-  return (
-    <View style={styles.headerMainContainer}>
-      <View style={styles.headerContainer}>
-        <View style={styles.pictoHeader}>
-          <TouchableOpacity>
-            <LeftArrowCircle/>
+            <LeftArrowCircle />
           </TouchableOpacity>
         </View>
         <View>
@@ -72,13 +39,13 @@ function TopContainerListingTop() {
   );
 }
 
-function TopContainerListingBottom() {
+function TopContainerListingBottom({ handleGoBack }) {
   return (
     <View style={styles.headerMainContainer}>
       <View style={styles.headerContainer}>
         <View style={styles.pictoHeader}>
-          <TouchableOpacity>
-            <LeftArrowCircle/>
+          <TouchableOpacity onPress={handleGoBack}>
+            <LeftArrowCircle />
           </TouchableOpacity>
         </View>
         <View>
@@ -89,13 +56,13 @@ function TopContainerListingBottom() {
   );
 }
 
-function TopContainerListingShoes() {
+function TopContainerListingShoes({ handleGoBack }) {
   return (
     <View style={styles.headerMainContainer}>
       <View style={styles.headerContainer}>
         <View style={styles.pictoHeader}>
-          <TouchableOpacity>
-            <LeftArrowCircle/>
+          <TouchableOpacity onPress={handleGoBack}>
+            <LeftArrowCircle />
           </TouchableOpacity>
         </View>
         <View>
@@ -106,73 +73,124 @@ function TopContainerListingShoes() {
   );
 }
 
-function TopContainerListingAccessories() {
+function TopContainerListingAccessories({ handleGoBack }) {
+  return (
+    <View style={styles.headerMainContainer}>
+      <View style={styles.headerContainer}>
+        <View style={styles.pictoHeader}>
+          <TouchableOpacity onPress={handleGoBack}>
+            <LeftArrowCircle />
+          </TouchableOpacity>
+        </View>
+        <View>
+          <Text style={styles.topText}>Mes accessoires</Text>
+        </View>
+      </View>
+    </View>
+  );
+}
+
+function AccountTopContainer() {
   return (
     <View style={styles.headerMainContainer}>
       <View style={styles.headerContainer}>
         <View style={styles.pictoHeader}>
           <TouchableOpacity>
-            <LeftArrowCircle/>
+            <LeftArrowCircle />
           </TouchableOpacity>
         </View>
         <View>
-          <Text style={styles.topText}>Mes accessoires</Text>
+          <Text style={styles.topText}>Mon compte</Text>
         </View>
       </View>
     </View>
   );
 }
 
-function TopContainerOverviewOutfit() {
+function TopContainerPicto({ handleGoBack }) {
   return (
-    <View>
-      <View style={styles.headerOverviewContainer}>
-        <View>
-          <TouchableOpacity style={styles.doublePictoHeader}>
-            <LeftArrowCircle/>
+    <View style={styles.headerMainContainer}>
+      <View style={styles.headerContainerPicto}>
+        <View style={styles.pictoHeader}>
+          <TouchableOpacity onPress={handleGoBack}>
+            <LeftArrowCircle />
+          </TouchableOpacity>
+        </View>
+      </View>
+    </View>
+  );
+}
+
+function TopContainerOverviewOutfit({ handleGoBack }) {
+  return (
+    <View style={styles.headerMainContainer}>
+      <View style={styles.headerContainer}>
+        <View style={styles.doublePictoHeader}>
+          <TouchableOpacity onPress={handleGoBack}>
+            <LeftArrowCircle />
+          </TouchableOpacity>
+          <TouchableOpacity>
             <Undo />
           </TouchableOpacity>
         </View>
         <View>
-          <Text style={styles.topText}>Mes accessoires</Text>
+          <Text style={styles.topText}>Ma tenue</Text>
         </View>
       </View>
     </View>
   );
 }
 
-export {TopContainerCreateClothe, TopContainerPicto, TopContainerListingTop, TopContainerListingAccessories, TopContainerListingShoes, TopContainerListingBottom, TopContainerOverviewOutfit, AccountTopContainer}
+export {
+  TopContainerCreateClothe,
+  TopContainerPicto,
+  TopContainerOverviewOutfit,
+  TopContainerListingAccessories,
+  TopContainerListingBottom,
+  TopContainerListingTop,
+  TopContainerListingShoes,
+};
 
 const styles = StyleSheet.create({
   headerMainContainer: {
     width: "90%",
   },
-  pictoHeader:{
+  pictoHeader: {
     alignSelf: "center",
-  },
-  doublePictoHeader : {
-    flexDirection : "row"
   },
   headerContainer: {
     flexDirection: "row",
     alignContent: "center",
     justifyContent: "space-between",
   },
-  headerOverviewContainer : {
+  headerDoubleContainer: {
     flexDirection: "row",
-    alignItems : "center",
-    justifyContent : "space-between",
-    width : '90%',
+    alignContent: "center",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   headerContainerPicto: {
     flexDirection: "row",
     alignContent: "center",
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
+  },
+  headerOverviewContainer: {
+    flexDirection: "row",
+    alignContent: "center",
+    justifyContent: "space-between",
+  },
+  headerOverviewMainContainer: {
+    width: "90%",
   },
   topText: {
     fontFamily: "Lora-SemiBoldItalic",
     fontSize: 30,
     color: "black",
-    opacity: 0.7
+    opacity: 0.7,
+  },
+  doublePictoHeader: {
+    flexDirection: "row",
+    columnGap: 20,
+    alignSelf : "center"
   },
 });

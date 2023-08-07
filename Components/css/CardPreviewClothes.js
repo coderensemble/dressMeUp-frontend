@@ -4,6 +4,127 @@ import { Dimensions } from "react-native";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
+// const images = clothes.map(clothe =>{return clothe.image})
+// console.log(images)
+// const img = [require("../../assets/images/1661139363d0af2b9ebc4be1a701c62b3af5e237ef.webp"), require("../../assets/images/pull.png")]
+
+function PreviewListingTop({ handleTopOutfitSubmit }) {
+  const clothes = useSelector((state) => state.clothes.clothes);
+  const topClothes = clothes.filter((clothe) => clothe.maintype === "top");
+
+  return (
+    <>
+      {topClothes.map(
+        (clothe, index) => (
+          console.log(clothe.image),
+          (
+            <TouchableOpacity
+              key={index}
+              onPress={() => handleTopOutfitSubmit(clothe)}
+            >
+              <View style={styles.cardClothesTop}>
+                <Image source={{ uri: clothe.image }} style={styles.image} />
+              </View>
+            </TouchableOpacity>
+          )
+        )
+      )}
+    </>
+  );
+}
+
+function PreviewOverview({clothe}) {
+
+  let cardStyle;
+
+  switch (clothe.maintype) {
+    case 'top':
+      cardStyle = styles.cardClothesTop;
+      break;
+    case 'bottom':
+      cardStyle = styles.cardClothesBottom;
+      break;
+    case 'shoes':
+      cardStyle = styles.cardClothesShoes;
+      break;
+    case 'accessories':
+      cardStyle = styles.cardClothesAccessories;
+      break;
+  }
+
+  return (
+    <View style={cardStyle}>
+      <Image source={{ uri: clothe.image }} style={styles.image} />
+    </View>
+  );
+}
+
+function PreviewListingBottom({handleBottomOutfitSubmit}) {
+  const clothes = useSelector((state) => state.clothes.clothes);
+  const bottomClothes = clothes.filter(
+    (clothe) => clothe.maintype === "bottom"
+  );
+
+  return (
+    <>
+      {bottomClothes.map((clothe, index) => (
+        <TouchableOpacity
+          key={index}
+          onPress={() => handleBottomOutfitSubmit(clothe)}
+        >
+          <View style={styles.cardClothesBottom}>
+            <Image source={{ uri: clothe.image }} style={styles.image} />
+          </View>
+        </TouchableOpacity>
+      ))}
+    </>
+  );
+}
+
+function PreviewListingShoes({handleShoesOutfitSubmit}) {
+  const clothes = useSelector((state) => state.clothes.clothes);
+  const shoesClothes = clothes.filter((clothe) => clothe.maintype === "shoes");
+
+  return (
+    <>
+      {shoesClothes.map((clothe, index) => (
+        <TouchableOpacity
+          key={index}
+          onPress={() => handleShoesOutfitSubmit(clothe)}
+        >
+          <View style={styles.cardClothesShoes}>
+            <Image source={{ uri: clothe.image }} style={styles.image} />
+          </View>
+        </TouchableOpacity>
+      ))}
+    </>
+  );
+}
+
+
+function PreviewListingAccessories({handleAccessoryOutfitSubmit}) {
+  const clothes = useSelector((state) => state.clothes.clothes);
+  const accessoriesClothes = clothes.filter(
+    (clothe) => clothe.maintype === "accessories"
+  );
+
+  return (
+    <>
+      {accessoriesClothes.map((clothe, index) => (
+        <TouchableOpacity
+          key={index}
+          onPress={() => handleAccessoryOutfitSubmit(clothe)}
+        >
+          <View style={styles.cardClothesAccessories}>
+            <Image source={{ uri: clothe.image }} style={styles.image} />
+          </View>
+        </TouchableOpacity>
+      ))}
+    </>
+  );
+}
+
+
 function PreviewTop() {
   return (
     <View style={styles.previewContainer}>
@@ -222,7 +343,7 @@ function SmallPreviewAccessories() {
   );
 }
 
-export { PreviewTop, PreviewBottom, PreviewShoes, PreviewAccessories, SmallPreviewTop, SmallPreviewBottom, SmallPreviewShoes, SmallPreviewAccessories }
+export { PreviewListingTop, PreviewListingBottom, PreviewListingShoes, PreviewListingAccessories, PreviewOverview, PreviewTop, PreviewBottom, PreviewShoes, PreviewAccessories, SmallPreviewTop, SmallPreviewBottom, SmallPreviewShoes, SmallPreviewAccessories }
 
 const styles = StyleSheet.create({
   previewContainer: {
