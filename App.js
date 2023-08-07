@@ -23,6 +23,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import user from "./reducers/user";
 import clothes from "./reducers/clothes";
+import outfits from "./reducers/outfits";
 // Pensez à importer vos reducers une fois qu'ils sont été exportés dans leurs fichiers respectifs
 
 //import des différents screens
@@ -53,7 +54,7 @@ import ViewOutfitC from "./screens/ViewOutfits/ViewOutfitC";
 
 // Fin de l'import des différents screens
 
-const reducers = combineReducers({ user, clothes });
+const reducers = combineReducers({ user, clothes, outfits });
 const persistConfig = { key: "DressMeUp", storage: AsyncStorage };
 
 const store = configureStore({
@@ -67,6 +68,7 @@ const persistor = persistStore(store);
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
   const [fontLoaded, setFontLoaded] = useState(false);
 
   useEffect(() => {
@@ -82,16 +84,13 @@ export default function App() {
     return null;
   }
 
-  return (
+  return (    
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
-            {/* <Stack.Screen name="LoginScreen" component={LoginScreen} />
-            <Stack.Screen name="HomeScreen" component={HomeScreen} />
-            <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} /> */}
-            {/*   {/* <Stack.Screen name="LoginScreen" component={LoginScreen} /> */} 
-            {/*  {/* <Stack.Screen name="HomeScreen" component={HomeScreen} /> */} 
+            {/* <Stack.Screen name="LoginScreen" component={LoginScreen} /> */}
+            {/* <Stack.Screen name="HomeScreen" component={HomeScreen} /> */}
             {/* <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} /> */}
 
             {/* <Stack.Screen name="CreateClotheA" component={CreateClotheA} /> */}
@@ -99,13 +98,7 @@ export default function App() {
             {/* <Stack.Screen name="CreateClotheC" component={CreateClotheC} /> */}
             {/* <Stack.Screen name="CreateClotheD" component={CreateClotheD} /> */}
             {/* <Stack.Screen name="CreateClotheE" component={CreateClotheE} /> */}
-            <Stack.Screen name="CreateClotheF" component={CreateClotheF} />
-            <Stack.Screen name="CreateClotheA" component={CreateClotheA} />
-            <Stack.Screen name="CreateClotheB" component={CreateClotheB} /> 
-            <Stack.Screen name="CreateClotheC" component={CreateClotheC} /> 
-            <Stack.Screen name="CreateClotheD" component={CreateClotheD} /> 
-            <Stack.Screen name="CreateClotheE" component={CreateClotheE} />
-            <Stack.Screen name="CreateClotheF" component={CreateClotheF} /> 
+            {/* <Stack.Screen name="CreateClotheF" component={CreateClotheF} /> */}
 
             {/* <Stack.Screen name="CreateOutfitA" component={CreateOutfitA} /> */}
             {/* <Stack.Screen name="CreateOutfitB" component={CreateOutfitB} /> */}

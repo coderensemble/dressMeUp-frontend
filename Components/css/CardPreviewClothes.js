@@ -1,10 +1,138 @@
-import { StyleSheet, View, TouchableOpacity, Text, Image, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Text,
+  Image,
+  ScrollView,
+} from "react-native";
 import { Dimensions } from "react-native";
+import { useSelector } from "react-redux";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-function PreviewListingTop() {
+// const images = clothes.map(clothe =>{return clothe.image})
+// console.log(images)
+// const img = [require("../../assets/images/1661139363d0af2b9ebc4be1a701c62b3af5e237ef.webp"), require("../../assets/images/pull.png")]
+
+function PreviewListingTop({ handleTopOutfitSubmit }) {
+  const clothes = useSelector((state) => state.clothes.clothes);
+  const topClothes = clothes.filter((clothe) => clothe.maintype === "top");
+
+  return (
+    <>
+      {topClothes.map(
+        (clothe, index) => (
+          console.log(clothe.image),
+          (
+            <TouchableOpacity
+              key={index}
+              onPress={() => handleTopOutfitSubmit(clothe)}
+            >
+              <View style={styles.cardClothesTop}>
+                <Image source={{ uri: clothe.image }} style={styles.image} />
+              </View>
+            </TouchableOpacity>
+          )
+        )
+      )}
+    </>
+  );
+}
+
+function PreviewOverview({clothe}) {
+
+  let cardStyle;
+
+  switch (clothe.maintype) {
+    case 'top':
+      cardStyle = styles.cardClothesTop;
+      break;
+    case 'bottom':
+      cardStyle = styles.cardClothesBottom;
+      break;
+    case 'shoes':
+      cardStyle = styles.cardClothesShoes;
+      break;
+    case 'accessories':
+      cardStyle = styles.cardClothesAccessories;
+      break;
+  }
+
+  return (
+    <View style={cardStyle}>
+      <Image source={{ uri: clothe.image }} style={styles.image} />
+    </View>
+  );
+}
+
+function PreviewListingBottom({handleBottomOutfitSubmit}) {
+  const clothes = useSelector((state) => state.clothes.clothes);
+  const bottomClothes = clothes.filter(
+    (clothe) => clothe.maintype === "bottom"
+  );
+
+  return (
+    <>
+      {bottomClothes.map((clothe, index) => (
+        <TouchableOpacity
+          key={index}
+          onPress={() => handleBottomOutfitSubmit(clothe)}
+        >
+          <View style={styles.cardClothesBottom}>
+            <Image source={{ uri: clothe.image }} style={styles.image} />
+          </View>
+        </TouchableOpacity>
+      ))}
+    </>
+  );
+}
+
+function PreviewListingShoes({handleShoesOutfitSubmit}) {
+  const clothes = useSelector((state) => state.clothes.clothes);
+  const shoesClothes = clothes.filter((clothe) => clothe.maintype === "shoes");
+
+  return (
+    <>
+      {shoesClothes.map((clothe, index) => (
+        <TouchableOpacity
+          key={index}
+          onPress={() => handleShoesOutfitSubmit(clothe)}
+        >
+          <View style={styles.cardClothesShoes}>
+            <Image source={{ uri: clothe.image }} style={styles.image} />
+          </View>
+        </TouchableOpacity>
+      ))}
+    </>
+  );
+}
+
+
+function PreviewListingAccessories({handleAccessoryOutfitSubmit}) {
+  const clothes = useSelector((state) => state.clothes.clothes);
+  const accessoriesClothes = clothes.filter(
+    (clothe) => clothe.maintype === "accessories"
+  );
+
+  return (
+    <>
+      {accessoriesClothes.map((clothe, index) => (
+        <TouchableOpacity
+          key={index}
+          onPress={() => handleAccessoryOutfitSubmit(clothe)}
+        >
+          <View style={styles.cardClothesAccessories}>
+            <Image source={{ uri: clothe.image }} style={styles.image} />
+          </View>
+        </TouchableOpacity>
+      ))}
+    </>
+  );
+}
+
+function PreviewTop() {
   return (
     <TouchableOpacity>
       <View style={styles.cardClothes}></View>
@@ -12,55 +140,41 @@ function PreviewListingTop() {
   );
 }
 
-function PreviewTop() {
-  return <View style={styles.cardClothes}>
-    <Image style={styles.imagePreview} source={require('../../assets/images/1661139363d0af2b9ebc4be1a701c62b3af5e237ef.webp')} />
-  </View>;
-}
-
 function PreviewAccessories() {
   return (
     <TouchableOpacity>
-      <View style={styles.cardAccessories}></View>
+      <View style={styles.cardClothes}></View>
     </TouchableOpacity>
   );
 }
-
-export { PreviewTop, PreviewAccessories, PreviewListingTop };
 
 function SmallPreviewTop() {
   return (
     <View style={styles.smallPreviewContainer}>
       <View style={styles.smallPreviewTopContainer}>
-      <TouchableOpacity>
-        <Text style={styles.containerTitle}>Mes hauts</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.filterButton}>Tous mes hauts</Text>
-      </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.containerTitle}>Mes hauts</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.filterButton}>Tous mes hauts</Text>
+        </TouchableOpacity>
       </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <View style={styles.smallCardContainer}>
           <View style={styles.smallCardClothes}>
-            <TouchableOpacity>
-              
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </View>
           <View style={styles.smallCardClothes}>
-            <TouchableOpacity>
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </View>
           <View style={styles.smallCardClothes}>
-            <TouchableOpacity>
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </View>
           <View style={styles.smallCardClothes}>
-            <TouchableOpacity>
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </View>
           <View style={styles.smallCardClothes}>
-            <TouchableOpacity>
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -72,35 +186,29 @@ function SmallPreviewBottom() {
   return (
     <View style={styles.smallPreviewContainer}>
       <View style={styles.smallPreviewTopContainer}>
-      <TouchableOpacity>
-        <Text style={styles.containerTitle}>Mes bas</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.filterButton}>Tous mes bas</Text>
-      </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.containerTitle}>Mes bas</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.filterButton}>Tous mes bas</Text>
+        </TouchableOpacity>
       </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <View style={styles.smallCardContainer}>
           <View style={styles.smallCardClothes}>
-            <TouchableOpacity>
-              
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </View>
           <View style={styles.smallCardClothes}>
-            <TouchableOpacity>
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </View>
           <View style={styles.smallCardClothes}>
-            <TouchableOpacity>
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </View>
           <View style={styles.smallCardClothes}>
-            <TouchableOpacity>
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </View>
           <View style={styles.smallCardClothes}>
-            <TouchableOpacity>
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -111,35 +219,29 @@ function SmallPreviewShoes() {
   return (
     <View style={styles.smallPreviewContainer}>
       <View style={styles.smallPreviewTopContainer}>
-      <TouchableOpacity>
-        <Text style={styles.containerTitle}>Mes chaussures</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.filterButton}>Toutes mes chaussures</Text>
-      </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.containerTitle}>Mes chaussures</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.filterButton}>Toutes mes chaussures</Text>
+        </TouchableOpacity>
       </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <View style={styles.smallCardContainer}>
           <View style={styles.smallCardAccessories}>
-            <TouchableOpacity>
-              
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </View>
           <View style={styles.smallCardAccessories}>
-            <TouchableOpacity>
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </View>
           <View style={styles.smallCardAccessories}>
-            <TouchableOpacity>
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </View>
           <View style={styles.smallCardAccessories}>
-            <TouchableOpacity>
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </View>
           <View style={styles.smallCardAccessories}>
-            <TouchableOpacity>
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -150,35 +252,29 @@ function SmallPreviewAccessories() {
   return (
     <View style={styles.smallPreviewContainer}>
       <View style={styles.smallPreviewTopContainer}>
-      <TouchableOpacity>
-        <Text style={styles.containerTitle}>Mes accessoires</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.filterButton}>Tous mes accessoires</Text>
-      </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.containerTitle}>Mes accessoires</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.filterButton}>Tous mes accessoires</Text>
+        </TouchableOpacity>
       </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <View style={styles.smallCardContainer}>
           <View style={styles.smallCardAccessories}>
-            <TouchableOpacity>
-              
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </View>
           <View style={styles.smallCardAccessories}>
-            <TouchableOpacity>
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </View>
           <View style={styles.smallCardAccessories}>
-            <TouchableOpacity>
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </View>
           <View style={styles.smallCardAccessories}>
-            <TouchableOpacity>
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </View>
           <View style={styles.smallCardAccessories}>
-            <TouchableOpacity>
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -186,12 +282,24 @@ function SmallPreviewAccessories() {
   );
 }
 
-export { PreviewTop, PreviewBottom, PreviewShoes, PreviewAccessories, SmallPreviewTop, SmallPreviewBottom, SmallPreviewShoes, SmallPreviewAccessories }
+export {
+  PreviewTop,
+  PreviewAccessories,
+  SmallPreviewTop,
+  SmallPreviewBottom,
+  SmallPreviewShoes,
+  SmallPreviewAccessories,
+  PreviewListingTop,
+  PreviewListingAccessories,
+  PreviewListingBottom,
+  PreviewListingShoes,
+  PreviewOverview
+};
 
 const styles = StyleSheet.create({
   previewContainer: {
     width: "90%",
-    flexWrap: 'wrap',
+    flexWrap: "wrap",
     flexDirection: "row",
     rowGap: 10,
     columnGap: 10,
@@ -208,13 +316,54 @@ const styles = StyleSheet.create({
     rowGap: 10,
     columnGap: 10,
     paddingTop: 10,
-    paddingBottom: 10
+    paddingBottom: 10,
   },
-  cardClothes: {
+  cardClothesTop: {
     width: windowWidth * 0.435,
     height: windowHeight * 0.237,
     borderRadius: 10,
-    backgroundColor: "#222",
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 0,
+    // },
+    // shadowOpacity: 0.8,
+    // shadowRadius: 5,
+    // elevation: 5,
+  },
+  cardClothesBottom: {
+    width: windowWidth * 0.435,
+    height: windowHeight * 0.237,
+    borderRadius: 10,
+    backgroundColor: "red",
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 0,
+    // },
+    // shadowOpacity: 0.8,
+    // shadowRadius: 5,
+    // elevation: 5,
+  },
+  cardClothesAccessories: {
+    width: windowWidth * 0.435,
+    height: windowHeight * 0.118,
+    borderRadius: 10,
+    backgroundColor: "blue",
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 0,
+    // },
+    // shadowOpacity: 0.8,
+    // shadowRadius: 5,
+    // elevation: 5,
+  },
+  cardClothesShoes: {
+    width: windowWidth * 0.435,
+    height: windowHeight * 0.118,
+    borderRadius: 10,
+    backgroundColor: "green",
     // shadowColor: "#000",
     // shadowOffset: {
     //   width: 0,
@@ -225,8 +374,7 @@ const styles = StyleSheet.create({
     // elevation: 5,
   },
   imagePreview: {
-    width : '100%',
-    
+    width: "100%",
   },
   cardAccessories: {
     width: windowWidth * 0.435,
@@ -241,5 +389,40 @@ const styles = StyleSheet.create({
     // shadowOpacity: 0.8,
     // shadowRadius: 5,
     // elevation: 5,
+  },
+  smallCardClothes: {
+    flexDirection: "row",
+    width: windowWidth * 0.256,
+    height: windowHeight * 0.142,
+    borderRadius: 10,
+    backgroundColor: "#222",
+  },
+  smallPreviewTopContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  smallPreviewContainer: {
+    width: "90%",
+    rowGap: 10,
+    columnGap: 10,
+    paddingTop: 10,
+  },
+  smallCardAccessories: {
+    width: windowWidth * 0.256,
+    height: windowHeight * 0.118,
+    borderRadius: 10,
+    backgroundColor: "#222",
+  },
+  smallCardContainer: {
+    flexDirection: "row",
+    rowGap: 10,
+    columnGap: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  image: {
+    height: "100%",
+    borderRadius: 10,
   },
 });
