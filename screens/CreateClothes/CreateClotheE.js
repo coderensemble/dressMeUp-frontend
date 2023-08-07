@@ -1,29 +1,94 @@
 // Correspond à 2A-E sur Figma
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Dimensions, KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { TopContainerPicto } from '../../Components/css/TopContainer'
-import { FilterSubTypeTop } from '../../Components/css/FilterSubType';
-import { FilterColors } from '../../Components/css/FilterColors';
-import { FilterBrand } from '../../Components/css/FilterBrand';
-import ButtonOptions from '../../Components/css/ButtonOptions';
-import { ButtonNextStep } from '../../Components/css/ButtonGreenLight';
+import { ButtonImport, ButtonNextStep } from '../../Components/css/ButtonGreenLight';
 import { TextInput } from 'react-native';
-import { Camera } from '../../Components/css/Pictos';
+import { CameraPicto } from '../../Components/css/Pictos';
+import { FilterClotheName } from '../../Components/css/FilterClotheName';
+import { Camera } from 'expo-camera';
+import * as ImagePicker from 'expo-image-picker'
+import * as ImageManipulator from 'expo-image-manipulator';
+
+import { setImage } from '../../reducers/clothes';
+import { useDispatch } from 'react-redux';
 
 const windowWidth = Dimensions.get("window").width;
 
 
-function CreateClotheE({navigation}) {
+function CreateClotheE({ navigation }) {
+
+  const dispatch = useDispatch()
+
+  const [takingPicture, setTakingPicture] = useState(false);
+  const [picture, setPicture] = useState(null)
 
   const handleTopSubmit = () => {
     navigation.navigate('CreateClotheF');
-};
+  };
 
   const handleGoBack = () => {
     navigation.goBack();
-};
+  };
+
+  const handlePictureClick = async () => {
+    const { status } = await Camera.requestCameraPermissionsAsync();
+
+    if (status === 'granted') {
+      setTakingPicture(true);
+      console.log(status)
+      navigation.navigate('SnapScreen')
+    } else {
+      // Handle permission denied case
+    }
+  };
+
+  const handlePictureImport = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync()
+    if (status !== 'granted') {
+      alert('Permission denied')
+    }
+
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: false,
+      aspect: [4, 3],
+      quality: 1
+    })
+
+    console.log(result)
+
+    const compressedImage = await ImageManipulator.manipulateAsync(
+      result.assets[0].uri,
+      [{ resize: { width: 300, height: 300 } }],
+      { compress: 0.7, format: ImageManipulator.SaveFormat.JPEG }
+    );
+
+    setPicture(result.assets[0].uri)
+
+    const formData = new FormData();
+
+
+    formData.append('photoFromFront', {
+        uri: compressedImage.uri,
+        name: 'photo.jpg',
+        type: 'image/jpeg',
+    })
+
+    fetch('http://172.20.10.2:3000/clothes/upload', {
+        method: 'POST',
+        body: formData,
+    }).then((response) => response.json())
+        .then((data) => {
+            console.log(data)
+            dispatch(setImage(data.url));
+        });
+
+        navigation.navigate("CreateClotheF")
+
+  }
 
   return (
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -35,21 +100,20 @@ function CreateClotheE({navigation}) {
             <Text style={styles.textTitle}>Finalisez votre habit</Text>
             <View style={styles.filtersContainer}>
               <Text style={styles.filterTitle}>Donnez un nom à votre vêtement</Text>
-              <TextInput
-                placeholder="Default name du vêtement"
-                style={styles.input}
-              />
+              <FilterClotheName />
             </View>
-            <View style={styles.pictureContainer}>
-              <Camera />
-            </View>
+            <TouchableOpacity onPress={handlePictureClick}>
+              <View style={styles.pictureContainer}>
+                <CameraPicto />
+              </View>
+            </TouchableOpacity>
+            <ButtonImport handlePictureImport={handlePictureImport} />
             <View style={styles.tipsContainer}>
               <Text style={styles.tipTitle}>Astuces</Text>
               <Text>Photographiez votre vêtement sur un fond clair pour un meilleur rendu. N’hésitez pas également à utiliser la fonction de détourage si vous êtes sur iOS !</Text>
             </View>
           </View>
         </View>
-        <ButtonNextStep handleTopSubmit={handleTopSubmit} />
       </SafeAreaView>
     </KeyboardAvoidingView>
 

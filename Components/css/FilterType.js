@@ -8,6 +8,7 @@ import {
   
   import { Dimensions } from "react-native";
   import { EventParty, EventSport, EventCasual, EventWork } from "./Pictos";
+import { useSelector } from "react-redux";
   
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
@@ -16,37 +17,28 @@ import {
  
   
   
-  function FilterTypeClothes() {
+  function FilterShapeClothes({handleShapeInput}) {
+
+    const shape = useSelector((state) => state.clothes.temporaryClothe.cut)
+
     return (
       <View style={styles.filtersContainer}>
         <Text style={styles.filterTitle}>Quelle est la coupe de votre habit ?</Text>
         <View style={styles.filterContainer}>
-          {clothesShapes.map((top, index) => (
-            <View key={index} style={styles.filterButtonClicked}>
-              <Text style={styles.filterTextClicked}>{top}</Text>
+          {clothesShapes.map((clotheShape, index) => (
+            <TouchableOpacity key={index} onPress={() => handleShapeInput(clothesShapes[index])}>
+            <View style={clothesShapes[index] === shape ? styles.filterButtonClicked: styles.filterButton}>
+            <Text style={clothesShapes[index] === shape ? styles.filterTextClicked: styles.filterText}>{clotheShape}</Text>
             </View>
+            </TouchableOpacity>
           ))}
         </View>
       </View>
     );
   }
+
   
-  function FilterTypeShoes() {
-    return (
-      <View style={styles.filtersContainer}>
-        <Text style={styles.filterTitle}>De quel type de chaussures s’agit-il ? *</Text>
-        <View style={styles.filterContainer}>
-          {shoes.map((haut, index) => (
-            <View key={index} style={styles.filterButton}>
-              <Text style={styles.filterText}>{haut}</Text>
-            </View>
-          ))}
-        </View>
-      </View>
-    );
-  }
-  
-  export {FilterTypeClothes, FilterTypeShoes };
+  export {FilterShapeClothes };
   
   const styles = StyleSheet.create({
     filtersContainer: {

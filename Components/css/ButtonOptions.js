@@ -4,9 +4,9 @@ import { Dimensions } from "react-native";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-export default function ButtonOptions() {
+export default function ButtonOptions({handleTopSubmit}) {
   return (
-    <TouchableOpacity style={styles.buttonOptions} activeOpacity={0.8}>
+    <TouchableOpacity style={styles.buttonOptions} activeOpacity={0.8} onPress={handleTopSubmit}>
       <Text style={styles.textButton}>Plus d'options</Text>
     </TouchableOpacity>
 

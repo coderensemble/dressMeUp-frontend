@@ -5,7 +5,7 @@ const initialState = {
   temporaryClothe: {
     name: "",
     maintype: "",
-    color: "",
+    color: {},
     image: "",
     subtype: "",
     brand: "",
@@ -17,13 +17,13 @@ const initialState = {
     },
     material: "",
     cut: "",
-    saison: {
+    season: {
       spring: false,
       summer: false,
       fall: false,
       winter: false,
     },
-    waterproof: false,
+    waterproof: "false",
   },
 };
 
@@ -50,7 +50,15 @@ export const clotheSlice = createSlice({
       state.temporaryClothe.brand = action.payload;
     },
     setEvent: (state, action) => {
-      state.temporaryClothe.event = action.payload;
+      if (action.payload === 'Soirée') {
+          state.temporaryClothe.event.party = !state.temporaryClothe.event.party;
+      } else if (action.payload === 'Sport') {
+          state.temporaryClothe.event.sport = !state.temporaryClothe.event.sport;
+      } else if (action.payload === 'Casual') {
+          state.temporaryClothe.event.casual = !state.temporaryClothe.event.casual;
+      } else if (action.payload === 'Work') {
+          state.temporaryClothe.event.work = !state.temporaryClothe.event.work;
+      }
     },
     setMaterial: (state, action) => {
       state.temporaryClothe.material = action.payload;
@@ -58,9 +66,16 @@ export const clotheSlice = createSlice({
     setCut: (state, action) => {
       state.temporaryClothe.cut = action.payload;
     },
-    setSaison: (state, action) => {
-      state.temporaryClothe.saison = action.payload;
-    },
+    setSeason: (state, action) => {
+      if (action.payload === 'Printemps') {
+        state.temporaryClothe.season.spring = !state.temporaryClothe.season.spring;
+    } else if (action.payload === 'Été') {
+        state.temporaryClothe.season.summer = !state.temporaryClothe.season.summer;
+    } else if (action.payload === 'Automne') {
+        state.temporaryClothe.season.fall = !state.temporaryClothe.season.fall;
+    } else if (action.payload === 'Hiver') {
+        state.temporaryClothe.season.winter = !state.temporaryClothe.season.winter;
+    }    },
     setWaterproof: (state, action) => {
       state.temporaryClothe.waterproof = action.payload;
     },
@@ -71,7 +86,7 @@ export const clotheSlice = createSlice({
       state.temporaryClothe = {
         name: "",
         maintype: "",
-        color: "",
+        color: {},
         image: "",
         subtype: "",
         brand: "",
@@ -83,13 +98,13 @@ export const clotheSlice = createSlice({
         },
         material: "",
         cut: "",
-        saison: {
+        season: {
           spring: false,
           summer: false,
           fall: false,
           winter: false,
         },
-        waterproof: false,
+        waterproof: "",
       };
     },
   },
@@ -105,7 +120,7 @@ export const {
   setEvent,
   setMaterial,
   setCut,
-  setSaison,
+  setSeason,
   setWaterproof,
   saveTemporaryClothe,
   resetTemporaryClothe,

@@ -36,6 +36,7 @@ import CreateClotheC from "./screens/CreateClothes/CreateClotheC";
 import CreateClotheD from "./screens/CreateClothes/CreateClotheD";
 import CreateClotheE from "./screens/CreateClothes/CreateClotheE";
 import CreateClotheF from "./screens/CreateClothes/CreateClotheF";
+import SnapScreen from "./screens/SnapScreen";
 
 import CreateOutfitA from "./screens/CreateOutfits/CreateOutfitA";
 import CreateOutfitB from "./screens/CreateOutfits/CreateOutfitB";
@@ -95,6 +96,7 @@ export default function App() {
             <Stack.Screen name="CreateClotheD" component={CreateClotheD} /> 
             <Stack.Screen name="CreateClotheE" component={CreateClotheE} />
             <Stack.Screen name="CreateClotheF" component={CreateClotheF} /> 
+            <Stack.Screen name="SnapScreen" component={SnapScreen} /> 
 
             {/* <Stack.Screen name="CreateOutfitA" component={CreateOutfitA} /> */}
             {/* <Stack.Screen name="CreateOutfitB" component={CreateOutfitB} /> */}

@@ -8,62 +8,57 @@ import {
 
 import { Dimensions } from "react-native";
 import { EventParty, EventSport, EventCasual, EventWork } from "./Pictos";
+import { useSelector } from "react-redux";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const topMatiere = ["Coton", "Cuir", "Laine", "Lin", "Dentelle", "Soie", "Velours", "Autres"];
-const bottomMatiere = ["Coton", "Cuir", "Denim", "Lin", "Dentelle", "Soie", "Velours", "Autres"];
-const shoesMatiere = ["Caoutchouc","Plastique", "Cuir","Textile","Cork"];
+const topMatiere = ["Coton", "Cuir", "Dentelle", "Laine", "Lin", "Soie", "Velours", "Autre"];
+
 
 // coton, cuir, laine, lin, polyester, denim, toile, dentelle, soie, cachemire
 
-function FilterMaterialTop() {
+function FilterMaterialTop({handleMaterialInput}) {
+
+  const material = useSelector((state) => state.clothes.temporaryClothe.material)
   return (
     <View style={styles.filtersContainer}>
       <Text style={styles.filterTitle}>En quelle matière est votre habit ?</Text>
       <View style={styles.filterContainer}>
         {topMatiere.map((top, index) => (
-          <View key={index} style={styles.filterButtonClicked}>
-            <Text style={styles.filterTextClicked}>{top}</Text>
+          <TouchableOpacity key={index} onPress={() => handleMaterialInput(topMatiere[index])}>
+          <View style={topMatiere[index] === material ? styles.filterButtonClicked: styles.filterButton}>
+            <Text style={topMatiere[index] === material ? styles.filterTextClicked: styles.filterText}>{top}</Text>
           </View>
+          </TouchableOpacity>
         ))}
       </View>
     </View>
   );
 }
 
-function FilterMaterialBottom() {
+function FilterMaterialBottom({handleMaterialInput}) {
+
+  const material = useSelector((state) => state.clothes.temporaryClothe.material)
+  const bottomMatiere = ["Coton", "Cuir", "Denim", "Dentelle", "Lin", "Soie", "Velours", "Autre"];
+
   return (
     <View style={styles.filtersContainer}>
       <Text style={styles.filterTitle}>De quel type de bas s’agit-il ? *</Text>
       <View style={styles.filterContainer}>
         {bottomMatiere.map((bottom, index) => (
-          <View key={index} style={styles.filterButton}>
-            <Text style={styles.filterText}>{bottom}</Text>
+          <TouchableOpacity key={index} onPress={() => handleMaterialInput(bottomMatiere[index])}>
+          <View style={bottomMatiere[index] === material ? styles.filterButtonClicked: styles.filterButton}>
+          <Text style={bottomMatiere[index] === material ? styles.filterTextClicked: styles.filterText}>{bottom}</Text>
           </View>
+          </TouchableOpacity>
         ))}
       </View>
     </View>
   );
 }
 
-function FilterMaterialShoes() {
-  return (
-    <View style={styles.filtersContainer}>
-      <Text style={styles.filterTitle}>De quel type de chaussures s’agit-il ? *</Text>
-      <View style={styles.filterContainer}>
-        {shoesMatiere.map((haut, index) => (
-          <View key={index} style={styles.filterButton}>
-            <Text style={styles.filterText}>{haut}</Text>
-          </View>
-        ))}
-      </View>
-    </View>
-  );
-}
-
-export { FilterMaterialTop, FilterMaterialBottom, FilterMaterialShoes };
+export { FilterMaterialTop, FilterMaterialBottom };
 
 const styles = StyleSheet.create({
   filtersContainer: {

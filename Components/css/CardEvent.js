@@ -7,28 +7,46 @@ import {
 } from "react-native";
 
 import { Dimensions } from "react-native";
-import { EventParty, EventSport, EventCasual, EventWork } from "./Pictos";
+import { EventParty, EventSport, EventCasual, EventWork, EventPartyWhite, EventSportWhite, EventCasualWhite, EventWorkWhite } from "./Pictos";
+import { useState } from "react";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-function CardEvent() {
+function CardEvent({isSelected}) {
+
+const [cardStates, setCardStates] = useState([
+  { isClicked: false }, // Soirée
+  { isClicked: false }, // Sport
+  { isClicked: false }, // Casual
+  { isClicked: false }, // Work
+]);
 
   const events = [
-    { Picto: <EventParty />, Text: "Soirée" },
-    { Picto: <EventSport />, Text: "Sport" },
-    { Picto: <EventCasual />, Text: "Casual" },
-    { Picto: <EventWork />, Text: "Work" },
+    { Picto: <EventParty />, PictoWhite: <EventPartyWhite /> , Text: "Soirée" },
+    { Picto: <EventSport />,PictoWhite: <EventSportWhite /> , Text: "Sport" },
+    { Picto: <EventCasual />, PictoWhite: <EventCasualWhite />, Text: "Casual" },
+    { Picto: <EventWork />, PictoWhite: <EventWorkWhite />, Text: "Work" },
   ];
+
+  const handlePress = (index) => {
+    const updatedCardStates = [...cardStates];
+    updatedCardStates[index].isClicked = !updatedCardStates[index].isClicked;
+    setCardStates(updatedCardStates);
+  };
 
   return (
     <View style={styles.cardsEventContainer}>
     {events.map((event, index) => (
-      <View key={index} style={styles.cardEventContainer}>
-        <View style={styles.pictoEvent}>{event.Picto}</View>
-        <View>
-          <Text style={styles.cardEventText}>{event.Text}</Text>
+      <View key={index} style={cardStates[index].isClicked ? styles.cardEventContainerClicked : styles.cardEventContainer}>
+      <TouchableOpacity onPress={() => {isSelected(event.Text), handlePress(index)}}>
+      <Text style={{alignSelf: "center"}}>
+      { cardStates[index].isClicked ? <View style={styles.pictoEvent}>{event.PictoWhite}</View> : <View style={styles.pictoEvent}>{event.Picto}</View>} 
+      </Text>
+       <View>
+          <Text style={cardStates[index].isClicked ? styles.cardEventTextClicked : styles.cardEventText}>{event.Text}</Text>
         </View>
+        </TouchableOpacity>
       </View>
     ))}
   </View>
@@ -63,5 +81,24 @@ const styles = StyleSheet.create({
   },
   pictoEvent: {
     alignItems: "center",
+  },
+  pictoEventClicked: {
+    alignItems: "center",
+    color: "white",
+  },
+  cardEventContainerClicked: {
+    width: "45%",
+    height: windowHeight * 0.3,
+    borderRadius: 10,
+    backgroundColor: "#6B9080",
+    alignContent: "center",
+    justifyContent: "center",
+  },
+  cardEventTextClicked: {
+    paddingTop: 50,
+    textAlign: "center",
+    fontFamily: "Lora-SemiBold",
+    fontSize: 20,
+    color: "white",
   },
 });

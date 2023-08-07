@@ -5,6 +5,7 @@ import { Dimensions, Image, ImageBackground, StyleSheet, Text, View } from 'reac
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { TopContainerPicto } from '../../Components/css/TopContainer'
 import { ButtonValidate } from '../../Components/css/ButtonGreenLight';
+import { useSelector } from 'react-redux';
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -14,14 +15,16 @@ const windowHeight = Dimensions.get("window").height;
 function CreateClotheF({navigation}) {
 
   const handleGoBack = () => {
-    navigation.goBack();
+    navigation.navigate("CreateClotheE");
 };
+const picture = useSelector((state) => state.clothes.temporaryClothe.image)
+// console.log(picture)
 
   return (
     <View style={styles.mainContainer}>
 
       <ImageBackground
-        source={require('../../assets/images/1661139363d0af2b9ebc4be1a701c62b3af5e237ef.webp')}
+        source={{uri: picture}}
         resizeMode="cover"
         style={styles.imageBackground}
         blurRadius={10}
@@ -29,7 +32,7 @@ function CreateClotheF({navigation}) {
         <View style={styles.insidePicture}>
 
           <TopContainerPicto handleGoBack={handleGoBack} />
-          <Image style={styles.image} source={require('../../assets/images/1661139363d0af2b9ebc4be1a701c62b3af5e237ef.webp')} />
+          <Image style={styles.image} source={{uri: picture}} />
         </View>
       </ImageBackground>
       <View style={styles.modalContainer}>

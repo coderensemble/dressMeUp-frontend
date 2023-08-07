@@ -7,22 +7,29 @@ import {
 } from "react-native";
 
 import { Dimensions } from "react-native";
+import { useSelector } from "react-redux";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
+const meteo = ["Oui", "Non"];
 
 
-export default function Meteo() {
+export default function Meteo({handleMeteo}) {
+
+    const waterproof = useSelector((state) => state.clothes.temporaryClothe.waterproof)
+
+
     return (
         <View style={styles.filtersContainer}>
             <Text style={styles.filterTitle}>Adapté à la pluie ?</Text>
             <View style={styles.filterContainer}>
-                <View style={styles.filterButtonClicked}>
-                    <Text style={styles.filterTextClicked}>Oui</Text>
-                </View>
-                <View style={styles.filterButtonClicked}>
-                    <Text style={styles.filterTextClicked}>Non</Text>
-                </View>
+            {meteo.map((answer, index) => (
+            <TouchableOpacity key={index} onPress={() => handleMeteo(meteo[index])}>
+            <View style={meteo[index] === waterproof ? styles.filterButtonClicked: styles.filterButton}>
+            <Text style={meteo[index] === waterproof ? styles.filterTextClicked: styles.filterText}>{answer}</Text>
+            </View>
+            </TouchableOpacity>
+          ))}
             </View>
         </View>
     );

@@ -11,26 +11,45 @@ function ButtonGreenLight() {
     </TouchableOpacity>
   );
 }
-function ButtonNextStep({handleTopSubmit}) {
+function ButtonNextStep({handleTopSubmit, handleClotheName}) {
   return (
     <View style={styles.buttonContainer}>
-    <TouchableOpacity style={styles.buttonGreen} activeOpacity={0.8} onPress={handleTopSubmit}>
+    <TouchableOpacity style={styles.buttonGreen} activeOpacity={0.8} onPress={() =>{handleTopSubmit(), handleClotheName()}}>
       <Text style={styles.textButton}>Etape suivante</Text>
     </TouchableOpacity>  
     </View>
   );
 }
-function ButtonValidate() {
+function ButtonSkip({handleSkip, handleClotheName}) {
   return (
     <View style={styles.buttonContainer}>
-    <TouchableOpacity style={styles.buttonGreen} activeOpacity={0.8}>
-      <Text style={styles.textButton}>Valider</Text>
+    <TouchableOpacity style={styles.buttonGreen} activeOpacity={0.8} onPress={() =>{handleSkip(), handleClotheName()}}>
+      <Text style={styles.textButton}>Etape suivante</Text>
     </TouchableOpacity>  
     </View>
   );
 }
 
-export {ButtonGreenLight, ButtonNextStep, ButtonValidate}
+function ButtonValidate() {
+  return (
+    <View style={styles.buttonContainer}>
+    <TouchableOpacity style={styles.buttonGreen} activeOpacity={0.8}>
+      <Text style={styles.textButton}>Valider</Text>
+    </TouchableOpacity>
+    </View>
+  );
+}
+function ButtonImport({handlePictureImport}) {
+  return (
+    <View style={styles.buttonContainer}>
+    <TouchableOpacity style={styles.buttonGreen} activeOpacity={0.8} onPress={handlePictureImport}>
+      <Text style={styles.textButton}>Importer une photo</Text>
+    </TouchableOpacity>  
+    </View>
+  );
+}
+
+export {ButtonGreenLight, ButtonNextStep, ButtonSkip, ButtonValidate, ButtonImport}
 
 const styles = StyleSheet.create({
   buttonContainer: {
