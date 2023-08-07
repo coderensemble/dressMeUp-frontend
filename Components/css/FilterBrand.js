@@ -13,7 +13,7 @@ import {
   function FilterBrand() {
     return (
       <View style={styles.filtersContainer}>
-        <Text style={styles.filterTitle}>Quelle est sa marque ?</Text>
+        <Text style={styles.filterTitle}>Quelle est la marque ?</Text>
         <TextInput
         placeholder="Renseignez la marque de votre vêtement"
         style={styles.input}

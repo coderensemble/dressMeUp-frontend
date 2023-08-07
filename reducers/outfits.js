@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const temporaryOutfit = {
-  top1: null,
-  top2 : null,
+const initialOutfit = {
+  tops: [],
   bottom: null,
   shoes: null,
   accessory1: null,
   accessory2: null,
   accessory3: null,
+  isFavorite: false,
   image: "",
 };
 
@@ -16,38 +16,87 @@ const initialState = {
 };
 
 export const outfitSlice = createSlice({
-  name: "outfit",
+  name: "outfits",
   initialState,
   reducers: {
     addTop: (state, action) => {
-      state.temporaryOutfit.tops.push(action.payload);
+      state.currentOutfit.tops.push(action.payload);
     },
-    addPants: (state, action) => {
+    setBottom: (state, action) => {
       state.temporaryOutfit.bottom = action.payload;
     },
-    addShoes: (state, action) => {
+    setShoes: (state, action) => {
       state.temporaryOutfit.shoes = action.payload;
     },
     setIsFavorite: (state, action) => {
       state.temporaryOutfit.isFavorite = action.payload;
     },
     setImage: (state, action) => {
-      state.temporaryOutfit.image = action.payload;
+      state.currentOutfit.image = action.payload;
     },
     saveOutfit: (state) => {
-      // CAM REF ICI
-      state.outfits.push(state.temporaryOutfit);
-      state.temporaryOutfit = {
+      state.outfits.push(state.currentOutfit);
+      state.currentOutfit = {
         tops: [],
         pants: null,
         shoes: null,
-        accessories: {
-          accessory1: null,
-          accessory2: null,
-          accessory3: null,
-        },
+        accessory1: null,
+        accessory2: null,
+        accessory3: null,
         image: "",
       };
+      state.event = {
+        party: false,
+        sport: false,
+        casual: false,
+        work: false,
+      };
+    },    
+    setMaintype: (state, action) => {
+      state.maintype = action.payload;
     },
-  },
-});
+    resetMaintype: (state) => {
+      state.maintype = ""
+    },
+    resetTemporaryOutfit : (state) => {
+     state.temporaryOutfit = {
+        top1: null,
+        top2: null,
+        bottom: null,
+        shoes: null,
+        accessory1: null,
+        accessory2: null,
+        accessory3: null,
+        image: "",
+      }
+    },
+    resetEvent : (state) => {
+      state.event = {
+        party: false,
+        sport: false,
+        casual: false,
+        work: false,
+      };
+   },
+  }
+})
+
+export const {
+  setTop1,
+  setTop2,
+  setBottom,
+  setShoes, 
+  setAccessory1,
+  setAccessory2,
+  setAccessory3,
+  setIsFavorite,
+  setImage,
+  saveOutfit,
+  setMaintype,
+  resetMaintype,
+  resetTemporaryOutfit,
+  setEvent,
+  resetEvent
+} = outfitSlice.actions;
+
+export default outfitSlice.reducer;

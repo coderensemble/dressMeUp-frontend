@@ -4,32 +4,48 @@ import React from 'react'
 import { Dimensions, KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { TopContainerPicto } from '../../Components/css/TopContainer'
-import { FilterSubTypeTop } from '../../Components/css/FilterSubType';
+import { FilterSubTypeAccessories, FilterSubTypeBottom, FilterSubTypeShoes, FilterSubTypeTop } from '../../Components/css/FilterSubType';
 import { FilterColors } from '../../Components/css/FilterColors';
 import { FilterBrand } from '../../Components/css/FilterBrand';
 import ButtonOptions from '../../Components/css/ButtonOptions';
 import { ButtonNextStep } from '../../Components/css/ButtonGreenLight';
+import { useSelector } from 'react-redux';
 
 const windowWidth = Dimensions.get("window").width;
 
 
-function CreateClotheC() {
+function CreateClotheC({navigation}) {
+  const clothemaintype = useSelector((state) => state.clothes.temporaryClothe.maintype);
+
+
+
+  const handleTopSubmit = () => {
+    navigation.navigate('CreateClotheD');
+};
+
+  const handleGoBack = () => {
+    navigation.goBack();
+};
+
   return (
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
 
     <SafeAreaView style={styles.mainContainer}>
       <View>
-        <TopContainerPicto />
+        <TopContainerPicto handleGoBack={handleGoBack} />
         <View style={styles.subContainer}>
           <Text style={styles.textTitle}>Dites nous en plus sur votre habit</Text>
           <Text style={styles.textSubtitle}>Choisissez parmi les options ci-dessous </Text>
-          <FilterSubTypeTop />
-          <FilterColors />
           <FilterBrand />
-          <ButtonOptions />
+          {clothemaintype === "top" && <FilterSubTypeTop />}
+          {clothemaintype === "bottom" && <FilterSubTypeBottom />}
+          {clothemaintype === "shoes" && <FilterSubTypeShoes />}
+          {clothemaintype === "accessories" && <FilterSubTypeAccessories />}
+          <FilterColors />
+          <ButtonOptions />     
         </View>
       </View>
-      <ButtonNextStep/>
+      <ButtonNextStep handleTopSubmit={handleTopSubmit}/>
     </SafeAreaView>
     </KeyboardAvoidingView>
 
@@ -44,7 +60,8 @@ const styles = StyleSheet.create({
     justifyContent:'space-between'
   },
   subContainer: {
-    alignItems: "center"
+    alignItems: "center",
+    // justifyContent: "space-evenly"
   },
   textTitle: {
     fontFamily: "Lora-SemiBoldItalic",
@@ -60,9 +77,6 @@ const styles = StyleSheet.create({
     fontFamily: "Lora-SemiBoldItalic",
     fontSize: 18,
   },
-
-
-
 })
 
 export default CreateClotheC

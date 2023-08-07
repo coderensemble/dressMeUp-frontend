@@ -17,7 +17,12 @@ import { PreviewTop } from "../../Components/css/CardPreviewClothes";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-function CreateClotheF() {
+function CreateClotheF({navigation}) {
+
+  const handleGoBack = () => {
+    navigation.goBack();
+};
+
   return (
     <View style={styles.mainContainer}>
       <ImageBackground
@@ -27,8 +32,9 @@ function CreateClotheF() {
         blurRadius={10}
       >
         <View style={styles.insidePicture}>
-          <TopContainerPicto />
-          <PreviewTop />
+
+          <TopContainerPicto handleGoBack={handleGoBack} />
+          <Image style={styles.image} source={require('../../assets/images/1661139363d0af2b9ebc4be1a701c62b3af5e237ef.webp')} />
         </View>
       </ImageBackground>
       <View style={styles.modalContainer}>

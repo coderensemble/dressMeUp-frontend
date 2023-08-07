@@ -7,29 +7,70 @@ import {
   StyleSheet,
   TextInput,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
-import { TopContainerListingTop } from "../../Components/css/TopContainer";
+import {
+  TopContainerListingAccessories,
+  TopContainerListingTop,
+  TopContainerListingBottom,
+  TopContainerListingShoes,
+} from "../../Components/css/TopContainer";
 import { Dimensions } from "react-native";
-import { PreviewListingTop, PreviewTop } from "../../Components/css/CardPreviewClothes";
-import { CurrentRenderContext } from "@react-navigation/native";
 import { Filters } from "../../Components/css/Pictos";
+import {
+  setTop1,
+  setTop2,
+  setBottom,
+} from "../../reducers/outfits";
+import {
+  PreviewListingBottom,
+  PreviewListingTop,
+} from "../../Components/css/CardPreviewClothes";
+
+import { useDispatch, useSelector } from "react-redux";
 
 const windowWidth = Dimensions.get("window").width;
 
-// Mettre une condition pour render soit TopContainerListingTop / soit TopContainerListingBottom
-// Mettre une condition pour render soit PreviewTop / soit PreviewBottom
+function CreateOutfitC({ navigation }) {
 
-function CreateOutfitC() {
+  const dispatch = useDispatch()
+
+  const temporaryOutfit = useSelector((state) => state.outfits.temporaryOutfit)
+  const top1 = useSelector((state) => state.outfits.temporaryOutfit.top1);
+  const top2 = useSelector((state) => state.outfits.temporaryOutfit.top2);
+
+  const outfitmaintype = useSelector((state) => state.outfits.maintype);
+  
+  const handleTopOutfitSubmit = (selectedTop) => {
+    if (!top1) {
+      dispatch(setTop1(selectedTop));
+      navigation.navigate("OverviewOutfit")
+    } else {
+      dispatch(setTop2(selectedTop));
+      navigation.navigate("OverviewOutfit")
+    }
+  };
+
+  const handleBottomOutfitSubmit = (selectedBottom) => {
+    dispatch(setBottom(selectedBottom));
+    navigation.navigate("OverviewOutfit")
+  };
+
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
+
   return (
     <SafeAreaView style={styles.mainContainer}>
-      <TopContainerListingTop />
+      {outfitmaintype === "top" && (
+        <TopContainerListingTop handleGoBack={handleGoBack} />
+      )}
+      {outfitmaintype === "bottom" && (
+        <TopContainerListingBottom handleGoBack={handleGoBack} />
+      )}
       <View style={styles.filterContainer}>
         <View>
-          <TextInput
-            placeholder="Remplacez par ce que vous voulez"
-            style={styles.input}
-          />
+          <TextInput placeholder="Que cherchez-vous ?" style={styles.input} />
         </View>
         <View style={styles.pictoFilter}>
           <TouchableOpacity>
@@ -41,10 +82,14 @@ function CreateOutfitC() {
         contentContainerStyle={styles.scrollViewContentContainer}
         showsVerticalScrollIndicator={false}
       >
-        <PreviewListingTop />
-        <PreviewListingTop />
-        <PreviewListingTop />
-        <PreviewListingTop />
+        {outfitmaintype === "top" && (
+          <PreviewListingTop handleTopOutfitSubmit={handleTopOutfitSubmit} />
+        )}
+        {outfitmaintype === "bottom" && (
+          <PreviewListingBottom
+            handleBottomOutfitSubmit={handleBottomOutfitSubmit}
+          />
+        )}
       </ScrollView>
     </SafeAreaView>
   );
@@ -71,15 +116,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
-    rowGap : 10,
-    columnGap : 10,
+    rowGap: 10,
+    columnGap: 10,
   },
-  pictoFilter:{
+  pictoFilter: {
     alignSelf: "center",
     transform: [{ rotate: "90deg" }],
   },
   filterContainer: {
-    width : windowWidth * 0.9,
+    width: windowWidth * 0.9,
     flexDirection: "row",
     alignContent: "center",
     justifyContent: "space-between",
