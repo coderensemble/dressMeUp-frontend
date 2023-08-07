@@ -1,89 +1,227 @@
-import React, { useState } from "react";
-import { View, StyleSheet, KeyboardAvoidingView, Text, TouchableOpacity } from "react-native";
-import { logout } from "../reducers/user";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect, useRef } from "react";
+import { View, StyleSheet, KeyboardAvoidingView, Text, TouchableOpacity, Image, TextInput } from "react-native";
+import { logout, setPhoto, setUsername } from "../reducers/user";
+import { useDispatch, useSelector } from "react-redux";
 import { Dimensions } from "react-native";
 import { Edit, PlusCircle } from "../Components/css/Pictos";
 import { AccountTopContainer } from "../Components/css/TopContainer";
 import CustomPopup from "../Components/functionalcomponents/CustomPopup";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useNavigation } from "@react-navigation/native";
-
+import { Camera, CameraType } from "expo-camera";
+import { useIsFocused } from "@react-navigation/native";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-export default function Setting({navigation}) {
+export default function Setting({ navigation }) {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.value);
+  console.log("Username:", user.username);
+  console.log("mail", user.email);
+  const [newUsername, setNewUsername] = useState("");
+  const [newEmail, setNewEmail] = useState("");
+  
+  const [isUsernameInputVisible, setIsUsernameInputVisible] = useState(false);
+  const [isEmailInputVisible, setIsEmailInputVisible] = useState(false);
+  const photoURL = useSelector((state) => state.user.value.photoURL);
   const [showPopup, setShowPopup] = useState(false);
+  const [hasPermission, setHasPermission] = useState(false);
+  const [isCameraVisible, setIsCameraVisible] = useState(false);
+  const [cameraType, setCameraType] = useState(CameraType.front);
+  const isFocused = useIsFocused();
+  let cameraRef = useRef(null);
+
+  // console.log("Valeur de photoURL :", state.value.photoURL);
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestCameraPermissionsAsync();
+      setHasPermission(status === "granted");
+    })();
+  }, []);
+
+  if (!hasPermission || !isFocused) {
+    return <View></View>;
+  }
+
+  const takePicture = async () => {
+    if (cameraRef) {
+      const photo = await cameraRef.takePictureAsync({ quality: 0.3 });
+      const formData = new FormData();
+
+      formData.append("photoFromFront", {
+        uri: photo.uri,
+        name: "photo.jpg",
+        type: "image/jpeg",
+      });
+
+      console.log("Selfie:", photo.uri);
+      setIsCameraVisible(false);
+
+      fetch(`http://10.0.1.111:3000/users/upload`, {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          data.result && dispatch(setPhoto(data.url));
+        });
+    }
+  };
+
+  const openCamera = () => {
+    setIsCameraVisible(true);
+  };
 
   const openPopup = () => {
     setShowPopup(true);
   };
-
   const closePopup = () => {
     setShowPopup(false);
   };
-
   const handleDeleteAccount = () => {
-    // Ajoutez ici le code pour supprimer le compte de l'utilisateur
-    // ...
-    closePopup(); // Ferme le popup après la suppression
+    closePopup();
   };
 
   const handleGoBack = () => {
     navigation.goBack();
-};
+  };
+  const handleNewEmailInput = () => {
+    setIsEmailInputVisible(true);
+  };
+  
+  const handleNewEmailSave = () => {
+    setIsUsernameInputVisible(false);
+    setNewUsername(newUsername);
+  };
 
-  return(
+  const handleConfirmEmailChange = () => {
+    handleSave();
+  };
+
+  const handleNewUsernameInput = () => {
+    setIsUsernameInputVisible(true);
+  };
+
+  const handleNewUsernameSave = () => {
+    setIsUsernameInputVisible(false);
+    setNewUsername(newUsername);
+  };
+
+  const handleConfirmUsernameChange = () => {
+    handleSave();
+  };
+
+  const handleConnection = () => {
+    navigation.navigate("LoginScreen");
+  };
+
+  if (isCameraVisible) {
+    return (
+      <Camera style={styles.takePict} type={cameraType} ref={(ref) => (cameraRef = ref)}>
+        <TouchableOpacity onPress={() => cameraRef && takePicture()}>
+          <PlusCircle />
+        </TouchableOpacity>
+      </Camera>
+    );
+  }
+
+  return (
     <SafeAreaView>
       <View style={styles.mainContainer}>
         <KeyboardAvoidingView>
           <View style={styles.headContainer}>
-            <AccountTopContainer handleGoBack={handleGoBack}/>
+            <AccountTopContainer handleGoBack={handleGoBack} />
           </View>
 
           <View style={styles.middlePart}>
             <View style={styles.circlePlusCircle}>
-              <View style={styles.circle}></View>
+              <View style={styles.circle}>
+                {photoURL ? (
+                  <Image
+                    source={{ uri: photoURL }}
+                    style={{ width: "100%", height: "100%", borderRadius: (windowWidth * 0.4) / 2 }}
+                  />
+                ) : (
+                  <Text>Votre photo</Text>
+                )}
+              </View>
 
-              <TouchableOpacity style={styles.buttonPlus}>
+              <TouchableOpacity style={styles.buttonPlus} onPress={openCamera}>
                 <PlusCircle />
               </TouchableOpacity>
             </View>
 
             <View style={styles.input}>
               <Text style={styles.inputTitle}>Mon pseudo</Text>
-              <Text style={styles.info}></Text>
-              <TouchableOpacity style={styles.edit}>
-                <Edit />
-              </TouchableOpacity>
+              {isUsernameInputVisible ? (
+                <TextInput
+                  style={styles.info}
+                  onChangeText={(value) => setNewUsername(value)}
+                  value={newUsername}
+                  autoFocus={true}
+                  onSubmitEditing={handleNewUsernameSave}
+                />
+              ) : (
+                <Text style={styles.info}>{newUsername || user.username}</Text>
+              )}
+              {!isUsernameInputVisible && (
+                <TouchableOpacity style={styles.edit} onPress={handleNewUsernameInput}>
+                  <Edit />
+                </TouchableOpacity>
+              )}
+              {isUsernameInputVisible && (
+        <TouchableOpacity style={styles.button} onPress={handleConfirmUsernameChange}>
+          <Text style={styles.buttonText}>Confirmer</Text>
+        </TouchableOpacity>
+      )}
             </View>
             <View style={styles.input}>
               <Text style={styles.inputTitle}>Mon email</Text>
-              <Text style={styles.info}></Text>
-              <TouchableOpacity style={styles.edit}>
-                <Edit />
-              </TouchableOpacity>
+              {isEmailInputVisible ? (
+                <TextInput
+                  style={styles.info}
+                  onChangeText={(value) => setNewEmail(value)}
+                  value={newEmail}
+                  autoFocus={true}
+                  onSubmitEditing={handleNewEmailSave}
+                />
+              ) : (
+                <Text style={styles.info}>{newEmail || user.email}</Text>
+              )}
+              {!isEmailInputVisible && (
+                <TouchableOpacity style={styles.edit} onPress={handleNewEmailInput}>
+                  <Edit />
+                </TouchableOpacity>
+              )}
+              {isEmailInputVisible && (
+        <TouchableOpacity style={styles.button} onPress={handleConfirmEmailChange}>
+          <Text style={styles.buttonText}>Confirmer</Text>
+        </TouchableOpacity>
+      )}
             </View>
-            <View style={styles.input}>
+            {/* <View style={styles.input}>
               <Text style={styles.inputTitle}>Mon mot de passe</Text>
               <Text style={styles.info}></Text>
               <TouchableOpacity style={styles.edit}>
                 <Edit />
               </TouchableOpacity>
-            </View>
+            </View> */}
           </View>
           <View style={styles.bottomView}>
             <TouchableOpacity style={styles.buttonGreen} activeOpacity={0.8} onPress={openPopup}>
               <Text style={styles.button}>Supprimer mon compte</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonGreen} activeOpacity={0.8} onPress={() => dispatch(logout())}>
+            <TouchableOpacity
+              style={styles.buttonGreen}
+              activeOpacity={0.8}
+              onPress={() => {
+                handleConnection(), dispatch(logout());
+              }}>
               <Text style={styles.button}>Se déconnecter</Text>
             </TouchableOpacity>
           </View>
 
-          {/* Affiche le popup */}
           <CustomPopup isVisible={showPopup} onClose={closePopup} onDelete={handleDeleteAccount} />
         </KeyboardAvoidingView>
       </View>
@@ -178,5 +316,11 @@ const styles = StyleSheet.create({
   },
   button: {
     fontFamily: "Lora-SemiBold",
+  },
+  takePict: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    paddingBottom: "20%",
   },
 });

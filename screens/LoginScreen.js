@@ -1,5 +1,5 @@
 import React from "react";
-import Signin from "../Components/functionalcomponents/Signin";
+import SignIn from "../Components/functionalcomponents/SignIn";
 import { SafeAreaView, StyleSheet, Image, Dimensions, View } from "react-native";
 
 const windowWidth = Dimensions.get("window").width;
@@ -11,7 +11,7 @@ export default function LoginScreen() {
       <View style={styles.imgContainer}>
       <Image style={styles.image} source={require("../assets/images/Logo.png")} resizeMode="contain"/>
       </View>
-      <Signin />
+      <SignIn />
     </SafeAreaView>
   );
 }

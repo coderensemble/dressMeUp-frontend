@@ -1,13 +1,23 @@
 import React, { useState } from "react";
-import { logout } from "../../reducers/user";
+import { useSelector } from "react-redux";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const CustomPopup = ({ isVisible, onClose, onDelete }) => {
   const [deleteUser, setDeleteUser] = useState(false);
+  const navigation = useNavigation();
+  const user = useSelector((state) => state.user.value);
+  const usernameToDelete = user.username;
 
   const clickDeleteButton = () => {
     setDeleteUser(true);
     console.log("tu es suprimé");
+    fetch(`http://10.0.1.111:3000/users/${usernameToDelete}`, {method: 'DELETE'})
+    .then(response => response.json())
+    .then((data) => {
+      console.log(data);
+      navigation.navigate("LoginScreen");
+    })
   };
 
   if (!isVisible) return null;
@@ -62,7 +72,7 @@ const styles = StyleSheet.create({
   deleteButton: {
     width: "80%",
     marginTop: 10,
-    top: "30%",
+    top: "20%",
     backgroundColor: "#A4C3B2",
     padding: 10,
     borderRadius: 5,

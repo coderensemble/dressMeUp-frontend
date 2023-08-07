@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, Text, View } from "react-native";
 import { Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { login, logout } from "../../reducers/user";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-export default function Signin() {
+export default function SignIn() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
   const navigation = useNavigation();
@@ -30,24 +31,31 @@ export default function Signin() {
             setEmail("");
             setPassword("");
           }
+          setShowSignup(!showSignup);
         });
     } else {
       fetch("http://10.0.1.111:3000/users/signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: username, password: password }),
+        body: JSON.stringify({ username: username, email: email, password: password }),
       })
         .then((response) => response.json())
         .then((data) => {
           if (data.result) {
+            console.log(data);
             dispatch(
               login({
                 token: data.token,
                 username: data.username,
-                password: data.password,
+                email: data.email,
               })
             );
             navigation.navigate("HomeScreen");
+            //retarder la reinitialisation des états
+            setTimeout(() => {
+              setUsername(""), { connectTimeoutMS: 3000 };
+              setPassword(""), { connectTimeoutMS: 3000 };
+            }, 1000);
           }
         });
     }

@@ -4,7 +4,6 @@ import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, View, TouchableOpacity, Text, Image, SafeAreaView } from "react-native";
 import { Dimensions } from "react-native";
 import { PlusCircle, Settings } from "../Components/css/Pictos";
-import { ClothesHaut } from "../Components/css/Pictos";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -12,6 +11,7 @@ const windowHeight = Dimensions.get("window").height;
 export default function HomeUser() {
   const navigation = useNavigation();
   const user = useSelector((state) => state.user.value);
+  // console.log(user);
 
   const handleSettingsPress = () => {
     navigation.navigate("UserProfileScreen");
