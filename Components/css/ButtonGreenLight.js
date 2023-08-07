@@ -12,6 +12,7 @@ function ButtonGreenLight() {
   );
 }
 function ButtonNextStep({handleTopSubmit}) {
+function ButtonNextStep({handleTopSubmit}) {
   return (
     <View style={styles.buttonContainer}>
     <TouchableOpacity style={styles.buttonGreen} activeOpacity={0.8} onPress={handleTopSubmit}>

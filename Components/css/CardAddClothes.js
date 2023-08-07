@@ -26,6 +26,7 @@ function CardAddClothes({handleTopSubmit, handleBottomSubmit, handleShoesSubmit,
           <ClothesHaut />
         </View>
         <TouchableOpacity activeOpacity={0.5} onPress={handleTopSubmit}>
+        <TouchableOpacity activeOpacity={0.5} onPress={handleTopSubmit}>
           <View style={styles.buttonPlus}>
             <PlusCircle />
           </View>
@@ -38,6 +39,7 @@ function CardAddClothes({handleTopSubmit, handleBottomSubmit, handleShoesSubmit,
         <View>
           <ClothesBas />
         </View>
+        <TouchableOpacity activeOpacity={0.5} onPress={handleBottomSubmit}>
         <TouchableOpacity activeOpacity={0.5} onPress={handleBottomSubmit}>
           <View style={styles.buttonPlus}>
             <PlusCircle />

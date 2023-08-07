@@ -1,6 +1,6 @@
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 import { Dimensions } from "react-native";
-import { LeftArrowCircle, Undo } from "./Pictos";
+import { LeftArrowCircle } from "./Pictos";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -22,92 +22,7 @@ function TopContainerCreateClothe({ handleGoBack }) {
   );
 }
 
-function TopContainerListingTop({ handleGoBack }) {
-  return (
-    <View style={styles.headerMainContainer}>
-      <View style={styles.headerContainer}>
-        <View style={styles.pictoHeader}>
-          <TouchableOpacity onPress={handleGoBack}>
-            <LeftArrowCircle />
-          </TouchableOpacity>
-        </View>
-        <View>
-          <Text style={styles.topText}>Mes hauts</Text>
-        </View>
-      </View>
-    </View>
-  );
-}
-
-function TopContainerListingBottom({ handleGoBack }) {
-  return (
-    <View style={styles.headerMainContainer}>
-      <View style={styles.headerContainer}>
-        <View style={styles.pictoHeader}>
-          <TouchableOpacity onPress={handleGoBack}>
-            <LeftArrowCircle />
-          </TouchableOpacity>
-        </View>
-        <View>
-          <Text style={styles.topText}>Mes bas</Text>
-        </View>
-      </View>
-    </View>
-  );
-}
-
-function TopContainerListingShoes({ handleGoBack }) {
-  return (
-    <View style={styles.headerMainContainer}>
-      <View style={styles.headerContainer}>
-        <View style={styles.pictoHeader}>
-          <TouchableOpacity onPress={handleGoBack}>
-            <LeftArrowCircle />
-          </TouchableOpacity>
-        </View>
-        <View>
-          <Text style={styles.topText}>Mes chaussures</Text>
-        </View>
-      </View>
-    </View>
-  );
-}
-
-function TopContainerListingAccessories({ handleGoBack }) {
-  return (
-    <View style={styles.headerMainContainer}>
-      <View style={styles.headerContainer}>
-        <View style={styles.pictoHeader}>
-          <TouchableOpacity onPress={handleGoBack}>
-            <LeftArrowCircle />
-          </TouchableOpacity>
-        </View>
-        <View>
-          <Text style={styles.topText}>Mes accessoires</Text>
-        </View>
-      </View>
-    </View>
-  );
-}
-
-function AccountTopContainer() {
-  return (
-    <View style={styles.headerMainContainer}>
-      <View style={styles.headerContainer}>
-        <View style={styles.pictoHeader}>
-          <TouchableOpacity>
-            <LeftArrowCircle />
-          </TouchableOpacity>
-        </View>
-        <View>
-          <Text style={styles.topText}>Mon compte</Text>
-        </View>
-      </View>
-    </View>
-  );
-}
-
-function TopContainerPicto({ handleGoBack }) {
+function TopContainerPicto() {
   return (
     <View style={styles.headerMainContainer}>
       <View style={styles.headerContainerPicto}>
@@ -121,35 +36,7 @@ function TopContainerPicto({ handleGoBack }) {
   );
 }
 
-function TopContainerOverviewOutfit({ handleGoBack }) {
-  return (
-    <View style={styles.headerMainContainer}>
-      <View style={styles.headerContainer}>
-        <View style={styles.doublePictoHeader}>
-          <TouchableOpacity onPress={handleGoBack}>
-            <LeftArrowCircle />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Undo />
-          </TouchableOpacity>
-        </View>
-        <View>
-          <Text style={styles.topText}>Ma tenue</Text>
-        </View>
-      </View>
-    </View>
-  );
-}
-
-export {
-  TopContainerCreateClothe,
-  TopContainerPicto,
-  TopContainerOverviewOutfit,
-  TopContainerListingAccessories,
-  TopContainerListingBottom,
-  TopContainerListingTop,
-  TopContainerListingShoes,
-};
+export {TopContainerCreateClothe, TopContainerPicto}
 
 const styles = StyleSheet.create({
   headerMainContainer: {
@@ -158,16 +45,13 @@ const styles = StyleSheet.create({
   pictoHeader: {
     alignSelf: "center",
   },
+  doublePictoHeader : {
+    flexDirection : "row"
+  },
   headerContainer: {
     flexDirection: "row",
     alignContent: "center",
     justifyContent: "space-between",
-  },
-  headerDoubleContainer: {
-    flexDirection: "row",
-    alignContent: "center",
-    justifyContent: "space-between",
-    alignItems: "center",
   },
   headerContainerPicto: {
     flexDirection: "row",

@@ -46,6 +46,8 @@ function CreateClotheA({navigation}) {
         <SafeAreaView style={styles.mainContainer}>
                 <TopContainerCreateClothe handleGoBack={handleGoBack} />
                 <CardAddClothes handleTopSubmit={handleTopSubmit} handleBottomSubmit={handleBottomSubmit} handleShoesSubmit={handleShoesSubmit} handleAccessoriesSubmit={handleAccessoriesSubmit} />
+                <TopContainerCreateClothe handleGoBack={handleGoBack} />
+                <CardAddClothes handleTopSubmit={handleTopSubmit} handleBottomSubmit={handleBottomSubmit} handleShoesSubmit={handleShoesSubmit} handleAccessoriesSubmit={handleAccessoriesSubmit} />
         </SafeAreaView>
     )
 }

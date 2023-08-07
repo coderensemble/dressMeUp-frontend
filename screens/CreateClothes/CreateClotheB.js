@@ -41,6 +41,7 @@ function CreateClotheB({ navigation }) {
     <SafeAreaView style={styles.mainContainer}>
       <View>
         <TopContainerPicto handleGoBack={handleGoBack} />
+        <TopContainerPicto handleGoBack={handleGoBack} />
         <View style={styles.subContainer}>
           <Text style={styles.textTitle}>Pour quel(s) type(s) d’event(s) ?</Text>
           <Text style={styles.textSubtitle}>Choisissez un ou plusieurs type(s) parmi la liste ci-dessous </Text>

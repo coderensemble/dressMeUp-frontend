@@ -23,6 +23,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import user from "./reducers/user";
 import clothes from "./reducers/clothes";
+import clothes from "./reducers/clothes";
 import outfits from "./reducers/outfits";
 // Pensez à importer vos reducers une fois qu'ils sont été exportés dans leurs fichiers respectifs
 
@@ -112,7 +113,6 @@ export default function App() {
 
             {/* <Stack.Screen name="ViewOutfitA" component={ViewOutfitA} /> */}
             {/* <Stack.Screen name="ViewOutfitB" component={ViewOutfitB} /> */}
-            {/* <Stack.Screen name="ViewOutfitC" component={ViewOutfitC} />  */}
             {/* <Stack.Screen name="ViewOutfitC" component={ViewOutfitC} /> */}
 
           </Stack.Navigator>

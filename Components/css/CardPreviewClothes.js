@@ -182,6 +182,104 @@ function SmallPreviewTop() {
   );
 }
 
+function PreviewBottom() {
+  return (
+    <TouchableOpacity>
+      <View style={styles.cardClothes}></View>
+    </TouchableOpacity>
+  );
+}
+
+function PreviewAccessories() {
+  return (
+    <TouchableOpacity>
+      <View style={styles.cardClothes}></View>
+    </TouchableOpacity>
+  );
+}
+
+function SmallPreviewTop() {
+  return (
+    <View style={styles.smallPreviewContainer}>
+      <View style={styles.smallPreviewTopContainer}>
+        <TouchableOpacity>
+          <Text style={styles.containerTitle}>Mes hauts</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.filterButton}>Tous mes hauts</Text>
+        </TouchableOpacity>
+      </View>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <View style={styles.smallCardContainer}>
+          <View style={styles.smallCardClothes}>
+            <TouchableOpacity></TouchableOpacity>
+          </View>
+          <View style={styles.smallCardClothes}>
+            <TouchableOpacity></TouchableOpacity>
+          </View>
+          <View style={styles.smallCardClothes}>
+            <TouchableOpacity></TouchableOpacity>
+          </View>
+          <View style={styles.smallCardClothes}>
+            <TouchableOpacity></TouchableOpacity>
+          </View>
+          <View style={styles.smallCardClothes}>
+            <TouchableOpacity></TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </View>
+  );
+}
+
+function PreviewShoes() {
+  return (
+    <View style={styles.previewContainer}>
+      <TouchableOpacity>
+        <View style={styles.cardClothes}>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <View style={styles.cardClothes}>
+        </View>
+      </ScrollView>
+    </View>
+  );
+}
+function SmallPreviewAccessories() {
+  return (
+    <View style={styles.smallPreviewContainer}>
+      <View style={styles.smallPreviewTopContainer}>
+        <TouchableOpacity>
+          <Text style={styles.containerTitle}>Mes accessoires</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.filterButton}>Tous mes accessoires</Text>
+        </TouchableOpacity>
+      </View>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <View style={styles.smallCardContainer}>
+          <View style={styles.smallCardAccessories}>
+            <TouchableOpacity></TouchableOpacity>
+          </View>
+          <View style={styles.smallCardAccessories}>
+            <TouchableOpacity></TouchableOpacity>
+          </View>
+          <View style={styles.smallCardAccessories}>
+            <TouchableOpacity></TouchableOpacity>
+          </View>
+          <View style={styles.smallCardAccessories}>
+            <TouchableOpacity></TouchableOpacity>
+          </View>
+          <View style={styles.smallCardAccessories}>
+            <TouchableOpacity></TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </View>
+  );
+}
+
 function SmallPreviewBottom() {
   return (
     <View style={styles.smallPreviewContainer}>
@@ -282,19 +380,165 @@ function SmallPreviewAccessories() {
   );
 }
 
-export {
-  PreviewTop,
-  PreviewAccessories,
-  SmallPreviewTop,
-  SmallPreviewBottom,
-  SmallPreviewShoes,
-  SmallPreviewAccessories,
-  PreviewListingTop,
-  PreviewListingAccessories,
-  PreviewListingBottom,
-  PreviewListingShoes,
-  PreviewOverview
-};
+function SmallPreviewTop() {
+  return (
+    <View style={styles.smallPreviewContainer}>
+      <View style={styles.smallPreviewTopContainer}>
+      <TouchableOpacity>
+        <Text style={styles.containerTitle}>Mes hauts</Text>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Text style={styles.filterButton}>Tous mes hauts</Text>
+      </TouchableOpacity>
+      </View>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <View style={styles.smallCardContainer}>
+          <View style={styles.smallCardClothes}>
+            <TouchableOpacity>
+              
+            </TouchableOpacity>
+          </View>
+          <View style={styles.smallCardClothes}>
+            <TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.smallCardClothes}>
+            <TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.smallCardClothes}>
+            <TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.smallCardClothes}>
+            <TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </View>
+  );
+}
+
+function SmallPreviewBottom() {
+  return (
+    <View style={styles.smallPreviewContainer}>
+      <View style={styles.smallPreviewTopContainer}>
+      <TouchableOpacity>
+        <Text style={styles.containerTitle}>Mes bas</Text>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Text style={styles.filterButton}>Tous mes bas</Text>
+      </TouchableOpacity>
+      </View>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <View style={styles.smallCardContainer}>
+          <View style={styles.smallCardClothes}>
+            <TouchableOpacity>
+              
+            </TouchableOpacity>
+          </View>
+          <View style={styles.smallCardClothes}>
+            <TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.smallCardClothes}>
+            <TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.smallCardClothes}>
+            <TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.smallCardClothes}>
+            <TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </View>
+  );
+}
+function SmallPreviewShoes() {
+  return (
+    <View style={styles.smallPreviewContainer}>
+      <View style={styles.smallPreviewTopContainer}>
+      <TouchableOpacity>
+        <Text style={styles.containerTitle}>Mes chaussures</Text>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Text style={styles.filterButton}>Toutes mes chaussures</Text>
+      </TouchableOpacity>
+      </View>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <View style={styles.smallCardContainer}>
+          <View style={styles.smallCardAccessories}>
+            <TouchableOpacity>
+              
+            </TouchableOpacity>
+          </View>
+          <View style={styles.smallCardAccessories}>
+            <TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.smallCardAccessories}>
+            <TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.smallCardAccessories}>
+            <TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.smallCardAccessories}>
+            <TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </View>
+  );
+}
+function SmallPreviewAccessories() {
+  return (
+    <View style={styles.smallPreviewContainer}>
+      <View style={styles.smallPreviewTopContainer}>
+      <TouchableOpacity>
+        <Text style={styles.containerTitle}>Mes accessoires</Text>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Text style={styles.filterButton}>Tous mes accessoires</Text>
+      </TouchableOpacity>
+      </View>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <View style={styles.smallCardContainer}>
+          <View style={styles.smallCardAccessories}>
+            <TouchableOpacity>
+              
+            </TouchableOpacity>
+          </View>
+          <View style={styles.smallCardAccessories}>
+            <TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.smallCardAccessories}>
+            <TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.smallCardAccessories}>
+            <TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.smallCardAccessories}>
+            <TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </View>
+  );
+}
+
+export { PreviewTop, PreviewBottom, PreviewShoes, PreviewAccessories, SmallPreviewTop, SmallPreviewBottom, SmallPreviewShoes, SmallPreviewAccessories }
 
 const styles = StyleSheet.create({
   previewContainer: {
@@ -376,6 +620,19 @@ const styles = StyleSheet.create({
   imagePreview: {
     width: "100%",
   },
+  smallCardClothes: {
+    flexDirection: "row",
+    width: windowWidth * 0.256,
+    height: windowHeight * 0.142,
+    borderRadius: 10,
+    backgroundColor: '#222',
+  },
+  smallCardAccessories: {
+    width: windowWidth * 0.256,
+    height: windowHeight * 0.118,
+    borderRadius: 10,
+    backgroundColor: '#222',
+  },
   cardAccessories: {
     width: windowWidth * 0.435,
     height: windowHeight * 0.118,
@@ -424,5 +681,24 @@ const styles = StyleSheet.create({
   image: {
     height: "100%",
     borderRadius: 10,
+  },
+  smallPreviewTopContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  containerTitle: {
+    fontFamily: "Lora-Bold",
+    fontSize: 18,
+  },
+  filterButton: {
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderColor: "#6B9080",
+    borderWidth: 1,
+    borderRadius: 10,
+    color: "#6B9080",
+    fontFamily: "Lora-Bold",
+    fontSize: 10
   },
 });
