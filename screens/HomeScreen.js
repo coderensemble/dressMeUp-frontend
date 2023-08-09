@@ -33,6 +33,26 @@ export default function HomeUser() {
     navigation.navigate("CreateClotheA");
   };
 
+  const handleViewClothesPress = () => {
+    navigation.navigate("ViewClotheA");
+  };
+
+  const handleCreateOutfitsPress = () => {
+    navigation.navigate("CreateOutfitA");
+  };
+
+  const handleViewOutfitPress = () => {
+    navigation.navigate("ViewOutfitA");
+  };
+
+  const handleCreateFav = () => {
+    navigation.navigate("CreateFav");
+  };
+
+  const handleViewFav = () => {
+    navigation.navigate("ViewFav");
+  };
+
   let conditionalJSX;
   function handleHomeScreen() {
     switch (user) {

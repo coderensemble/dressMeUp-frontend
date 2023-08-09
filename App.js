@@ -90,28 +90,28 @@ export default function App() {
       <PersistGate persistor={persistor}>
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
-            {/* <Stack.Screen name="LoginScreen" component={LoginScreen} />  */}
+            <Stack.Screen name="LoginScreen" component={LoginScreen} /> 
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
-            {/* <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} /> */}
+            <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} />
 
-            {/* <Stack.Screen name="CreateClotheA" component={CreateClotheA} /> */}
-            {/* <Stack.Screen name="CreateClotheB" component={CreateClotheB} />  */}
-            {/* <Stack.Screen name="CreateClotheC" component={CreateClotheC} />  */}
-            {/* <Stack.Screen name="CreateClotheD" component={CreateClotheD} />  */}
-            {/* <Stack.Screen name="CreateClotheE" component={CreateClotheE} /> */}
-            {/* <Stack.Screen name="CreateClotheF" component={CreateClotheF} />   */}
+            <Stack.Screen name="CreateClotheA" component={CreateClotheA} />
+            <Stack.Screen name="CreateClotheB" component={CreateClotheB} /> 
+            <Stack.Screen name="CreateClotheC" component={CreateClotheC} /> 
+            <Stack.Screen name="CreateClotheD" component={CreateClotheD} /> 
+            <Stack.Screen name="CreateClotheE" component={CreateClotheE} />
+            <Stack.Screen name="CreateClotheF" component={CreateClotheF} />  
 
-            {/* <Stack.Screen name="CreateOutfitA" component={CreateOutfitA} /> */}
-            {/* <Stack.Screen name="CreateOutfitB" component={CreateOutfitB} /> */}
-            {/* <Stack.Screen name="CreateOutfitC" component={CreateOutfitC} /> */}
-            {/* <Stack.Screen name="CreateOutfitD" component={CreateOutfitD} /> */}
-            {/* <Stack.Screen name="OverviewOutfit" component={OverviewOutfit} /> */}
+            <Stack.Screen name="CreateOutfitA" component={CreateOutfitA} />
+            <Stack.Screen name="CreateOutfitB" component={CreateOutfitB} />
+            <Stack.Screen name="CreateOutfitC" component={CreateOutfitC} />
+            <Stack.Screen name="CreateOutfitD" component={CreateOutfitD} />
+            <Stack.Screen name="OverviewOutfit" component={OverviewOutfit} />
 
-            {/* <Stack.Screen name="ViewClotheA" component={ViewClotheA} /> */}
+            <Stack.Screen name="ViewClotheA" component={ViewClotheA} />
             {/* <Stack.Screen name="ViewClotheB" component={ViewClotheB} /> */}
             {/* <Stack.Screen name="ViewClotheC" component={ViewClotheC} /> */}
 
-            {/* <Stack.Screen name="ViewOutfitA" component={ViewOutfitA} /> */}
+            <Stack.Screen name="ViewOutfitA" component={ViewOutfitA} />
             {/* <Stack.Screen name="ViewOutfitB" component={ViewOutfitB} /> */}
             {/* <Stack.Screen name="ViewOutfitC" component={ViewOutfitC} /> */}
           </Stack.Navigator>

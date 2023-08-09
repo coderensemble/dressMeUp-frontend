@@ -12,11 +12,11 @@ function AddFirstClothe({ handleCreateClosePress }) {
         <View style={styles.img}>
           <Image style={styles.image} source={require("../../assets/images/Dressing.png")} />
         </View>
-      </View>
-      <View style={styles.buttonPlus}>
-        <TouchableOpacity activeOpacity={0.5} onPress={handleCreateClosePress}>
-          <PlusCircle />
-        </TouchableOpacity>
+        <View style={styles.buttonPlus}>
+          <TouchableOpacity activeOpacity={0.5} onPress={handleCreateClosePress}>
+            <PlusCircle />
+          </TouchableOpacity>
+        </View>
       </View>
     </>
   );
@@ -24,16 +24,22 @@ function AddFirstClothe({ handleCreateClosePress }) {
 
 function ViewClothe() {
   return (
-    <View style={styles.cardAddClothes}>
-      <Text style={styles.title}>Mes vêtements</Text>
-      <Text style={styles.textContent}>Consultez tout vos vêtements</Text>
-      <View style={styles.img}>
-        <Image style={styles.image} source={require("../../assets/images/Dressing.png")} />
+    <>
+      <View>
+        <Text style={styles.title}>Mes vêtements</Text>
       </View>
-      <TouchableOpacity activeOpacity={0.5} style={styles.buttonPlus} onPress={handleCreateClosePress}>
-        <PlusCircle />
+      <View>
+      <TouchableOpacity activeOpacity={0.5} onPress={handleViewClosePress} style={styles.cardAddClothes}>
+        <Text style={styles.textContent}>Consultez tout vos vêtements</Text>
+        <View style={styles.img}>
+          <Image style={styles.image} source={require("../../assets/images/Dressing.png")} />
+        </View>
       </TouchableOpacity>
-    </View>
+        <TouchableOpacity activeOpacity={0.5} style={styles.buttonPlus} onPress={handleCreateClosePress}>
+          <PlusCircle />
+        </TouchableOpacity>
+      </View>
+    </>
   );
 }
 
@@ -161,7 +167,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
   },
   title: {
     fontFamily: "Lora-Bold",
@@ -181,12 +187,11 @@ const styles = StyleSheet.create({
   buttonPlus: {
     width: "90%",
     alignItems: "center",
-    bottom: "5%",
+    marginTop: -20,
   },
 
   image: {
-    bottom: "30%",
-    right: "10%",
+    bottom: "20%",
   },
 
   textContainer: {

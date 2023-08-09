@@ -25,7 +25,7 @@ export default function Setting({ navigation }) {
   const [isUsernameInputVisible, setIsUsernameInputVisible] = useState(false);
   const [isEmailInputVisible, setIsEmailInputVisible] = useState(false);
   const photoURL = useSelector((state) => state.user.value.photoURL);
-  console.log(photoURL,'photo')
+
   const [showPopup, setShowPopup] = useState(false);
   const [hasPermission, setHasPermission] = useState(false);
   const [isCameraVisible, setIsCameraVisible] = useState(false);
@@ -46,6 +46,8 @@ export default function Setting({ navigation }) {
     return <View></View>;
   }
 
+  //console.log(user.token, "user.token")
+
   const takePicture = async () => {
     if (cameraRef) {
       const photo = await cameraRef.takePictureAsync({ quality: 0.3 });
@@ -57,7 +59,7 @@ export default function Setting({ navigation }) {
         type: "image/jpeg",
       });
 
-      console.log("Selfie:", photo.uri);
+      //console.log("Selfie:", photo.uri);
       setIsCameraVisible(false);
 
       fetch(`http://10.0.1.111:3000/users/upload/${user.token}`, {
@@ -66,8 +68,8 @@ export default function Setting({ navigation }) {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("DATA", data);
-          data.result && dispatch(setPhoto(data.url));
+          console.log("data", data)
+          data.result && dispatch(user.photoURL);
         });
     }
   };
@@ -155,6 +157,8 @@ export default function Setting({ navigation }) {
     navigation.navigate("LoginScreen");
   };
 
+  console.log(photoURL, "test");
+
   if (isCameraVisible) {
     return (
       <Camera style={styles.takePict} type={cameraType} ref={(ref) => (cameraRef = ref)}>
@@ -178,7 +182,7 @@ export default function Setting({ navigation }) {
               <View style={styles.circle}>
                 {photoURL ? (
                   <Image
-                    source={{uri:photoURL}}
+                    source={user.photoURL}
                     style={{ width: "100%", height: "100%", borderRadius: (windowWidth * 0.4) / 2 }}
                   />
                 ) : (
