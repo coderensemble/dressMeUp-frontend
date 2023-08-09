@@ -1,6 +1,6 @@
 // Correspond à 3A-C du Figma
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   SafeAreaView,
@@ -21,6 +21,9 @@ import {
   setTop1,
   setTop2,
   setBottom,
+  pushToHistory,
+  resetTemporaryOutfit,
+  resetHistory,
 } from "../../reducers/outfits";
 import {
   PreviewListingBottom,
@@ -39,21 +42,30 @@ function CreateOutfitC({ navigation }) {
   const top1 = useSelector((state) => state.outfits.temporaryOutfit.top1);
   const top2 = useSelector((state) => state.outfits.temporaryOutfit.top2);
 
+  const [clotheToAdd, setClotheToAdd] = useState(temporaryOutfit)
+
   const outfitmaintype = useSelector((state) => state.outfits.maintype);
-  
+
+
   const handleTopOutfitSubmit = (selectedTop) => {
     if (!top1) {
+      // console.log('if', selectedTop)
       dispatch(setTop1(selectedTop));
-      navigation.navigate("OverviewOutfit")
+      navigation.navigate("OverviewOutfit");
     } else {
+      // console.log('else', selectedTop)
+
       dispatch(setTop2(selectedTop));
-      navigation.navigate("OverviewOutfit")
+
+      navigation.navigate("OverviewOutfit");
     }
   };
 
   const handleBottomOutfitSubmit = (selectedBottom) => {
     dispatch(setBottom(selectedBottom));
-    navigation.navigate("OverviewOutfit")
+    // dispatch(pushToHistory(temporaryOutfit)); // Mettre à jour l'historique ici
+    // setClotheToAdd(temporaryOutfit)
+    navigation.navigate("OverviewOutfit");
   };
 
   const handleGoBack = () => {

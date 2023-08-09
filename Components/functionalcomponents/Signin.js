@@ -19,7 +19,7 @@ export default function SignIn() {
 
   const handleSubmit = () => {
     if (showSignup) {
-      fetch("http://10.0.1.111:3000/users/signup", {
+      fetch("http://172.20.10.2:3000/users/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: username, email: email, password: password }),
@@ -34,7 +34,7 @@ export default function SignIn() {
           setShowSignup(!showSignup);
         });
     } else {
-      fetch("http://10.0.1.111:3000/users/signin", {
+      fetch("http://172.20.10.2:3000/users/signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: username, email: email, password: password }),
@@ -42,7 +42,7 @@ export default function SignIn() {
         .then((response) => response.json())
         .then((data) => {
           if (data.result) {
-            console.log(data);
+            //console.log(data);
             dispatch(
               login({
                 token: data.token,
@@ -104,18 +104,18 @@ export default function SignIn() {
             style={styles.input}
           />
 
-          <TouchableOpacity style={styles.buttonGreen} onPress={() => handleSubmit()} activeOpacity={0.8}>
-            <Text style={styles.textLink}>{showSignup ? "S'inscrire" : "Se connecter"}</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.viewContainer}>
-          <Text style={styles.textBottom}>{showSignup ? "Déjà un compte?" : "Pas encore de compte?"}</Text>
-          <TouchableOpacity onPress={() => handleToggleSignup()} activeOpacity={0.8}>
-            <Text style={styles.textLink}>{showSignup ? "Connexion" : "Inscription"}</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </KeyboardAvoidingView>
+      <TouchableOpacity style={styles.buttonGreen} onPress={() => handleSubmit()} activeOpacity={0.8}>
+        <Text style={styles.textLink}>{showSignup ? "S'inscrire" : "Se connecter"}</Text>
+      </TouchableOpacity>
+    </View>
+    <View style={styles.viewContainer}>
+      <Text style={styles.textBottom}>{showSignup ? "Déjà un compte?" : "Pas encore de compte?"}</Text>
+      <TouchableOpacity onPress={() => handleToggleSignup()} activeOpacity={0.8}>
+        <Text style={styles.textLink}>{showSignup ? "Connexion" : "Inscription"}</Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+</KeyboardAvoidingView>
   );
 }
 

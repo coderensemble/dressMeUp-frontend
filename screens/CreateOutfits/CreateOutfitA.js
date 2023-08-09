@@ -6,15 +6,16 @@ import { TopContainerPicto } from "../../Components/css/TopContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { CardEvent } from "../../Components/css/CardEvent";
 import { Dimensions } from "react-native";
-import { ButtonNextStep } from "../../Components/css/ButtonGreenLight";
+import { ButtonNextStepOutfit } from "../../Components/css/ButtonGreenLight";
 import { resetClothes } from "../../reducers/clothes";
-import { resetEvent, resetTemporaryOutfit, setEvent } from "../../reducers/outfits";
+import { resetEvent, resetHistory, resetTemporaryOutfit, setEvent } from "../../reducers/outfits";
 
 const windowWidth = Dimensions.get("window").width;
 
 function CreateOutfitA({ navigation }) {
   const dispatch = useDispatch();
-
+  const events = useSelector((state) => state.outfits.event )
+  const temporaryOutfit = useSelector((state) => state.outfits.temporaryOutfit)
   const handleGoBack = () => {
     navigation.goBack();
   };
@@ -32,13 +33,18 @@ function CreateOutfitA({ navigation }) {
   const clothes = useSelector((state) => state.clothes.clothes)
   const resetStore = () => {
     dispatch(resetClothes())
-    dispatch(resetTemporaryOutfit())
+    // dispatch(resetTemporaryOutfit())
     dispatch(resetEvent())
   }
   useEffect(() => {
     resetStore()
+    dispatch(resetTemporaryOutfit())
+
+    dispatch(resetHistory())
   },[]);
 
+  // console.log('resetTempOutfit', temporaryOutfit)
+// console.log(events)
   return (
     <SafeAreaView style={styles.mainContainer}>
       <View>
@@ -53,7 +59,7 @@ function CreateOutfitA({ navigation }) {
           <CardEvent isSelected={isSelected} />
         </View>
       </View>
-      <ButtonNextStep handleTopSubmit={handleTopSubmit} />
+      <ButtonNextStepOutfit handleTopSubmit={handleTopSubmit} />
     </SafeAreaView>
   );
 }

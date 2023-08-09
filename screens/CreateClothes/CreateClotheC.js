@@ -40,7 +40,7 @@ function CreateClotheC({ navigation }) {
   }
 
   const handleClotheName = () => {
-    dispatch(setName(`${fullClothe.subtype} ${fullClothe.brand} ${fullClothe.color.name}`))
+    dispatch(setName(`${fullClothe.subtype} ${fullClothe.brand} ${fullClothe.color.translate}`))
   }
 
   console.log(clothe)

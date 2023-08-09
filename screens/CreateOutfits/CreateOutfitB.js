@@ -36,8 +36,8 @@ function CreateOutfitB({ navigation }) {
     navigation.navigate("CreateOutfitC");
   };
 
-  const outfitsevent = useSelector((state) => state.outfits.event)
-  console.log(outfitsevent)
+  // const outfitsevent = useSelector((state) => state.outfits.event)
+  // console.log(outfitsevent)
 
   return (
     <SafeAreaView style={styles.mainContainer}>

@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   cardAddClothesContainer: {
     width: windowWidth * 0.9,
     height: windowHeight * 0.846,
-    justifyContent: "space-between",
+    justifyContent: "space-around",
   
   },
   cardAddClothes: {

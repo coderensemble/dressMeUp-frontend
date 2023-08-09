@@ -121,7 +121,7 @@ function TopContainerPicto({ handleGoBack }) {
   );
 }
 
-function TopContainerOverviewOutfit({ handleGoBack }) {
+function TopContainerOverviewOutfit({ handleGoBack, handleUndo }) {
   return (
     <View style={styles.headerMainContainer}>
       <View style={styles.headerContainer}>
@@ -129,12 +129,46 @@ function TopContainerOverviewOutfit({ handleGoBack }) {
           <TouchableOpacity onPress={handleGoBack}>
             <LeftArrowCircle />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleUndo}>
             <Undo />
           </TouchableOpacity>
         </View>
         <View>
           <Text style={styles.topText}>Ma tenue</Text>
+        </View>
+      </View>
+    </View>
+  );
+}
+
+function TopContainerOutfit({ handleGoBack }) {
+  return (
+    <View style={styles.headerMainContainer}>
+      <View style={styles.headerContainer}>
+        <View style={styles.pictoHeader}>
+          <TouchableOpacity onPress={handleGoBack}>
+            <LeftArrowCircle />
+          </TouchableOpacity>
+        </View>
+        <View>
+          <Text style={styles.topText}>Ma tenue</Text>
+        </View>
+      </View>
+    </View>
+  );
+}
+
+function TopContainerListingOutfits({ handleGoBack }) {
+  return (
+    <View style={styles.headerMainContainer}>
+      <View style={styles.headerContainer}>
+        <View style={styles.pictoHeader}>
+          <TouchableOpacity onPress={handleGoBack}>
+            <LeftArrowCircle />
+          </TouchableOpacity>
+        </View>
+        <View>
+          <Text style={styles.topText}>Mes tenues</Text>
         </View>
       </View>
     </View>
@@ -149,6 +183,8 @@ export {
   TopContainerListingBottom,
   TopContainerListingTop,
   TopContainerListingShoes,
+  TopContainerListingOutfits,
+  TopContainerOutfit
 };
 
 const styles = StyleSheet.create({

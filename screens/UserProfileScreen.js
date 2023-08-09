@@ -13,7 +13,7 @@ import { useIsFocused } from "@react-navigation/native";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-export default function Setting({ navigation }) {
+export default function UserProfileScreen({ navigation }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
   console.log("Username:", user.username);
@@ -58,7 +58,7 @@ export default function Setting({ navigation }) {
       console.log("Selfie:", photo.uri);
       setIsCameraVisible(false);
 
-      fetch(`http://10.0.1.111:3000/users/upload`, {
+      fetch(`http://192.168.1.42:3000/users/upload`, {
         method: "POST",
         body: formData,
       })

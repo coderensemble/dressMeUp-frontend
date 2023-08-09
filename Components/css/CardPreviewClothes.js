@@ -1,5 +1,13 @@
-import { StyleSheet, View, TouchableOpacity, Text, Image, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Text,
+  Image,
+  ScrollView,
+} from "react-native";
 import { Dimensions } from "react-native";
+import { useSelector } from "react-redux";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -123,7 +131,6 @@ function PreviewListingAccessories({handleAccessoryOutfitSubmit}) {
     </>
   );
 }
-
 
 function PreviewTop() {
   return (
@@ -346,6 +353,134 @@ function SmallPreviewAccessories() {
 export { PreviewListingTop, PreviewListingBottom, PreviewListingShoes, PreviewListingAccessories, PreviewOverview, PreviewTop, PreviewBottom, PreviewShoes, PreviewAccessories, SmallPreviewTop, SmallPreviewBottom, SmallPreviewShoes, SmallPreviewAccessories }
 
 const styles = StyleSheet.create({
+  previewContainer: {
+    width: "90%",
+    flexWrap: "wrap",
+    flexDirection: "row",
+    rowGap: 10,
+    columnGap: 10,
+    paddingTop: 10,
+  },
+  smallPreviewContainer: {
+    width: "90%",
+    rowGap: 10,
+    columnGap: 10,
+    paddingTop: 10,
+  },
+  smallCardContainer: {
+    flexDirection: "row",
+    rowGap: 10,
+    columnGap: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  cardClothesTop: {
+    width: windowWidth * 0.435,
+    height: windowHeight * 0.237,
+    borderRadius: 10,
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 0,
+    // },
+    // shadowOpacity: 0.8,
+    // shadowRadius: 5,
+    // elevation: 5,
+  },
+  cardClothesBottom: {
+    width: windowWidth * 0.435,
+    height: windowHeight * 0.237,
+    borderRadius: 10,
+    backgroundColor: "red",
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 0,
+    // },
+    // shadowOpacity: 0.8,
+    // shadowRadius: 5,
+    // elevation: 5,
+  },
+  cardClothesAccessories: {
+    width: windowWidth * 0.435,
+    height: windowHeight * 0.118,
+    borderRadius: 10,
+    backgroundColor: "blue",
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 0,
+    // },
+    // shadowOpacity: 0.8,
+    // shadowRadius: 5,
+    // elevation: 5,
+  },
+  cardClothesShoes: {
+    width: windowWidth * 0.435,
+    height: windowHeight * 0.118,
+    borderRadius: 10,
+    backgroundColor: "green",
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 0,
+    // },
+    // shadowOpacity: 0.8,
+    // shadowRadius: 5,
+    // elevation: 5,
+  },
+  imagePreview: {
+    width: "100%",
+  },
+  cardAccessories: {
+    width: windowWidth * 0.435,
+    height: windowHeight * 0.118,
+    borderRadius: 10,
+    backgroundColor: "#222",
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 0,
+    // },
+    // shadowOpacity: 0.8,
+    // shadowRadius: 5,
+    // elevation: 5,
+  },
+  smallCardClothes: {
+    flexDirection: "row",
+    width: windowWidth * 0.256,
+    height: windowHeight * 0.142,
+    borderRadius: 10,
+    backgroundColor: "#222",
+  },
+  smallPreviewTopContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  smallPreviewContainer: {
+    width: "90%",
+    rowGap: 10,
+    columnGap: 10,
+    paddingTop: 10,
+  },
+  smallCardAccessories: {
+    width: windowWidth * 0.256,
+    height: windowHeight * 0.118,
+    borderRadius: 10,
+    backgroundColor: "#222",
+  },
+  smallCardContainer: {
+    flexDirection: "row",
+    rowGap: 10,
+    columnGap: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  image: {
+    height: "100%",
+    borderRadius: 10,
+  },
   previewContainer: {
     width: "90%",
     flexWrap: 'wrap',

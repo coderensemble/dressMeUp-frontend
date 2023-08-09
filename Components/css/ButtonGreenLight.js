@@ -20,6 +20,16 @@ function ButtonNextStep({handleTopSubmit, handleClotheName}) {
     </View>
   );
 }
+function ButtonNextStepOutfit({handleTopSubmit}) {
+  return (
+    <View style={styles.buttonContainer}>
+    <TouchableOpacity style={styles.buttonGreen} activeOpacity={0.8} onPress={() => handleTopSubmit()}>
+      <Text style={styles.textButton}>Etape suivante</Text>
+    </TouchableOpacity>  
+    </View>
+  );
+}
+
 function ButtonSkip({handleSkip, handleClotheName}) {
   return (
     <View style={styles.buttonContainer}>
@@ -69,7 +79,7 @@ function ButtonValidateOutfit({handleValidateOutfit}) {
   );
 }
 
-export {ButtonGreenLight, ButtonNextStep, ButtonSkip, ButtonValidate, ButtonImport, ButtonAddClothes, ButtonValidateOutfit}
+export {ButtonGreenLight, ButtonNextStep, ButtonNextStepOutfit, ButtonSkip, ButtonValidate, ButtonImport, ButtonAddClothes, ButtonValidateOutfit}
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -84,5 +94,8 @@ const styles = StyleSheet.create({
   },
   textButton: {
     fontFamily: "Lora-SemiBold",
+  },
+  doubleButtonContainer: {
+    paddingBottom: 10,
   },
 });
