@@ -5,6 +5,10 @@ const initialState = {
     username: null,
     email: null,
     photoURL: null,
+    token: null,
+    clothes: [],
+    outfit: [],
+    fav: [],
   },
 };
 
@@ -31,8 +35,13 @@ export const userSlice = createSlice({
     setUsername: (state, action) => {
       state.value.username = action.payload;
     },
+
+    setEmail: (state, action) => {
+      console.log(action.payload);
+      state.value.email = action.payload;
+    },
   },
 });
 
-export const { login, logout, setPhoto, setUsername } = userSlice.actions;
+export const { login, logout, setPhoto, setUsername, setEmail } = userSlice.actions;
 export default userSlice.reducer;

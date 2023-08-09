@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { View, StyleSheet, KeyboardAvoidingView, Text, TouchableOpacity, Image, TextInput } from "react-native";
-import { logout, setPhoto, setUsername } from "../reducers/user";
+import { login, logout, setPhoto, setUsername, setEmail } from "../reducers/user";
 import { useDispatch, useSelector } from "react-redux";
 import { Dimensions } from "react-native";
 import { Edit, PlusCircle } from "../Components/css/Pictos";
@@ -17,13 +17,15 @@ export default function Setting({ navigation }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
   console.log("Username:", user.username);
-  console.log("mail", user.email);
+  console.log("email:", user.email);
+
   const [newUsername, setNewUsername] = useState("");
   const [newEmail, setNewEmail] = useState("");
-  
+
   const [isUsernameInputVisible, setIsUsernameInputVisible] = useState(false);
   const [isEmailInputVisible, setIsEmailInputVisible] = useState(false);
   const photoURL = useSelector((state) => state.user.value.photoURL);
+  console.log(photoURL,'photo')
   const [showPopup, setShowPopup] = useState(false);
   const [hasPermission, setHasPermission] = useState(false);
   const [isCameraVisible, setIsCameraVisible] = useState(false);
@@ -58,12 +60,13 @@ export default function Setting({ navigation }) {
       console.log("Selfie:", photo.uri);
       setIsCameraVisible(false);
 
-      fetch(`http://10.0.1.111:3000/users/upload`, {
+      fetch(`http://10.0.1.111:3000/users/upload/${user.token}`, {
         method: "POST",
         body: formData,
       })
         .then((response) => response.json())
         .then((data) => {
+          console.log("DATA", data);
           data.result && dispatch(setPhoto(data.url));
         });
     }
@@ -89,14 +92,31 @@ export default function Setting({ navigation }) {
   const handleNewEmailInput = () => {
     setIsEmailInputVisible(true);
   };
-  
-  const handleNewEmailSave = () => {
-    setIsUsernameInputVisible(false);
-    setNewUsername(newUsername);
-  };
+
+  // const handleNewEmailSave = () => {
+  //   setIsEmailInputVisible(false);
+  // };
 
   const handleConfirmEmailChange = () => {
-    handleSave();
+    // handleNewEmailSave();
+    if (newEmail && newEmail.trim() !== "") {
+      fetch("http://10.0.1.111:3000/users", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: user.username,
+          replacementEmail: newEmail,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          dispatch(setEmail(newEmail));
+          setIsEmailInputVisible(false);
+        });
+    }
   };
 
   const handleNewUsernameInput = () => {
@@ -109,7 +129,26 @@ export default function Setting({ navigation }) {
   };
 
   const handleConfirmUsernameChange = () => {
-    handleSave();
+    handleNewUsernameSave();
+    if (newUsername && newUsername.trim() !== "") {
+      fetch("http://10.0.1.111:3000/users", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: user.username,
+          replacementUsername: newUsername,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          dispatch(setUsername(newUsername));
+          //console.log(data);
+        });
+    } else {
+      console.log("Le nom d'utilisateur ne peut pas être vide.");
+    }
   };
 
   const handleConnection = () => {
@@ -139,7 +178,7 @@ export default function Setting({ navigation }) {
               <View style={styles.circle}>
                 {photoURL ? (
                   <Image
-                    source={{ uri: photoURL }}
+                    source={{uri:photoURL}}
                     style={{ width: "100%", height: "100%", borderRadius: (windowWidth * 0.4) / 2 }}
                   />
                 ) : (
@@ -171,10 +210,10 @@ export default function Setting({ navigation }) {
                 </TouchableOpacity>
               )}
               {isUsernameInputVisible && (
-        <TouchableOpacity style={styles.button} onPress={handleConfirmUsernameChange}>
-          <Text style={styles.buttonText}>Confirmer</Text>
-        </TouchableOpacity>
-      )}
+                <TouchableOpacity style={styles.button} onPress={handleConfirmUsernameChange}>
+                  <Text style={styles.buttonText}>Confirmer</Text>
+                </TouchableOpacity>
+              )}
             </View>
             <View style={styles.input}>
               <Text style={styles.inputTitle}>Mon email</Text>
@@ -184,7 +223,7 @@ export default function Setting({ navigation }) {
                   onChangeText={(value) => setNewEmail(value)}
                   value={newEmail}
                   autoFocus={true}
-                  onSubmitEditing={handleNewEmailSave}
+                  // onSubmitEditing={handleNewEmailSave}
                 />
               ) : (
                 <Text style={styles.info}>{newEmail || user.email}</Text>
@@ -195,10 +234,10 @@ export default function Setting({ navigation }) {
                 </TouchableOpacity>
               )}
               {isEmailInputVisible && (
-        <TouchableOpacity style={styles.button} onPress={handleConfirmEmailChange}>
-          <Text style={styles.buttonText}>Confirmer</Text>
-        </TouchableOpacity>
-      )}
+                <TouchableOpacity style={styles.button} onPress={handleConfirmEmailChange}>
+                  <Text style={styles.buttonText}>Confirmer</Text>
+                </TouchableOpacity>
+              )}
             </View>
             {/* <View style={styles.input}>
               <Text style={styles.inputTitle}>Mon mot de passe</Text>

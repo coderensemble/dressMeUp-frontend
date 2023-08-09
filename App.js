@@ -5,12 +5,12 @@ import * as Font from "expo-font";
 
 const fetchFonts = async () => {
   await Font.loadAsync({
-    'Lora-Regular': require('./assets/fonts/Lora/static/Lora-Regular.ttf'),
-    'Lora-MediumItalic': require('./assets/fonts/Lora/static/Lora-MediumItalic.ttf'),
-    'Lora-Bold': require('./assets/fonts/Lora/static/Lora-Bold.ttf'),
-    'Lora-SemiBoldItalic': require('./assets/fonts/Lora/static/Lora-SemiBoldItalic.ttf'),
-    'Lora-SemiBold': require('./assets/fonts/Lora/static/Lora-SemiBold.ttf'),
-    'Lora-Medium': require('./assets/fonts/Lora/static/Lora-Medium.ttf'),
+    "Lora-Regular": require("./assets/fonts/Lora/static/Lora-Regular.ttf"),
+    "Lora-MediumItalic": require("./assets/fonts/Lora/static/Lora-MediumItalic.ttf"),
+    "Lora-Bold": require("./assets/fonts/Lora/static/Lora-Bold.ttf"),
+    "Lora-SemiBoldItalic": require("./assets/fonts/Lora/static/Lora-SemiBoldItalic.ttf"),
+    "Lora-SemiBold": require("./assets/fonts/Lora/static/Lora-SemiBold.ttf"),
+    "Lora-Medium": require("./assets/fonts/Lora/static/Lora-Medium.ttf"),
 
     // Vous pouvez charger d'autres polices ici si nécessaire
   });
@@ -65,6 +65,11 @@ const persistor = persistStore(store);
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  // (async () => {
+  //   const res = await AsyncStorage.clear();
+  //   console.log(res);
+  // })();
+
   const [fontLoaded, setFontLoaded] = useState(false);
 
   useEffect(() => {
@@ -85,9 +90,9 @@ export default function App() {
       <PersistGate persistor={persistor}>
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
-              <Stack.Screen name="LoginScreen" component={LoginScreen} /> 
-             <Stack.Screen name="HomeScreen" component={HomeScreen} />
-            <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} />
+            {/* <Stack.Screen name="LoginScreen" component={LoginScreen} />  */}
+            <Stack.Screen name="HomeScreen" component={HomeScreen} />
+            {/* <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} /> */}
 
             {/* <Stack.Screen name="CreateClotheA" component={CreateClotheA} /> */}
             {/* <Stack.Screen name="CreateClotheB" component={CreateClotheB} />  */}
@@ -106,11 +111,9 @@ export default function App() {
             {/* <Stack.Screen name="ViewClotheB" component={ViewClotheB} /> */}
             {/* <Stack.Screen name="ViewClotheC" component={ViewClotheC} /> */}
 
-
             {/* <Stack.Screen name="ViewOutfitA" component={ViewOutfitA} /> */}
             {/* <Stack.Screen name="ViewOutfitB" component={ViewOutfitB} /> */}
             {/* <Stack.Screen name="ViewOutfitC" component={ViewOutfitC} /> */}
-
           </Stack.Navigator>
         </NavigationContainer>
       </PersistGate>

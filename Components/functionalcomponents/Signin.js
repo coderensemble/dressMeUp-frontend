@@ -16,6 +16,7 @@ export default function SignIn() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 
   const handleSubmit = () => {
     if (showSignup) {
@@ -42,7 +43,7 @@ export default function SignIn() {
         .then((response) => response.json())
         .then((data) => {
           if (data.result) {
-            console.log(data);
+            //console.log(data);
             dispatch(
               login({
                 token: data.token,
@@ -95,6 +96,7 @@ export default function SignIn() {
           )}
           <TextInput
             placeholder="Mot de passe"
+            secureTextEntry={isPasswordHidden}
             autoCapitalize="none"
             keyboardType="default"
             textContentType="password"
