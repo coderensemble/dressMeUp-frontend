@@ -44,7 +44,7 @@ function ViewClotheC({ navigation, route }) {
 
   const handleDelete = (clothe) => {
     console.log("id to delete", clothe.id)
-    fetch(`http://192.168.1.110:3000/clothes`, {
+    fetch(`http://dress-me-up-backend-omega.vercel.app/clothes`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ clotheId: clothe.id }),

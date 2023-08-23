@@ -54,7 +54,7 @@ export default function UserProfileScreen({ navigation }) {
 
       console.log("Selfie:", photo.uri);
 
-      fetch(`http://192.168.1.110:3000/users/upload/${user.token}/${user.idProfilPict}`, {
+      fetch(`https://dress-me-up-backend-omega.vercel.app/users/upload/${user.token}/${user.idProfilPict}`, {
         method: "POST",
         body: formData,
       })
@@ -102,7 +102,7 @@ export default function UserProfileScreen({ navigation }) {
 
   const handleConfirmEmailChange = () => {
     if (newEmail && newEmail.trim() !== "") {
-      fetch("http://192.168.1.110:3000/users", {
+      fetch("https://dress-me-up-backend-omega.vercel.app/users", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -133,7 +133,7 @@ export default function UserProfileScreen({ navigation }) {
   const handleConfirmUsernameChange = () => {
     handleNewUsernameSave();
     if (newUsername && newUsername.trim() !== "") {
-      fetch("http://192.168.1.110:3000/users", {
+      fetch("http://dress-me-up-backend-omega.vercel.app/users", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

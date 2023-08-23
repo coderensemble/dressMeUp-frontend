@@ -42,7 +42,7 @@ function HomeUser({ navigation }) {
 
       dispatch(resetFavorite())
   
-       fetch("http://192.168.1.110:3000/users/clothes", {
+       fetch("https://dress-me-up-backend-omega.vercel.app/users/clothes", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: user.username }),
@@ -52,7 +52,7 @@ function HomeUser({ navigation }) {
           dispatch(PushFromDBToClothesStore(data));
         });
   
-       fetch("http://192.168.1.110:3000/users/outfits", {
+       fetch("https://dress-me-up-backend-omega.vercel.app/users/outfits", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: user.username }),

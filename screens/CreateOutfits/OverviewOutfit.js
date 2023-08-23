@@ -150,7 +150,7 @@ function OverviewOutfit({ navigation }) {
     const randomId = Math.random() * 1000;
     dispatch(setId(randomId));
     // console.log('tempOutfit', temporaryOutfit)
-    fetch("http://192.168.1.110:3000/outfits", {
+    fetch("http://dress-me-up-backend-omega.vercel.app/outfits", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -201,7 +201,7 @@ function OverviewOutfit({ navigation }) {
       });
 
       // Send the image to the server and await the response
-      const response = await fetch("http://192.168.1.110:3000/outfits/upload", {
+      const response = await fetch("https://dress-me-up-backend-omega.vercel.app/outfits/upload", {
         method: "POST",
         body: formData,
       });

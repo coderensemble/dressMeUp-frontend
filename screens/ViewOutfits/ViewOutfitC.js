@@ -55,7 +55,7 @@ function ViewOutfitC({ navigation, route }) {
 
   const handleFavorite = (outfit) => {
     // console.log(outfit.id)
-    fetch('http://192.168.1.110:3000/outfits', {
+    fetch('https://dress-me-up-backend-omega.vercel.app/outfits', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ outfitId: outfit.id }),

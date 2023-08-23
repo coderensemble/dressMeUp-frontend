@@ -30,7 +30,7 @@ function CreateClotheF({ navigation }) {
     const randomId = Math.random() * 1000
     dispatch(setId(randomId))
     console.log("id", randomId)
-    fetch('http://192.168.1.110:3000/clothes', {
+    fetch('http://dress-me-up-backend-omega.vercel.app/clothes', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

@@ -34,7 +34,7 @@ export default function SnapScreen({ navigation }) {
             type: 'image/jpeg',
         })
 
-        fetch('http://192.168.1.110:3000/clothes/upload', {
+        fetch('https://dress-me-up-backend-omega.vercel.app/clothes/upload', {
             method: 'POST',
             body: formData,
         }).then((response) => response.json())

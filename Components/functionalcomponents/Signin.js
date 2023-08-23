@@ -26,7 +26,7 @@ export default function SignIn({navigation}) {
 
   const handleSubmit = () => {
     if (showSignup) {
-      fetch("http://192.168.1.110:3000/users/signup", {
+      fetch("https://dress-me-up-backend-omega.vercel.app/users/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -45,7 +45,7 @@ export default function SignIn({navigation}) {
           setShowSignup(!showSignup)
         });
     } else {
-      fetch("http://192.168.1.110:3000/users/signin", {
+      fetch("https://dress-me-up-backend-omega.vercel.app/users/signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
