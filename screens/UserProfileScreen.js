@@ -13,18 +13,15 @@ import { useIsFocused } from "@react-navigation/native";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-export default function Setting({ navigation }) {
+export default function UserProfileScreen({ navigation }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
-  console.log("Username:", user.username);
-  console.log("email:", user.email);
 
   const [newUsername, setNewUsername] = useState("");
   const [newEmail, setNewEmail] = useState("");
 
   const [isUsernameInputVisible, setIsUsernameInputVisible] = useState(false);
   const [isEmailInputVisible, setIsEmailInputVisible] = useState(false);
-  const photoURL = useSelector((state) => state.user.value.photoURL);
 
   const [showPopup, setShowPopup] = useState(false);
   const [hasPermission, setHasPermission] = useState(false);
@@ -33,7 +30,7 @@ export default function Setting({ navigation }) {
   const isFocused = useIsFocused();
   let cameraRef = useRef(null);
 
-  // console.log("Valeur de photoURL :", state.value.photoURL);
+  // console.log("Valeur de profilPictURL :", state.value.profilictURL);
 
   useEffect(() => {
     (async () => {
@@ -41,10 +38,6 @@ export default function Setting({ navigation }) {
       setHasPermission(status === "granted");
     })();
   }, []);
-
-  if (!hasPermission || !isFocused) {
-    return <View></View>;
-  }
 
   //console.log(user.token, "user.token")
 
@@ -59,23 +52,31 @@ export default function Setting({ navigation }) {
         type: "image/jpeg",
       });
 
-      //console.log("Selfie:", photo.uri);
-      setIsCameraVisible(false);
+      console.log("Selfie:", photo.uri);
 
-      fetch(`http://10.0.1.111:3000/users/upload/${user.token}`, {
+      fetch(`http://192.168.1.110:3000/users/upload/${user.token}/${user.idProfilPict}`, {
         method: "POST",
         body: formData,
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("data", data)
-          data.result && dispatch(user.photoURL);
-        });
+          console.log("DATA UPLOAD", data);
+
+          if (data.result) {
+            dispatch(setPhoto({ profilPictURL: data.profilPictURL, idProfilPict: data.idProfilPict }));
+          }
+        })
+        .finally(setIsCameraVisible(false));
     }
   };
 
+  if (!hasPermission || !isFocused) {
+    return <View></View>;
+  }
+
   const openCamera = () => {
     setIsCameraVisible(true);
+    setPhoto;
   };
 
   const openPopup = () => {
@@ -95,14 +96,13 @@ export default function Setting({ navigation }) {
     setIsEmailInputVisible(true);
   };
 
-  // const handleNewEmailSave = () => {
-  //   setIsEmailInputVisible(false);
-  // };
+  const handleNewEmailSave = () => {
+    setIsEmailInputVisible(false);
+  };
 
   const handleConfirmEmailChange = () => {
-    // handleNewEmailSave();
     if (newEmail && newEmail.trim() !== "") {
-      fetch("http://10.0.1.111:3000/users", {
+      fetch("http://192.168.1.110:3000/users", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -133,7 +133,7 @@ export default function Setting({ navigation }) {
   const handleConfirmUsernameChange = () => {
     handleNewUsernameSave();
     if (newUsername && newUsername.trim() !== "") {
-      fetch("http://10.0.1.111:3000/users", {
+      fetch("http://192.168.1.110:3000/users", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -157,8 +157,6 @@ export default function Setting({ navigation }) {
     navigation.navigate("LoginScreen");
   };
 
-  console.log(photoURL, "test");
-
   if (isCameraVisible) {
     return (
       <Camera style={styles.takePict} type={cameraType} ref={(ref) => (cameraRef = ref)}>
@@ -180,13 +178,13 @@ export default function Setting({ navigation }) {
           <View style={styles.middlePart}>
             <View style={styles.circlePlusCircle}>
               <View style={styles.circle}>
-                {photoURL ? (
+                {user.profilPictURL ? (
                   <Image
-                    source={user.photoURL}
+                    source={{ uri: user.profilPictURL }}
                     style={{ width: "100%", height: "100%", borderRadius: (windowWidth * 0.4) / 2 }}
                   />
                 ) : (
-                  <Text>Votre photo</Text>
+                  <Image source={require("../assets/images/profile.jpeg")} style={{ width: "100%", height: "100%", borderRadius: (windowWidth * 0.4) / 2 }}/>
                 )}
               </View>
 

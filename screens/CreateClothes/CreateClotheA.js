@@ -1,40 +1,44 @@
-// Correspond à 2A-A du Figma
-
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View, StatusBar} from 'react-native';
 import {TopContainerCreateClothe} from '../../Components/css/TopContainer';
 import { CardAddClothes } from '../../Components/css/CardAddClothes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useDispatch } from 'react-redux';
-import { setMaintype } from '../../reducers/clothes';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetTemporaryClothe, setMaintype } from '../../reducers/clothes';
 
 
 function CreateClotheA({navigation}) {
     const dispatch = useDispatch();
+
 
     const handleGoBack = () => {
         navigation.navigate('HomeScreen');
     }
 
     const handleTopSubmit = () => {
+        dispatch(resetTemporaryClothe())
         dispatch(setMaintype('top'))
         navigation.navigate('CreateClotheB');
     };
 
     const handleBottomSubmit = () => {
+        dispatch(resetTemporaryClothe())
         dispatch(setMaintype('bottom'))
         navigation.navigate('CreateClotheB');
     };
 
     const handleShoesSubmit = () => {
+        dispatch(resetTemporaryClothe())
         dispatch(setMaintype('shoes'))
         navigation.navigate('CreateClotheB');
     };
 
     const handleAccessoriesSubmit = () => {
+        dispatch(resetTemporaryClothe())
         dispatch(setMaintype('accessories'))
         navigation.navigate('CreateClotheB');
     };
+
 
     return (
         <SafeAreaView style={styles.mainContainer}>
@@ -49,7 +53,8 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#F6FFF8',
         alignItems: 'center',
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     },
 })
 

@@ -4,26 +4,24 @@ import { Dimensions } from "react-native";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-export default function ButtonOptions({handleTopSubmit}) {
+export default function ButtonFilters() {
   return (
-    <TouchableOpacity style={styles.buttonOptions} activeOpacity={0.8} onPress={handleTopSubmit}>
-      <Text style={styles.textButton}>Plus d'options</Text>
+    <TouchableOpacity style={styles.buttonWhite} activeOpacity={0.8}>
+      <Text style={styles.textButtonWhite}>TEXT BUTTON</Text>
     </TouchableOpacity>
-
   );
 }
 
 const styles = StyleSheet.create({
-  buttonOptions: {
+  buttonWhite: {
     width: windowWidth * 0.9,
     alignItems: "center",
-    backgroundColor: "#CCE3DE",
+    backgroundColor: "white",
     padding: 12,
     borderRadius: 10,
-    marginTop: 30,
   },
-  textButton: {
+  textButtonWhite: {
     fontFamily: "Lora-SemiBold",
-    color:"black",
+    color:"#6B9080",
   },
 });

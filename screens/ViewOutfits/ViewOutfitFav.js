@@ -6,8 +6,7 @@ import {
   TouchableOpacity,
   Text,
   Modal,
-  TouchableWithoutFeedback,
-  StatusBar
+  TouchableWithoutFeedback, StatusBar
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
@@ -20,9 +19,7 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 function ViewOutfitB({ navigation, route }) {
-  const { eventSelected} = route.params;
 
-  const [modalVisible, setModalVisible] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   const outfits = useSelector((state) => state.outfits.outfits);

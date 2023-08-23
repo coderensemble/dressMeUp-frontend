@@ -1,14 +1,58 @@
-// Correspond à 3A-B du Figma
+// Correspond à 2A-A du Figma
 
-import React from 'react'
-import { View } from 'react-native'
+import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View, StatusBar } from "react-native";
+import { TopContainerCreateClothe } from "../../Components/css/TopContainer";
+import { CardAddClothesOutfit } from "../../Components/css/CardAddClothes";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useDispatch, useSelector } from "react-redux";
+import { setMaintype } from "../../reducers/outfits";
 
-function CreateOutfitB() {
+
+function CreateOutfitB({ navigation }) {
+  
+  const dispatch = useDispatch();
+  
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
+
+  const handleAccessoryOutfitSubmit = () => {
+    dispatch(setMaintype("accessories"))
+    navigation.navigate("CreateOutfitC");
+  };
+
+  const handleTopOutfitSubmit = () => {
+    dispatch(setMaintype("top"))
+    navigation.navigate("CreateOutfitC");
+  };
+
+  const handleShoesOutfitSubmit = () => {
+    dispatch(setMaintype("shoes"))
+    navigation.navigate("CreateOutfitC");
+  };
+
+  const handleBottomOutfitSubmit = () => {
+    dispatch(setMaintype("bottom"))
+    navigation.navigate("CreateOutfitC");
+  };
+
   return (
-    <View>
-      
-    </View>
-  )
+    <SafeAreaView style={styles.mainContainer}>
+      <TopContainerCreateClothe handleGoBack={handleGoBack} />
+      <CardAddClothesOutfit handleAccessoryOutfitSubmit={handleAccessoryOutfitSubmit} handleBottomOutfitSubmit={handleBottomOutfitSubmit} handleTopOutfitSubmit={handleTopOutfitSubmit} handleShoesOutfitSubmit={handleShoesOutfitSubmit}/>
+    </SafeAreaView>
+  );
 }
 
-export default CreateOutfitB
+const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    backgroundColor: "#F6FFF8",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+  },
+});
+
+export default CreateOutfitB;

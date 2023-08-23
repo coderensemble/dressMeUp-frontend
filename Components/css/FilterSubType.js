@@ -8,87 +8,213 @@ import {
 
 import { Dimensions } from "react-native";
 import { EventParty, EventSport, EventCasual, EventWork } from "./Pictos";
+import { useSelector } from "react-redux";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const top = ["T-shirt", "Chemise", "Pull", "Veste", "Manteau", "Robe"];
-const bottom = ["Pantalon", "Short", "Jupe", "Pantacourt", "Jean", "Chino"];
-const shoes = ["Basket","Mocassins","Escarpins","Bottes","Bottines","Ballerines","Sandales"];
-const accessories = ["Bonnet","Chapeau","Casquette","Ceinture","Collant","Ceinture","Bijoux","Lunettes"];
+const tops = ["Chemise", "Manteau", "Pull", "Robe", "T-shirt", "Veste"];
+const bottoms = [
+  "Chino",
+  "Jean",
+  "Jupe",
+  "Jogging",
+  "Pantacourt",
+  "Pantalon",
+  "Short",
+];
+const shoes = [
+  "Ballerines",
+  "Basket",
+  "Bottes",
+  "Bottines",
+  "Escarpins",
+  "Mocassins",
+  "Sandales",
+];
+const accessories = [
+  "Bijoux",
+  "Bonnet",
+  "Casquette",
+  "Ceinture",
+  "Chapeau",
+  "Collant",
+  "Echarpe",
+  "Lunettes",
+  "Montre",
+];
 
-function FilterSubTypeTop() {
+function FilterSubTypeTop({ handleSubtypeInput }) {
+  const subtype = useSelector((state) => state.clothes.temporaryClothe.subtype);
+
   return (
-    <View style={styles.filtersContainer}>
-      <Text style={styles.filterTitle}>De quel type de haut s’agit-il ? *</Text>
-      <View style={styles.filterContainer}>
-        {top.map((top, index) => (
-          <View key={index} style={styles.filterButtonClicked}>
-            <Text style={styles.filterTextClicked}>{top}</Text>
-          </View>
-        ))}
+    <>
+      <View style={styles.filtersContainer}>
+        <Text style={styles.filterTitle}>
+          De quel type de haut s’agit-il ? *
+        </Text>
+        <View style={styles.filterContainer}>
+          {tops.map((top, index) => (
+            <TouchableOpacity
+              key={index}
+              onPress={() => handleSubtypeInput(tops[index])}
+            >
+              <View
+                style={
+                  tops[index] === subtype
+                    ? styles.filterButtonClicked
+                    : styles.filterButton
+                }
+              >
+                <Text
+                  style={
+                    tops[index] === subtype
+                      ? styles.filterTextClicked
+                      : styles.filterText
+                  }
+                >
+                  {top}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
-function FilterSubTypeBottom() {
+function FilterSubTypeBottom({ handleSubtypeInput }) {
+  const subtype = useSelector((state) => state.clothes.temporaryClothe.subtype);
+
   return (
     <View style={styles.filtersContainer}>
       <Text style={styles.filterTitle}>De quel type de bas s’agit-il ? *</Text>
       <View style={styles.filterContainer}>
-        {bottom.map((bottom, index) => (
-          <View key={index} style={styles.filterButton}>
-            <Text style={styles.filterText}>{bottom}</Text>
-          </View>
+        {bottoms.map((bottom, index) => (
+          <TouchableOpacity
+            key={index}
+            onPress={() => handleSubtypeInput(bottoms[index])}
+          >
+            <View
+              style={
+                bottoms[index] === subtype
+                  ? styles.filterButtonClicked
+                  : styles.filterButton
+              }
+            >
+              <Text
+                style={
+                  bottoms[index] === subtype
+                    ? styles.filterTextClicked
+                    : styles.filterText
+                }
+              >
+                {bottom}
+              </Text>
+            </View>
+          </TouchableOpacity>
         ))}
       </View>
     </View>
   );
 }
 
-function FilterSubTypeShoes() {
+function FilterSubTypeShoes({ handleSubtypeInput }) {
+  const subtype = useSelector((state) => state.clothes.temporaryClothe.subtype);
+
   return (
     <View style={styles.filtersContainer}>
-      <Text style={styles.filterTitle}>De quel type de chaussures s’agit-il ? *</Text>
+      <Text style={styles.filterTitle}>
+        De quel type de chaussures s’agit-il ? *
+      </Text>
       <View style={styles.filterContainer}>
-        {shoes.map((haut, index) => (
-          <View key={index} style={styles.filterButton}>
-            <Text style={styles.filterText}>{haut}</Text>
-          </View>
+        {shoes.map((shoe, index) => (
+          <TouchableOpacity
+            key={index}
+            onPress={() => handleSubtypeInput(shoes[index])}
+          >
+            <View
+              style={
+                shoes[index] === subtype
+                  ? styles.filterButtonClicked
+                  : styles.filterButton
+              }
+            >
+              <Text
+                style={
+                  shoes[index] === subtype
+                    ? styles.filterTextClicked
+                    : styles.filterText
+                }
+              >
+                {shoe}
+              </Text>
+            </View>
+          </TouchableOpacity>
         ))}
       </View>
     </View>
   );
 }
 
-function FilterSubTypeAccessories() {
+function FilterSubTypeAccessories({ handleSubtypeInput }) {
+  const subtype = useSelector((state) => state.clothes.temporaryClothe.subtype);
+
   return (
-    <View style={styles.filtersContainer}>
-      <Text style={styles.filterTitle}>De quel type d'accessoire s’agit-il ? *</Text>
-      <View style={styles.filterContainer}>
-        {accessories.map((accessories, index) => (
-          <View key={index} style={styles.filterButton}>
-            <Text style={styles.filterText}>{accessories}</Text>
-          </View>
-        ))}
+    <>
+      <View style={styles.filtersContainer}>
+        <Text style={styles.filterTitle}>
+          De quel type d'accessoire s’agit-il ? *
+        </Text>
+        <View style={styles.filterContainer}>
+          {accessories.map((accessorie, index) => (
+            <TouchableOpacity
+              key={index}
+              onPress={() => handleSubtypeInput(accessories[index])}
+            >
+              <View
+                style={
+                  accessories[index] === subtype
+                    ? styles.filterButtonClicked
+                    : styles.filterButton
+                }
+              >
+                <Text
+                  style={
+                    accessories[index] === subtype
+                      ? styles.filterTextClicked
+                      : styles.filterText
+                  }
+                >
+                  {accessorie}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
-export { FilterSubTypeTop, FilterSubTypeBottom, FilterSubTypeShoes, FilterSubTypeAccessories };
+export {
+  FilterSubTypeTop,
+  FilterSubTypeBottom,
+  FilterSubTypeShoes,
+  FilterSubTypeAccessories,
+};
 
 const styles = StyleSheet.create({
   filtersContainer: {
     width: windowWidth * 0.9,
     alignContent: "center",
-    paddingBottom : 20,
+    justifyContent: "center",
   },
   filterTitle: {
     fontSize: 18,
-    fontFamily : "Lora-SemiBoldItalic",
-    paddingBottom : 15,
+    fontFamily: "Lora-SemiBoldItalic",
+    paddingBottom: 15,
     textAlign: "center",
   },
   filterContainer: {

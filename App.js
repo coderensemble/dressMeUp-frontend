@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as Font from "expo-font";
+import { LogBox } from "react-native";
 
 const fetchFonts = async () => {
   await Font.loadAsync({
@@ -11,7 +12,6 @@ const fetchFonts = async () => {
     "Lora-SemiBoldItalic": require("./assets/fonts/Lora/static/Lora-SemiBoldItalic.ttf"),
     "Lora-SemiBold": require("./assets/fonts/Lora/static/Lora-SemiBold.ttf"),
     "Lora-Medium": require("./assets/fonts/Lora/static/Lora-Medium.ttf"),
-
     // Vous pouvez charger d'autres polices ici si nécessaire
   });
 };
@@ -23,6 +23,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import user from "./reducers/user";
 import clothes from "./reducers/clothes";
+import outfits from "./reducers/outfits";
 // Pensez à importer vos reducers une fois qu'ils sont été exportés dans leurs fichiers respectifs
 
 //import des différents screens
@@ -36,6 +37,7 @@ import CreateClotheC from "./screens/CreateClothes/CreateClotheC";
 import CreateClotheD from "./screens/CreateClothes/CreateClotheD";
 import CreateClotheE from "./screens/CreateClothes/CreateClotheE";
 import CreateClotheF from "./screens/CreateClothes/CreateClotheF";
+import SnapScreen from "./screens/SnapScreen";
 
 import CreateOutfitA from "./screens/CreateOutfits/CreateOutfitA";
 import CreateOutfitB from "./screens/CreateOutfits/CreateOutfitB";
@@ -46,18 +48,21 @@ import OverviewOutfit from "./screens/CreateOutfits/OverviewOutfit";
 import ViewClotheA from "./screens/ViewClothes/ViewClotheA";
 import ViewClotheB from "./screens/ViewClothes/ViewClotheB";
 import ViewClotheC from "./screens/ViewClothes/ViewClotheC";
+import ViewClotheD from "./screens/ViewClothes/ViewClotheD";
 
 import ViewOutfitA from "./screens/ViewOutfits/ViewOutfitA";
 import ViewOutfitB from "./screens/ViewOutfits/ViewOutfitB";
 import ViewOutfitC from "./screens/ViewOutfits/ViewOutfitC";
+
 // Fin de l'import des différents screens
 
-const reducers = combineReducers({ user, clothes });
+const reducers = combineReducers({ user, clothes, outfits });
 const persistConfig = { key: "DressMeUp", storage: AsyncStorage };
 
 const store = configureStore({
   reducer: persistReducer(persistConfig, reducers),
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
 });
 
 const persistor = persistStore(store);
@@ -65,10 +70,6 @@ const persistor = persistStore(store);
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  // (async () => {
-  //   const res = await AsyncStorage.clear();
-  //   console.log(res);
-  // })();
 
   const [fontLoaded, setFontLoaded] = useState(false);
 
@@ -85,21 +86,22 @@ export default function App() {
     return null;
   }
 
-  return (
+  return (    
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="LoginScreen" component={LoginScreen} /> 
+            <Stack.Screen name="LoginScreen" component={LoginScreen} />
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
             <Stack.Screen name="UserProfileScreen" component={UserProfileScreen} />
 
-            <Stack.Screen name="CreateClotheA" component={CreateClotheA} />
-            <Stack.Screen name="CreateClotheB" component={CreateClotheB} /> 
-            <Stack.Screen name="CreateClotheC" component={CreateClotheC} /> 
-            <Stack.Screen name="CreateClotheD" component={CreateClotheD} /> 
+            <Stack.Screen name= "CreateClotheA" component={CreateClotheA} />
+            <Stack.Screen name="CreateClotheB" component={CreateClotheB} />
+            <Stack.Screen name="CreateClotheC" component={CreateClotheC} />
+            <Stack.Screen name="CreateClotheD" component={CreateClotheD} />
             <Stack.Screen name="CreateClotheE" component={CreateClotheE} />
-            <Stack.Screen name="CreateClotheF" component={CreateClotheF} />  
+            <Stack.Screen name="CreateClotheF" component={CreateClotheF} />
+            <Stack.Screen name="SnapScreen" component={SnapScreen} />
 
             <Stack.Screen name="CreateOutfitA" component={CreateOutfitA} />
             <Stack.Screen name="CreateOutfitB" component={CreateOutfitB} />
@@ -107,13 +109,15 @@ export default function App() {
             <Stack.Screen name="CreateOutfitD" component={CreateOutfitD} />
             <Stack.Screen name="OverviewOutfit" component={OverviewOutfit} />
 
-            <Stack.Screen name="ViewClotheA" component={ViewClotheA} />
-            {/* <Stack.Screen name="ViewClotheB" component={ViewClotheB} /> */}
-            {/* <Stack.Screen name="ViewClotheC" component={ViewClotheC} /> */}
+            <Stack.Screen name="ViewClotheA" component={ViewClotheA} /> 
+            <Stack.Screen name="ViewClotheB" component={ViewClotheB} />
+            <Stack.Screen name="ViewClotheC" component={ViewClotheC} />
+            <Stack.Screen name="ViewClotheD" component={ViewClotheD} />
 
             <Stack.Screen name="ViewOutfitA" component={ViewOutfitA} />
-            {/* <Stack.Screen name="ViewOutfitB" component={ViewOutfitB} /> */}
-            {/* <Stack.Screen name="ViewOutfitC" component={ViewOutfitC} /> */}
+            <Stack.Screen name="ViewOutfitB" component={ViewOutfitB} />
+            <Stack.Screen name="ViewOutfitC" component={ViewOutfitC} /> 
+
           </Stack.Navigator>
         </NavigationContainer>
       </PersistGate>

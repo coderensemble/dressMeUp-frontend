@@ -8,94 +8,25 @@ import {
   TextInput,
   ScrollView,
   TouchableOpacity,
-  TouchableWithoutFeedback,
-  Modal,
-  Text,
   StatusBar
 } from "react-native";
 import { Dimensions } from "react-native";
 import { Filters } from "../../Components/css/Pictos";
-import {
-  setTop1,
-  setTop2,
-  setBottom,
-  setShoes,
-  setAccessory1,
-  setAccessory2,
-  setAccessory3,
-} from "../../reducers/outfits";
 import {
   TopContainerListingTop,
   TopContainerListingBottom,
   TopContainerListingAccessories,
   TopContainerListingShoes,
 } from "../../Components/css/TopContainer";
-import {
-  PreviewListingBottom,
-  PreviewListingTop,
-  PreviewListingAccessories,
-  PreviewListingShoes,
-  PreviewListingFiltered,
-} from "../../Components/css/CardPreviewClothes";
-import { FilterSubtypeAccessories, FilterSubtypeTop, FilterSubtypeBottom, FilterSubtypeShoes, FilterColor, FilterMaterialShoes, FilterMaterialBottom, FilterMaterialTop, FilterCut, FilterSeason, FilterRain } from "../../Components/css/FilterClothes";
-
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import { PreviewFilteredList } from "../../Components/css/CardPreviewClothes";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-function CreateOutfitC({ navigation, route }) {
-  
-  const dispatch = useDispatch();
+function ViewClotheD({ navigation, route }) {
 
-  const { subtype, color, material, cut, season, rain, maintype, event } = route.params;
-
-  const outfitmaintype = useSelector((state) => state.outfits.maintype);
-
-  const top1 = useSelector((state) => state.outfits.temporaryOutfit.top1);
-  const accessory1 = useSelector(
-    (state) => state.outfits.temporaryOutfit.accessory1
-  );
-  const accessory2 = useSelector(
-    (state) => state.outfits.temporaryOutfit.accessory2
-  );
-  const accessory3 = useSelector(
-    (state) => state.outfits.temporaryOutfit.accessory3
-  );
-
-  const handleTopOutfitSubmit = (selectedTop) => {
-    if (!top1) {
-      dispatch(setTop1(selectedTop));
-      navigation.navigate("OverviewOutfit");
-    } else {
-      dispatch(setTop2(selectedTop));
-      navigation.navigate("OverviewOutfit");
-    }
-  };
-
-  const handleBottomOutfitSubmit = (selectedBottom) => {
-    dispatch(setBottom(selectedBottom));
-    navigation.navigate("OverviewOutfit");
-  };
-
-  const handleShoesOutfitSubmit = (selectedShoes) => {
-    dispatch(setShoes(selectedShoes));
-    navigation.navigate("OverviewOutfit");
-  };
-
-  const handleAccessoryOutfitSubmit = (selectedAccessory) => {
-    if (!accessory1) {
-      dispatch(setAccessory1(selectedAccessory));
-      navigation.navigate("OverviewOutfit");
-    } else if (!accessory2) {
-      dispatch(setAccessory2(selectedAccessory));
-      navigation.navigate("OverviewOutfit");
-    } else {
-      dispatch(setAccessory3(selectedAccessory));
-      navigation.navigate("OverviewOutfit");
-    }
-  };
+  const { subtype, color, material, cut, season, rain, maintype, event, selectedItem } = route.params;
 
   const handleGoBack = () => {
     navigation.goBack();
@@ -105,18 +36,22 @@ function CreateOutfitC({ navigation, route }) {
     navigation.navigate('CreateOutfitC')
   }
 
+  const handlePreview = (item) => {
+    navigation.navigate('ViewClotheC', { selectedItem: item });
+  };
+
   return (
     <SafeAreaView style={styles.mainContainer}>
-      {outfitmaintype === "top" && (
+      {maintype === "top" && (
         <TopContainerListingTop handleGoBack={handleGoBack} />
       )}
-      {outfitmaintype === "bottom" && (
+      {maintype === "bottom" && (
         <TopContainerListingBottom handleGoBack={handleGoBack} />
       )}
-      {outfitmaintype === "shoes" && (
+      {maintype === "shoes" && (
         <TopContainerListingShoes handleGoBack={handleGoBack} />
       )}
-      {outfitmaintype === "accessories" && (
+      {maintype === "accessories" && (
         <TopContainerListingAccessories handleGoBack={handleGoBack} />
       )}
       <View style={styles.filterContainer}>
@@ -133,7 +68,7 @@ function CreateOutfitC({ navigation, route }) {
         contentContainerStyle={styles.scrollViewContentContainer}
         showsVerticalScrollIndicator={false}
       >
-        <PreviewListingFiltered
+        <PreviewFilteredList
         subtype={subtype}
         color={color}
         material={material}
@@ -142,11 +77,7 @@ function CreateOutfitC({ navigation, route }) {
         rain={rain}
         maintype={maintype}
         event={event}
-        handleTopOutfitSubmit={handleTopOutfitSubmit}
-        handleBottomOutfitSubmit={handleBottomOutfitSubmit}
-        handleShoesOutfitSubmit={handleShoesOutfitSubmit}
-        handleAccessoryOutfitSubmit={handleAccessoryOutfitSubmit}
-        handle
+        handlePreview={handlePreview}
       />
       </ScrollView>
     </SafeAreaView>
@@ -264,4 +195,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default CreateOutfitC;
+export default ViewClotheD;
