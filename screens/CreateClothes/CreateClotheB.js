@@ -1,25 +1,19 @@
 // Correspond à 2A-B sur Figma
 
 import React from 'react'
-import { Dimensions, StyleSheet, Text, TouchableOpacity, View, StatusBar } from 'react-native'
+import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { TopContainerPicto } from '../../Components/css/TopContainer'
 import { CardEvent } from '../../Components/css/CardEvent'
-import ButtonGreenLight, { ButtonNextStep } from '../../Components/css/ButtonGreenLight'
-import { useDispatch, useSelector } from 'react-redux';
-import { setEvent, setName } from '../../reducers/clothes'
+import { ButtonNextStep } from '../../Components/css/ButtonGreenLight'
+import { useDispatch } from 'react-redux';
+import { setEvent} from '../../reducers/clothes'
 
 const windowWidth = Dimensions.get("window").width;
 
 
 function CreateClotheB({ navigation }) {
   const dispatch = useDispatch()
-  const clothemaintype = useSelector((state) => state.clothes.temporaryClothe.maintype);
-  const clotheevent = useSelector((state) => state.clothes.temporaryClothe.event)
-  const fullClothe = useSelector((state) => state.clothes.temporaryClothe)
-
-  // console.log(clothemaintype)
-  // console.log(clotheevent)
 
   const handleTopSubmit = () => {
     navigation.navigate('CreateClotheC');
@@ -34,7 +28,7 @@ function CreateClotheB({ navigation }) {
   }
 
   const handleClotheName = () => {
-    dispatch(setName(`${fullClothe.subtype} ${fullClothe.brand} ${fullClothe.color.name}`))
+return // obligatoire car nous n'avons prévu qu'un seul bouton ButtonNextStep
   }
 
   return (
@@ -56,8 +50,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F6FFF8',
     alignItems: 'center',
-    justifyContent: "space-between",
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    justifyContent: "space-between"
   },
   subContainer: {
     alignItems: "center"

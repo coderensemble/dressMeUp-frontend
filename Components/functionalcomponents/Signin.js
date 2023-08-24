@@ -1,32 +1,39 @@
+// Importation des modules nécessaires depuis React, React Native et d'autres dépendances.
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   StyleSheet,
   TextInput,
-  KeyboardAvoidingView,
   TouchableOpacity,
   Text,
   View,
 } from "react-native";
 import { Dimensions } from "react-native";
-import { login, logout } from "../../reducers/user";
+import { login } from "../../reducers/user";
+import { BACKEND_URL } from '@env'
 
+// Récupération des dimensions de la fenêtre.
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 export default function SignIn({navigation}) {
+  // Hook useDispatch pour utiliser les actions Redux
   const dispatch = useDispatch();
+  // Hook useSelector pour obtenir l'état utilisateur
   const user = useSelector((state) => state.user.value);
 
+   // Hooks d'états locaux 
   const [showSignup, setShowSignup] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 
+  // Fonction appelée lors de la soumission du formulaire
   const handleSubmit = () => {
     if (showSignup) {
-      fetch("https://dress-me-up-backend-omega.vercel.app/users/signup", {
+      fetch(`${BACKEND_URL}/users/signup`, {
+        // Requête POST vers le backend pour l'inscription.
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -41,11 +48,12 @@ export default function SignIn({navigation}) {
             setUsername("");
             setEmail("");
             setPassword("");
+            // Réinitialisation des champs
           }
           setShowSignup(!showSignup)
         });
     } else {
-      fetch("https://dress-me-up-backend-omega.vercel.app/users/signin", {
+      fetch(`${BACKEND_URL}/users/signin`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -79,6 +87,7 @@ export default function SignIn({navigation}) {
     }
   };
 
+  // Fonction pour basculer entre les modes connexion et inscription
   const handleToggleSignup = () => {
     setShowSignup(!showSignup);
   };

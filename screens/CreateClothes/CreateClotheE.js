@@ -12,6 +12,7 @@ import { Camera } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker'
 import * as ImageManipulator from 'expo-image-manipulator';
 
+import { BACKEND_URL } from '@env';
 import { setImage } from '../../reducers/clothes';
 import { useDispatch } from 'react-redux';
 
@@ -77,7 +78,7 @@ function CreateClotheE({ navigation }) {
         type: 'image/jpeg',
     })
 
-    fetch('https://dress-me-up-backend-omega.vercel.app/clothes/upload', {
+    fetch(`${BACKEND_URL}/clothes/upload`, {
         method: 'POST',
         body: formData,
     }).then((response) => response.json())

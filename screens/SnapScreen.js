@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addPhoto } from "../reducers/user";
 import { setImage } from "../reducers/clothes";
 import { useIsFocused } from "@react-navigation/native";
+import { BACKEND_URL } from '@env'
+
 
 
 export default function SnapScreen({ navigation }) {
@@ -34,7 +36,7 @@ export default function SnapScreen({ navigation }) {
             type: 'image/jpeg',
         })
 
-        fetch('https://dress-me-up-backend-omega.vercel.app/clothes/upload', {
+        fetch(`${BACKEND_URL}/clothes/upload`, {
             method: 'POST',
             body: formData,
         }).then((response) => response.json())

@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as Font from "expo-font";
 import { LogBox } from "react-native";
+LogBox.ignoreAllLogs();
 
 const fetchFonts = async () => {
   await Font.loadAsync({

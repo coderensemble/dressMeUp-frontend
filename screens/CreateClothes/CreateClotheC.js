@@ -4,17 +4,12 @@ import React from "react";
 import {
   Dimensions,
   Keyboard,
-  KeyboardAvoidingView,
   StyleSheet,
-  Text,
-  TouchableOpacity,
   TouchableWithoutFeedback,
   View,
-  StatusBar,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
-  TopContainerPicto,
   TopContainerPictoSubtext,
   TopContainerPictoSubtextAccessories,
 } from "../../Components/css/TopContainer";
@@ -71,8 +66,6 @@ function CreateClotheC({ navigation }) {
     );
   };
 
-  // GERER NAVIGATION IMPOSSIBLE SI LES FILTRES OBLIGATOIRES NON RENSEIGNES
-
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <SafeAreaView style={styles.mainContainer}>
@@ -101,7 +94,7 @@ function CreateClotheC({ navigation }) {
               <FilterColors handleColorSelect={handleColorSelect} />
               {clothe.maintype === "shoes" ||
               clothe.maintype === "accessories" ? null : (
-                <ButtonOptions handleTopSubmit={handleTopSubmit} />
+                <ButtonOptions handleTopSubmit={handleTopSubmit} handleClotheName={handleClotheName} />
               )}
               <ButtonSkip
               handleSkip={handleSkip}
@@ -120,7 +113,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#F6FFF8",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   modalContainer: {
     width: '100%',

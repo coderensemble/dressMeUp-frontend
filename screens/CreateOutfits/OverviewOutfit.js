@@ -26,6 +26,7 @@ import {
 } from "../../reducers/outfits";
 import { captureRef } from "react-native-view-shot";
 import { useRef } from "react";
+import { BACKEND_URL } from '@env'
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -150,7 +151,7 @@ function OverviewOutfit({ navigation }) {
     const randomId = Math.random() * 1000;
     dispatch(setId(randomId));
     // console.log('tempOutfit', temporaryOutfit)
-    fetch("http://dress-me-up-backend-omega.vercel.app/outfits", {
+    fetch(`${BACKEND_URL}/outfits`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -201,7 +202,7 @@ function OverviewOutfit({ navigation }) {
       });
 
       // Send the image to the server and await the response
-      const response = await fetch("https://dress-me-up-backend-omega.vercel.app/outfits/upload", {
+      const response = await fetch(`${BACKEND_URL}/outfits/upload`, {
         method: "POST",
         body: formData,
       });

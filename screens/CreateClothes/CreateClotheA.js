@@ -1,9 +1,9 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View, StatusBar} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import {TopContainerCreateClothe} from '../../Components/css/TopContainer';
 import { CardAddClothes } from '../../Components/css/CardAddClothes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { resetTemporaryClothe, setMaintype } from '../../reducers/clothes';
 
 
@@ -53,8 +53,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#F6FFF8',
         alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+        justifyContent: 'flex-start'
     },
 })
 

@@ -1,12 +1,14 @@
 // Correspond à 2A-F sur Figma
 
 import React, { useState } from 'react'
-import { Dimensions, Image, ImageBackground, Modal, StyleSheet, Text, TouchableOpacity, View, StatusBar } from 'react-native'
+import { Dimensions, Image, ImageBackground, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { TopContainerPicto } from '../../Components/css/TopContainer'
 import { ButtonValidate } from '../../Components/css/ButtonGreenLight';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveClothe, setId } from '../../reducers/clothes';
+import { BACKEND_URL } from '@env'
+
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -17,7 +19,6 @@ function CreateClotheF({ navigation }) {
   const dispatch = useDispatch()
   const picture = useSelector((state) => state.clothes.temporaryClothe.image)
   const clothes = useSelector((state) => state.clothes.temporaryClothe)
-  const clothesStore = useSelector((state) => state.clothes.clothes)
   const [modalVisible, setModalVisible] = useState(false);
   const username = useSelector((state) => state.user.value.username)
 
@@ -30,7 +31,7 @@ function CreateClotheF({ navigation }) {
     const randomId = Math.random() * 1000
     dispatch(setId(randomId))
     console.log("id", randomId)
-    fetch('http://dress-me-up-backend-omega.vercel.app/clothes', {
+    fetch(`${BACKEND_URL}/clothes`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -79,8 +80,6 @@ function CreateClotheF({ navigation }) {
     fall: "Automne",
     winter: "Hiver",
   };
-
-  // console.log(picture)
 
   return (
     <View style={styles.mainContainer}>
@@ -206,7 +205,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F6FFF8',
     alignItems: 'center',
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   imageBackground: {
     height: windowHeight * 0.5,

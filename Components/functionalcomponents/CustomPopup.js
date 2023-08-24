@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import {BACKEND_URL} from '@env'
 
 const CustomPopup = ({ isVisible, onClose, onDelete }) => {
   const [deleteUser, setDeleteUser] = useState(false);
@@ -12,7 +13,7 @@ const CustomPopup = ({ isVisible, onClose, onDelete }) => {
   const clickDeleteButton = () => {
     setDeleteUser(true);
     console.log("tu es suprimé");
-    fetch(`https://dress-me-up-backend-omega.vercel.app/users/${usernameToDelete}`, {method: 'DELETE'})
+    fetch(`${BACKEND_URL}/users/${usernameToDelete}`, {method: 'DELETE'})
     .then(response => response.json())
     .then((data) => {
       console.log(data);
