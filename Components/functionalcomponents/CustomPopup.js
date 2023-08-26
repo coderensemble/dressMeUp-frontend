@@ -9,10 +9,11 @@ const CustomPopup = ({ isVisible, onClose, onDelete }) => {
   const navigation = useNavigation();
   const user = useSelector((state) => state.user.value);
   const usernameToDelete = user.username;
+  //console.log(usernameToDelete);
 
   const clickDeleteButton = () => {
     setDeleteUser(true);
-    console.log("tu es suprimé");
+    //console.log("ready for delete");
     fetch(`${BACKEND_URL}/users/${usernameToDelete}`, {method: 'DELETE'})
     .then(response => response.json())
     .then((data) => {

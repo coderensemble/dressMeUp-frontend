@@ -65,14 +65,14 @@ export default function SignIn({navigation}) {
         .then((response) => response.json())
         .then((data) => {
           if (data.result) {
-            //console.log(data);
+            console.log("signIn", data);
             dispatch(
               login({
                 token: data.token,
                 username: data.username,
                 email: data.email,
                 idProfilPict: data.idProfilPict,
-                profilPictURL: data.profilPictURL,
+                profilPictURL: "",
                 password: data.password,
               })
             );

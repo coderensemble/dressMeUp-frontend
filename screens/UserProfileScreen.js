@@ -23,15 +23,15 @@ export default function UserProfileScreen({ navigation }) {
 
   const [isUsernameInputVisible, setIsUsernameInputVisible] = useState(false);
   const [isEmailInputVisible, setIsEmailInputVisible] = useState(false);
-
   const [showPopup, setShowPopup] = useState(false);
+
   const [hasPermission, setHasPermission] = useState(false);
   const [isCameraVisible, setIsCameraVisible] = useState(false);
   const [cameraType, setCameraType] = useState(CameraType.front);
   const isFocused = useIsFocused();
   let cameraRef = useRef(null);
 
-  // console.log("Valeur de profilPictURL :", state.value.profilictURL);
+  // console.log("Valeur de profilPictURL :", state.value.profilPictURL);
 
   useEffect(() => {
     (async () => {
@@ -44,10 +44,11 @@ export default function UserProfileScreen({ navigation }) {
 
   const takePicture = async () => {
     if (cameraRef) {
+      
       const photo = await cameraRef.takePictureAsync({ quality: 0.3 });
       const formData = new FormData();
 
-      formData.append("photoFromFront", {
+      formData.append("profilPict", {
         uri: photo.uri,
         name: "photo.jpg",
         type: "image/jpeg",
@@ -55,7 +56,7 @@ export default function UserProfileScreen({ navigation }) {
 
       console.log("Selfie:", photo.uri);
 
-      fetch(`${BACKEND_URL}/users/upload/${user.token}/${user.idProfilPict}`, {
+      fetch(`${BACKEND_URL}/users/${user.username}/upload/`, {
         method: "POST",
         body: formData,
       })
@@ -63,11 +64,12 @@ export default function UserProfileScreen({ navigation }) {
         .then((data) => {
           console.log("DATA UPLOAD", data);
 
-          if (data.result) {
-            dispatch(setPhoto({ profilPictURL: data.profilPictURL, idProfilPict: data.idProfilPict }));
-          }
+           if (data.result) {
+            console.log("data result", data.result)
+             dispatch(setPhoto({ profilPictURL: data.url }));
+           }
         })
-        .finally(setIsCameraVisible(false));
+        setIsCameraVisible(false);
     }
   };
 
@@ -115,7 +117,7 @@ export default function UserProfileScreen({ navigation }) {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          //console.log(data);
           dispatch(setEmail(newEmail));
           setIsEmailInputVisible(false);
         });

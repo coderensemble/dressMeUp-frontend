@@ -5,7 +5,7 @@ const initialState = {
     username: null,
     email: null,
     idProfilPict: "",
-    profilPictURL: null,
+    profilPictURL: "",
     token: null,
   },
 };
@@ -28,9 +28,9 @@ export const userSlice = createSlice({
 
     setPhoto: (state, action) => {
       console.log(action.payload);
-      const { profilPictURL, idProfilPict } = action.payload;
       state.value.profilPictURL = profilPictURL;
       state.value.idProfilPict = idProfilPict;
+      const { profilPictURL, idProfilPict } = action.payload;
     },
 
     setUsername: (state, action) => {
