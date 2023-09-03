@@ -17,6 +17,7 @@ const windowHeight = Dimensions.get("window").height;
 export default function UserProfileScreen({ navigation }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
+  //console.log("user", user);
 
   const [newUsername, setNewUsername] = useState("");
   const [newEmail, setNewEmail] = useState("");
@@ -30,8 +31,6 @@ export default function UserProfileScreen({ navigation }) {
   const [cameraType, setCameraType] = useState(CameraType.front);
   const isFocused = useIsFocused();
   let cameraRef = useRef(null);
-
-  // console.log("Valeur de profilPictURL :", state.value.profilPictURL);
 
   useEffect(() => {
     (async () => {
@@ -80,6 +79,7 @@ export default function UserProfileScreen({ navigation }) {
   const openCamera = () => {
     setIsCameraVisible(true);
     setPhoto;
+    //! utilité de setPhoto
   };
 
   const openPopup = () => {
@@ -187,7 +187,7 @@ export default function UserProfileScreen({ navigation }) {
                     style={{ width: "100%", height: "100%", borderRadius: (windowWidth * 0.4) / 2 }}
                   />
                 ) : (
-                  <Image source={require("../assets/images/profile.jpeg")} style={{ width: "100%", height: "100%", borderRadius: (windowWidth * 0.4) / 2 }}/>
+                  <Image source={require("../assets/images/profile.jpg")} style={{ width: "100%", height: "100%", borderRadius: (windowWidth * 0.4) / 2 }}/>
                 )}
               </View>
 
