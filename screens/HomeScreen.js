@@ -18,7 +18,7 @@ import {
   MoreThanTwoFav,
 } from "../Components/css/HomeComponents";
 import { useEffect } from "react";
-import { BACKEND_URL } from '@env'
+import { EXPO_PUBLIC_BACKEND_URL } from '@env'
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -43,7 +43,7 @@ function HomeUser({ navigation }) {
 
       dispatch(resetFavorite())
   
-       fetch(`${BACKEND_URL}/users/clothes`, {
+       fetch(`${EXPO_PUBLIC_BACKEND_URL}/users/clothes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: user.username }),
@@ -53,7 +53,7 @@ function HomeUser({ navigation }) {
           dispatch(PushFromDBToClothesStore(data));
         });
   
-       fetch(`${BACKEND_URL}/users/outfits`, {
+       fetch(`${EXPO_PUBLIC_BACKEND_URL}/users/outfits`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: user.username }),

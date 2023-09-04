@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import {BACKEND_URL} from '@env'
+import {EXPO_PUBLIC_BACKEND_URL} from '@env'
 
 const CustomPopup = ({ isVisible, onClose, onDelete }) => {
   const [deleteUser, setDeleteUser] = useState(false);
@@ -14,7 +14,7 @@ const CustomPopup = ({ isVisible, onClose, onDelete }) => {
   const clickDeleteButton = () => {
     setDeleteUser(true);
     //console.log("ready for delete");
-    fetch(`${BACKEND_URL}/users/${usernameToDelete}`, {method: 'DELETE'})
+    fetch(`${EXPO_PUBLIC_BACKEND_URL}/users/${usernameToDelete}`, {method: 'DELETE'})
     .then(response => response.json())
     .then((data) => {
       console.log(data);

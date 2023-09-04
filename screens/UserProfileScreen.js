@@ -9,7 +9,7 @@ import CustomPopup from "../Components/functionalcomponents/CustomPopup";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Camera, CameraType } from "expo-camera";
 import { useIsFocused } from "@react-navigation/native";
-import { BACKEND_URL } from '@env'
+import { EXPO_PUBLIC_BACKEND_URL } from '@env'
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -55,7 +55,7 @@ export default function UserProfileScreen({ navigation }) {
 
       console.log("Selfie:", photo.uri);
 
-      fetch(`${BACKEND_URL}/users/${user.username}/upload/`, {
+      fetch(`${EXPO_PUBLIC_BACKEND_URL}/users/${user.username}/upload/`, {
         method: "POST",
         body: formData,
       })
@@ -105,7 +105,7 @@ export default function UserProfileScreen({ navigation }) {
 
   const handleConfirmEmailChange = () => {
     if (newEmail && newEmail.trim() !== "") {
-      fetch(`${BACKEND_URL}/users`, {
+      fetch(`${EXPO_PUBLIC_BACKEND_URL}/users`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -136,7 +136,7 @@ export default function UserProfileScreen({ navigation }) {
   const handleConfirmUsernameChange = () => {
     handleNewUsernameSave();
     if (newUsername && newUsername.trim() !== "") {
-      fetch(`${BACKEND_URL}/users`, {
+      fetch(`${EXPO_PUBLIC_BACKEND_URL}/users`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

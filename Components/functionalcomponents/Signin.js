@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { Dimensions } from "react-native";
 import { login } from "../../reducers/user";
-import { BACKEND_URL } from '@env'
+import { EXPO_PUBLIC_BACKEND_URL } from '@env'
 
 // Récupération des dimensions de la fenêtre.
 const windowWidth = Dimensions.get("window").width;
@@ -32,7 +32,7 @@ export default function SignIn({navigation}) {
   // Fonction appelée lors de la soumission du formulaire
   const handleSubmit = () => {
     if (showSignup) {
-      fetch(`${BACKEND_URL}/users/signup`, {
+      fetch(`${EXPO_PUBLIC_BACKEND_URL}/users/signup`, {
         // Requête POST vers le backend pour l'inscription.
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -53,7 +53,7 @@ export default function SignIn({navigation}) {
           setShowSignup(!showSignup)
         });
     } else {
-      fetch(`${BACKEND_URL}/users/signin`, {
+      fetch(`${EXPO_PUBLIC_BACKEND_URL}/users/signin`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

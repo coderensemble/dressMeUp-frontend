@@ -18,7 +18,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { deleteClothe } from "../../reducers/clothes";
-import { BACKEND_URL } from '@env'
+import { EXPO_PUBLIC_BACKEND_URL } from '@env'
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -45,7 +45,7 @@ function ViewClotheC({ navigation, route }) {
 
   const handleDelete = (clothe) => {
     console.log("id to delete", clothe.id)
-    fetch(`${BACKEND_URL}/clothes`, {
+    fetch(`${EXPO_PUBLIC_BACKEND_URL}/clothes`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ clotheId: clothe.id }),

@@ -22,7 +22,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "../../Components/css/Pictos";
-import { BACKEND_URL } from '@env'
+import { EXPO_PUBLIC_BACKEND_URL } from '@env'
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -56,7 +56,7 @@ function ViewOutfitC({ navigation, route }) {
 
   const handleFavorite = (outfit) => {
     // console.log(outfit.id)
-    fetch(`${BACKEND_URL}/outfits`, {
+    fetch(`${EXPO_PUBLIC_BACKEND_URL}/outfits`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ outfitId: outfit.id }),
@@ -85,7 +85,7 @@ function ViewOutfitC({ navigation, route }) {
 
   const handleDelete = (outfit) => {
     console.log("id to delete", outfit.id)
-    fetch(`${BACKEND_URL}/outfits`, {
+    fetch(`${EXPO_PUBLIC_BACKEND_URL}/outfits`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ outfitId: outfit.id }),

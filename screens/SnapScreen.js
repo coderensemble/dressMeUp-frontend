@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addPhoto } from "../reducers/user";
 import { setImage } from "../reducers/clothes";
 import { useIsFocused } from "@react-navigation/native";
-import { BACKEND_URL } from '@env'
+import { EXPO_PUBLIC_BACKEND_URL } from '@env'
 
 
 
@@ -36,7 +36,7 @@ export default function SnapScreen({ navigation }) {
             type: 'image/jpeg',
         })
 
-        fetch(`${BACKEND_URL}/clothes/upload`, {
+        fetch(`${EXPO_PUBLIC_BACKEND_URL}/clothes/upload`, {
             method: 'POST',
             body: formData,
         }).then((response) => response.json())
