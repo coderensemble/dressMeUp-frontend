@@ -42,7 +42,7 @@ function CreateClotheE({ navigation }) {
       console.log(status)
       navigation.navigate('SnapScreen')
     } else {
-      // Handle permission denied case
+      console.log(status)
     }
   };
 

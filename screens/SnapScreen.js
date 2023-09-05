@@ -30,7 +30,7 @@ export default function SnapScreen({ navigation }) {
         const formData = new FormData();
 
 
-        formData.append('photoFromFront', {
+        formData.append('file', {
             uri: photo.uri,
             name: 'photo.jpg',
             type: 'image/jpeg',
@@ -42,7 +42,7 @@ export default function SnapScreen({ navigation }) {
         }).then((response) => response.json())
             .then((data) => {
                 console.log(data)
-                dispatch(setImage(data.url));
+                dispatch(setImage(data.secure_url));
                 navigation.navigate("CreateClotheF")
             });
     };
