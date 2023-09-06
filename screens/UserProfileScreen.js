@@ -101,11 +101,13 @@ export default function UserProfileScreen({ navigation }) {
 
   const handleNewEmailSave = () => {
     setIsEmailInputVisible(false);
+    setNewEmail(newEmail);
   };
 
   const handleConfirmEmailChange = () => {
+    handleNewEmailSave();
     if (newEmail && newEmail.trim() !== "") {
-      fetch(`${EXPO_PUBLIC_BACKEND_URL}/users`, {
+      fetch(`${EXPO_PUBLIC_BACKEND_URL}/users/${user.username}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -136,7 +138,7 @@ export default function UserProfileScreen({ navigation }) {
   const handleConfirmUsernameChange = () => {
     handleNewUsernameSave();
     if (newUsername && newUsername.trim() !== "") {
-      fetch(`${EXPO_PUBLIC_BACKEND_URL}/users`, {
+      fetch(`${EXPO_PUBLIC_BACKEND_URL}/users/${user.username}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
