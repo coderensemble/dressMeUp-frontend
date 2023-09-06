@@ -12,7 +12,9 @@ import { Camera } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker'
 import * as ImageManipulator from 'expo-image-manipulator';
 
-import { EXPO_PUBLIC_CLOUDINARY_URL } from '@env';
+import { EXPO_PUBLIC_BACKEND_URL } from '@env';
+//import { LOCAL_BACKEND_URL } from '@env';
+
 import { setImage } from '../../reducers/clothes';
 import { useDispatch } from 'react-redux';
 
@@ -42,7 +44,7 @@ function CreateClotheE({ navigation }) {
       console.log(status)
       navigation.navigate('SnapScreen')
     } else {
-      console.log(status)
+      // Handle permission denied case
     }
   };
 
@@ -78,7 +80,7 @@ function CreateClotheE({ navigation }) {
         type: 'image/jpeg',
     })
 
-    fetch(`${EXPO_PUBLIC_CLOUDINARY_URL}`, {
+    fetch(`${EXPO_PUBLIC_BACKEND_URL}/clothes/upload`, {
         method: 'POST',
         body: formData,
     }).then((response) => response.json())

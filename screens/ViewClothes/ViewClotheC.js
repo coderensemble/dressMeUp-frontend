@@ -18,7 +18,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { deleteClothe } from "../../reducers/clothes";
-import { EXPO_PUBLIC_BACKEND_URL } from '@env'
+import { EXPO_PUBLIC_BACKEND_URL } from '@env';
+//import { LOCAL_BACKEND_URL } from '@env';
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;

@@ -11,6 +11,7 @@ import {
 import { Dimensions } from "react-native";
 import { login } from "../../reducers/user";
 import { EXPO_PUBLIC_BACKEND_URL } from '@env'
+//import { LOCAL_BACKEND_URL } from "@env";
 
 // Récupération des dimensions de la fenêtre.
 const windowWidth = Dimensions.get("window").width;

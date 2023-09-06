@@ -22,7 +22,8 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "../../Components/css/Pictos";
-import { EXPO_PUBLIC_BACKEND_URL } from '@env'
+import { EXPO_PUBLIC_BACKEND_URL } from '@env';
+//import { LOCAL_BACKEND_URL } from '@env';
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;

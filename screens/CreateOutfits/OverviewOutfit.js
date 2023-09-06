@@ -26,7 +26,8 @@ import {
 } from "../../reducers/outfits";
 import { captureRef } from "react-native-view-shot";
 import { useRef } from "react";
-import { EXPO_PUBLIC_BACKEND_URL } from '@env'
+import { EXPO_PUBLIC_BACKEND_URL } from '@env';
+//import { LOCAL_BACKEND_URL } from '@env';
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;

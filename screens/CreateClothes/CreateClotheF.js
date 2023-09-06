@@ -7,7 +7,8 @@ import { TopContainerPicto } from '../../Components/css/TopContainer'
 import { ButtonValidate } from '../../Components/css/ButtonGreenLight';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveClothe, setId } from '../../reducers/clothes';
-import { EXPO_PUBLIC_BACKEND_URL } from '@env'
+import { EXPO_PUBLIC_BACKEND_URL } from '@env';
+//import { LOCAL_BACKEND_URL } from '@env';
 
 
 const windowWidth = Dimensions.get("window").width;

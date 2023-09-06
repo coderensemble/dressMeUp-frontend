@@ -9,7 +9,8 @@ import CustomPopup from "../Components/functionalcomponents/CustomPopup";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Camera, CameraType } from "expo-camera";
 import { useIsFocused } from "@react-navigation/native";
-import { EXPO_PUBLIC_BACKEND_URL } from '@env'
+import { EXPO_PUBLIC_BACKEND_URL } from '@env';
+//import { LOCAL_BACKEND_URL } from "@env";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -53,7 +54,7 @@ export default function UserProfileScreen({ navigation }) {
         type: "image/jpeg",
       });
 
-      console.log("Selfie:", photo.uri);
+      //console.log("Selfie:", photo.uri);
 
       fetch(`${EXPO_PUBLIC_BACKEND_URL}/users/${user.username}/upload/`, {
         method: "POST",
@@ -79,7 +80,6 @@ export default function UserProfileScreen({ navigation }) {
   const openCamera = () => {
     setIsCameraVisible(true);
     setPhoto;
-    //! utilité de setPhoto
   };
 
   const openPopup = () => {
@@ -228,7 +228,7 @@ export default function UserProfileScreen({ navigation }) {
                   onChangeText={(value) => setNewEmail(value)}
                   value={newEmail}
                   autoFocus={true}
-                  // onSubmitEditing={handleNewEmailSave}
+                  //onSubmitEditing={handleNewEmailSave}
                 />
               ) : (
                 <Text style={styles.info}>{newEmail || user.email}</Text>
@@ -244,13 +244,6 @@ export default function UserProfileScreen({ navigation }) {
                 </TouchableOpacity>
               )}
             </View>
-            {/* <View style={styles.input}>
-              <Text style={styles.inputTitle}>Mon mot de passe</Text>
-              <Text style={styles.info}></Text>
-              <TouchableOpacity style={styles.edit}>
-                <Edit />
-              </TouchableOpacity>
-            </View> */}
           </View>
           <View style={styles.bottomView}>
             <TouchableOpacity style={styles.buttonGreen} activeOpacity={0.8} onPress={openPopup}>

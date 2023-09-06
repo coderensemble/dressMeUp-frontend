@@ -18,7 +18,9 @@ import {
   MoreThanTwoFav,
 } from "../Components/css/HomeComponents";
 import { useEffect } from "react";
-import { EXPO_PUBLIC_BACKEND_URL } from '@env'
+import { EXPO_PUBLIC_BACKEND_URL } from '@env';
+//import { LOCAL_BACKEND_URL } from '@env';
+
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
