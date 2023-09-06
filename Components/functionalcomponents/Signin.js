@@ -72,12 +72,11 @@ export default function SignIn({navigation}) {
                 token: data.token,
                 username: data.username,
                 email: data.email,
-                idProfilPict: data.idProfilPict,
                 profilPictURL: "",
-                password: data.password,
               })
             );
             navigation.navigate("HomeScreen");
+            
             //retarder la reinitialisation des états
             setTimeout(() => {
               setUsername(""), { connectTimeoutMS: 3000 };
@@ -107,10 +106,10 @@ export default function SignIn({navigation}) {
         <TextInput
           email
           placeholder="Identifiant"
-          autoCapitalize="none" // https://reactnative.dev/docs/textinput#autocapitalize
-          keyboardType="default" // https://reactnative.dev/docs/textinput#keyboardtype
-          textContentType="username" // https://reactnative.dev/docs/textinput#textcontenttype-ios
-          autoComplete="username" // https://reactnative.dev/docs/textinput#autocomplete-android
+          autoCapitalize="none" 
+          keyboardType="default" 
+          textContentType="username" 
+          autoComplete="username" 
           onChangeText={(value) => setUsername(value)}
           value={username}
           style={styles.input}

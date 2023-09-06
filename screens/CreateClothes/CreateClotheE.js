@@ -12,7 +12,7 @@ import { Camera } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker'
 import * as ImageManipulator from 'expo-image-manipulator';
 
-import { EXPO_PUBLIC_BACKEND_URL } from '@env';
+import { CLOUDINARY_URL } from '@env';
 //import { LOCAL_BACKEND_URL } from '@env';
 
 import { setImage } from '../../reducers/clothes';
@@ -44,7 +44,7 @@ function CreateClotheE({ navigation }) {
       console.log(status)
       navigation.navigate('SnapScreen')
     } else {
-      // Handle permission denied case
+      console.log(status)
     }
   };
 
@@ -57,7 +57,6 @@ function CreateClotheE({ navigation }) {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: false,
-      aspect: [4, 3],
       quality: 1
     })
 
@@ -74,23 +73,23 @@ function CreateClotheE({ navigation }) {
     const formData = new FormData();
 
 
-    formData.append('photoFromFront', {
+    formData.append('file', {
         uri: compressedImage.uri,
         name: 'photo.jpg',
         type: 'image/jpeg',
-    })
+    });
 
-    fetch(`${EXPO_PUBLIC_BACKEND_URL}/clothes/upload`, {
+    formData.append('upload_preset', 'DressMeUp');
+
+    fetch(`${CLOUDINARY_URL}`, {
         method: 'POST',
         body: formData,
     }).then((response) => response.json())
         .then((data) => {
             console.log(data)
-            dispatch(setImage(data.url));
+            dispatch(setImage(data.secure_url));
+            navigation.navigate("CreateClotheF")
         });
-
-        navigation.navigate("CreateClotheF")
-
   }
 
   return (

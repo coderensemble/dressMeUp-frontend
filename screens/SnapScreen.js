@@ -1,13 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import Svg, { Polygon, Line } from "react-native-svg";
 import { Camera } from "expo-camera";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { useDispatch, useSelector } from "react-redux";
-import { addPhoto } from "../reducers/user";
+import { useDispatch } from "react-redux";
 import { setImage } from "../reducers/clothes";
-import { useIsFocused } from "@react-navigation/native";
-import { EXPO_PUBLIC_BACKEND_URL } from "@env";
+import { CLOUDINARY_URL } from "@env";
 //import { LOCAL_BACKEND_URL } from "@env";
 
 export default function SnapScreen({ navigation }) {
@@ -15,7 +13,6 @@ export default function SnapScreen({ navigation }) {
   const [flash, setFlash] = useState(Camera.Constants.FlashMode.auto);
 
   const dispatch = useDispatch();
-  const isFocused = useIsFocused();
 
   let cameraRef = useRef(null);
 
@@ -25,20 +22,22 @@ export default function SnapScreen({ navigation }) {
 
     const formData = new FormData();
 
-    formData.append("photoFromFront", {
+    formData.append("file", {
       uri: photo.uri,
       name: "photo.jpg",
       type: "image/jpeg",
     });
 
-    fetch(`${EXPO_PUBLIC_BACKEND_URL}/clothes/upload`, {
+    formData.append('upload_preset', 'DressMeUp');
+
+    fetch(`${CLOUDINARY_URL}`, {
       method: "POST",
       body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
         console.log("dataPict", data);
-        dispatch(setImage(data.url));
+        dispatch(setImage(data.secure_url));
         navigation.navigate("CreateClotheF");
       });
   };
