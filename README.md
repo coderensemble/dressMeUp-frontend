@@ -41,66 +41,60 @@ DressMeUp est une **application mobile de dressing virtuel** pensée comme proje
 1. Cloner ce dépôt :  
    ```bash
    git clone https://github.com/coderensemble/dressMeUp-frontend.git
-Se placer dans le dossier du projet :
+2. Se placer dans le dossier du projet :
+   ```bash
+   cd dressMeUp-frontend
+3. Installer les dépendances :
+   ```bash
+   yarn install
+4. Lancer l’application avec Expo :
+   ```bash
+   expo start
+5. Scanner le QR code dans l'app Expo sur mobile ou lancer un simulateur.
 
-bash
-Copier
-Modifier
-cd dressMeUp-frontend
-Installer les dépendances :
+##  Architecture du projet
 
-bash
-Copier
-Modifier
-yarn install
-Lancer l’application avec Expo :
-
-bash
-Copier
-Modifier
-expo start
-Scanner le QR code dans l'app Expo sur mobile ou lancer un simulateur.
-
-Architecture du projet
 Le projet est organisé selon la structure suivante :
+```bash
+   │
+   ├── Components/        # Composants UI réutilisables
+   ├── screens/           # Écrans principaux (, etc.)
+   ├── reducers/          # Gestion d’état simple (si applicable)
+   ├── assets/            # Images, icônes, illustrations
+   ├── App.js             # Point d’entrée de l’application
+   ├── app.json           # Configuration Expo
+   ├── babel.config.js    # Config Babel
+   ├── package.json       # Dépendances & scripts
+   └── dressmeup.test.js  # Tests unitaires
+```
 
-bash
-Copier
-Modifier
-│
-├── Components/        # Composants UI réutilisables
-├── screens/           # Écrans principaux (, etc.)
-├── reducers/          # Gestion d’état simple (si applicable)
-├── assets/            # Images, icônes, illustrations
-├── App.js             # Point d’entrée de l’application
-├── app.json           # Configuration Expo
-├── babel.config.js    # Config Babel
-├── package.json       # Dépendances & scripts
-└── dressmeup.test.js  # Tests unitaires
+##  Design & Prototypes
 
-Design & Prototypes
 Les maquettes de l’application ont été réalisées avec Figma pour le design UI/UX:
-
 https://www.figma.com/design/q5wZamjwiZ0YvOHTT7bwMa/DressMeUp---Maquette?m=auto&t=5fll5PCiEhH2Tmdd-6
 
-Tech & Outils utilisés
+##  Tech & Outils utilisés
+
 Technologie	Rôle
 React Native	Développement d’interfaces natives multiplateformes
 CSS	Mise en forme et responsive design
 Expo	Environnement performant pour lancer, tester et déployer l’application
 Figma	Conception des designs et prototypes
 
-Tests
+##  Tests
+
 L’application inclut des tests unitaires afin d’assurer la fiabilité et la stabilité des composants.
 
-Déploiement
+##  Déploiement
+
 Exécuter expo build:android ou expo build:ios selon la plateforme visée.
 
 Suivre les instructions Expo pour générer l’APK ou IPA.
 
 Déployer sur un store (Play Store / App Store) ou partager via QR code.
 
-Contribuer
+##  Contribuer
+
 Tu peux soit :
 
 Forker ce projet
@@ -111,12 +105,14 @@ Faire tes modifications (features, bug fixes, optimisation)
 
 Soumettre une Pull Request en expliquant bien les changements et l’objectif
 
-À venir
+##  À venir
+
 Ajout d’un système d'achat pour composer ses tenues
 
 Fonctionnalité d’exportation de tenues en tant qu'image avec un partage social
 
-Auteur
+##  Auteur
+
 Adrien Neyron – Développeur Web & Mobile
 Disponible pour missions ou opportunités en développement React Native.
 
