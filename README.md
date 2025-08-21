@@ -116,5 +116,5 @@ Fonctionnalité d’exportation de tenues en tant qu'image avec un partage socia
 
 Adrien Neyron – Développeur Web & Mobile
 
-Disponible pour missions ou opportunités en développement React Native.
+Disponible pour missions ou opportunités en développement d'applications.
 
