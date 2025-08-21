@@ -115,5 +115,6 @@ Fonctionnalité d’exportation de tenues en tant qu'image avec un partage socia
 ##  Auteur
 
 Adrien Neyron – Développeur Web & Mobile
+
 Disponible pour missions ou opportunités en développement React Native.
 
