@@ -39,23 +39,23 @@ DressMeUp est une **application mobile de dressing virtuel** pensée comme proje
 ##  Démarrage en local
 
 1. Cloner ce dépôt :  
-   ```bash
+   ```
    git clone https://github.com/coderensemble/dressMeUp-frontend.git
 2. Se placer dans le dossier du projet :
-   ```bash
+   ```
    cd dressMeUp-frontend
 3. Installer les dépendances :
-   ```bash
+   ```
    yarn install
 4. Lancer l’application avec Expo :
-   ```bash
+   ```
    expo start
 5. Scanner le QR code dans l'app Expo sur mobile ou lancer un simulateur.
 
 ##  Architecture du projet
 
 Le projet est organisé selon la structure suivante :
-```bash
+```
    │
    ├── Components/        # Composants UI réutilisables
    ├── screens/           # Écrans principaux (, etc.)
@@ -74,13 +74,14 @@ Les maquettes de l’application ont été réalisées avec Figma pour le design
 https://www.figma.com/design/q5wZamjwiZ0YvOHTT7bwMa/DressMeUp---Maquette?m=auto&t=5fll5PCiEhH2Tmdd-6
 
 ##  Tech & Outils utilisés
-
-Technologie	Rôle
-React Native	Développement d’interfaces natives multiplateformes
-CSS	Mise en forme et responsive design
-Expo	Environnement performant pour lancer, tester et déployer l’application
-Figma	Conception des designs et prototypes
-
+```
+| Technologie      | Rôle                                                                   |
+|------------------|------------------------------------------------------------------------|
+| **React Native** | Développement d’interfaces natives multiplateformes                    |
+| **CSS**          | Mise en forme et responsive design                                     |
+| **Expo**         | Environnement performant pour lancer, tester et déployer l’application |
+| **Figma**        | Conception des designs et prototypes                                   |
+```
 ##  Tests
 
 L’application inclut des tests unitaires afin d’assurer la fiabilité et la stabilité des composants.
