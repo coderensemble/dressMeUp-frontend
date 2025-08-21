@@ -7,17 +7,17 @@ Dressing mobile interactif développé avec React Native, stylisé en CSS et dé
 
 ##  Table des matières
 
-- [À propos](#-à-propos)  
-- [Fonctionnalités principales](#-fonctionnalités-principales)  
-- [Démarrage en local](#-démarrage-en-local)  
-- [Architecture du projet](#-architecture-du-projet)  
-- [Design & Prototypes](#-design--prototypes)  
-- [Tech & Outils utilisés](#-tech--outils-utilisés)  
-- [Tests](#-tests)  
-- [Déploiement](#-déploiement)  
-- [Contribuer](#-contribuer)  
-- [À venir](#-à-venir)  
-- [Auteur](#-auteur)
+- [À propos](#à-propos)  
+- [Fonctionnalités principales](#fonctionnalités-principales)  
+- [Démarrage en local](#démarrage-en-local)  
+- [Architecture du projet](#architecture-du-projet)  
+- [Design & Prototypes](#design--prototypes)  
+- [Tech & Outils utilisés](#tech--outils-utilisés)  
+- [Tests](#tests)  
+- [Déploiement](#déploiement)  
+- [Contribuer](#contribuer)  
+- [À venir](#à-venir)  
+- [Auteur](#auteur)
 
 ---
 
