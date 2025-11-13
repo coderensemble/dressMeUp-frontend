@@ -33,7 +33,7 @@ export default function SignIn({navigation}) {
   // Fonction appelée lors de la soumission du formulaire
   const handleSubmit = () => {
     if (showSignup) {
-      fetch(`${EXPO_PUBLIC_BACKEND_URL}/users/signup`, {
+      fetch(`${process.env.EXPO_PUBLIC_BACKEND_URL}/users/signup`, {
         // Requête POST vers le backend pour l'inscription.
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -54,7 +54,7 @@ export default function SignIn({navigation}) {
           setShowSignup(!showSignup)
         });
     } else {
-      fetch(`${EXPO_PUBLIC_BACKEND_URL}/users/signin`, {
+      fetch(`${process.env.EXPO_PUBLIC_BACKEND_URL}/users/signin`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

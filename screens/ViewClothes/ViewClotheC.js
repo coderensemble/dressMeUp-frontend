@@ -10,7 +10,7 @@ import {
   View,
   Modal,
   TouchableOpacity,
-  StatusBar
+  StatusBar, Platform
 } from "react-native";
 import { TopContainerPicto } from "../../Components/css/TopContainer";
 import { ButtonDelete } from "../../Components/css/ButtonGreenLight";

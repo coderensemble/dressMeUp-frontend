@@ -4,7 +4,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, StatusBar} from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, StatusBar, Platform } from 'react-native'
 import { LeftArrowCircle } from '../../Components/css/Pictos'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {SmallPreviewAccessories, SmallPreviewBottom, SmallPreviewShoes, SmallPreviewTop } from '../../Components/css/CardPreviewClothes';

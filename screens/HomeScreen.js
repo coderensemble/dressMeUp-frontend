@@ -66,7 +66,6 @@ function HomeUser({ navigation }) {
           dispatch(PushFromDBToOutfitStore(data));
           console.log("data is favorite from back", data)
           dispatch(pushFromDbToFavArray(data))
-
         });
         // console.log("outfits", outfits)
 

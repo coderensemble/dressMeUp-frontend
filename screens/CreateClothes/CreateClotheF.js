@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { Dimensions, Image, ImageBackground, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { useRoute } from '@react-navigation/native';
 import { TopContainerPicto } from '../../Components/css/TopContainer'
 import { ButtonValidate } from '../../Components/css/ButtonGreenLight';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,9 +17,11 @@ const windowHeight = Dimensions.get("window").height;
 
 
 function CreateClotheF({ navigation }) {
-
+const route = useRoute();
+  const pictureFromRoute = route.params?.imageUrl;
+  const pictureFromStore = useSelector((state) => state.clothes.temporaryClothe.image);
   const dispatch = useDispatch()
-  const picture = useSelector((state) => state.clothes.temporaryClothe.image)
+  const picture = pictureFromRoute || pictureFromStore;
   const clothes = useSelector((state) => state.clothes.temporaryClothe)
   const [modalVisible, setModalVisible] = useState(false);
   const username = useSelector((state) => state.user.value.username)
@@ -28,7 +31,7 @@ function CreateClotheF({ navigation }) {
   };
 
   const handleValidate = () => {
-    setModalVisible(!true)
+    setModalVisible(!modalVisible);
     const randomId = Math.random() * 1000
     dispatch(setId(randomId))
     console.log("id", randomId)
@@ -39,7 +42,7 @@ function CreateClotheF({ navigation }) {
         name: clothes.name,
         maintype: clothes.maintype,
         color: clothes.color,
-        image: clothes.image,
+        image: picture,
         subtype: clothes.subtype,
         brand: clothes.brand,
         event: clothes.event,

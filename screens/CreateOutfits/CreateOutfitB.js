@@ -1,7 +1,7 @@
 // Correspond à 2A-A du Figma
 
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View, StatusBar } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, StatusBar, Platform } from "react-native";
 import { TopContainerCreateClothe } from "../../Components/css/TopContainer";
 import { CardAddClothesOutfit } from "../../Components/css/CardAddClothes";
 import { SafeAreaView } from "react-native-safe-area-context";

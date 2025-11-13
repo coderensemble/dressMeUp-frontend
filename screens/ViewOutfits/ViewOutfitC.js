@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Modal,
   TouchableWithoutFeedback,
-  StatusBar
+  StatusBar, Platform
 } from "react-native";
 import { TopContainerDeleteOutfit } from "../../Components/css/TopContainer";
 import { Dimensions } from "react-native";

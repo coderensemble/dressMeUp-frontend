@@ -13,7 +13,7 @@ import {
   Text,
   StatusBar
 } from "react-native";
-import { Dimensions } from "react-native";
+import { Dimensions, Platform } from "react-native";
 import { Filters } from "../../Components/css/Pictos";
 import {
   setTop1,

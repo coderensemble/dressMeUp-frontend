@@ -7,7 +7,7 @@ import {
   Text,
   Modal,
   TouchableWithoutFeedback,
-  StatusBar
+  StatusBar, Platform
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";

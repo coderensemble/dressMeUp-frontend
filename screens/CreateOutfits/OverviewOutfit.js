@@ -1,7 +1,7 @@
 // Correspond à la visualisation des différents ajouts à la tenue sur Figma
 
 import React, { useEffect } from "react";
-import { View, StyleSheet, TouchableOpacity, Text, Modal, StatusBar } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text, Modal, StatusBar, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TopContainerOverviewOutfit } from "../../Components/css/TopContainer";
 import { PreviewOverview } from "../../Components/css/CardPreviewClothes";

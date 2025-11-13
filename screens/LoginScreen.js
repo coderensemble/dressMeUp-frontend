@@ -1,11 +1,11 @@
 import SignIn from "../Components/functionalcomponents/Signin";
 import {
-  SafeAreaView,
   StyleSheet,
   Image,
   Dimensions,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;

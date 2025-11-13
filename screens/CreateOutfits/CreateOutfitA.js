@@ -5,7 +5,7 @@ import { View, StyleSheet, SafeAreaView, Text } from "react-native";
 import { TopContainerPicto } from "../../Components/css/TopContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { CardEvent } from "../../Components/css/CardEvent";
-import { Dimensions } from "react-native";
+import { Dimensions, Platform } from "react-native";
 import { ButtonNextStepOutfit } from "../../Components/css/ButtonGreenLight";
 import { resetClothes } from "../../reducers/clothes";
 import { resetEvent, resetHistory, resetTemporaryOutfit, setEvent } from "../../reducers/outfits";

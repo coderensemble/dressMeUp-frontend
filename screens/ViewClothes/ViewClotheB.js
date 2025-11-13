@@ -11,7 +11,8 @@ import {
   Modal,
   TouchableWithoutFeedback,
   Text,
-  StatusBar
+  StatusBar,
+  Platform
 } from "react-native";
 import {
   TopContainerListingAccessories,
@@ -44,6 +45,7 @@ import {
 
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { Pla } from 'react-native';
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;

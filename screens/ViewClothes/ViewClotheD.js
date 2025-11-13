@@ -8,7 +8,7 @@ import {
   TextInput,
   ScrollView,
   TouchableOpacity,
-  StatusBar
+  StatusBar, Platform
 } from "react-native";
 import { Dimensions } from "react-native";
 import { Filters } from "../../Components/css/Pictos";

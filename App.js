@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as Font from "expo-font";
-import { LogBox } from "react-native";
+import { LogBox, Text } from "react-native";
 LogBox.ignoreAllLogs();
 
 const fetchFonts = async () => {
@@ -58,14 +58,25 @@ import ViewOutfitC from "./screens/ViewOutfits/ViewOutfitC";
 // Fin de l'import des différents screens
 
 const reducers = combineReducers({ user, clothes, outfits });
-const persistConfig = { key: "DressMeUp", storage: AsyncStorage };
+const persistConfig = {
+  key: "root",
+  storage: AsyncStorage,
+  whitelist: ["user", "clothes", "outfits"]
+};
 
+// On crée un reducer persistant à partir de la config ci-dessus
+const persistedReducer = persistReducer(persistConfig, reducers);
+
+// On crée le store Redux avec la bonne configuration de middleware
 const store = configureStore({
-  reducer: persistReducer(persistConfig, reducers),
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false }),
+    getDefaultMiddleware({
+      serializableCheck: false, // évite les erreurs liées à redux-persist
+    }),
 });
 
+// On crée le persistor (passé ensuite au PersistGate)
 const persistor = persistStore(store);
 
 const Stack = createNativeStackNavigator();
@@ -83,9 +94,9 @@ export default function App() {
     loadFonts();
   }, []);
 
-  if (!fontLoaded) {
-    return null;
-  }
+ if (!fontLoaded) {
+  return <Text>Loading...</Text>;
+}
 
   return (    
     <Provider store={store}>
